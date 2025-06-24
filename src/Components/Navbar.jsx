@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <nav className="bg-gray-100 px-6 py-2 m-[47px] rounded-2xl">
+    <nav className="bg-gray-100 px-6 py-2 m-4 lg:m-[47px] rounded-2xl">
       <div className="max-w-78xl mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center">
@@ -21,7 +21,7 @@ export default function Navbar() {
         </div>
 
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-8">
           <Link
             href="/"
             className="text-gray-700 hover:text-blue-600 font-bold transition-colors"
@@ -35,7 +35,7 @@ export default function Navbar() {
             About Us
           </Link>
           <Link
-            href="/services"
+            href="/service"
             className="text-gray-700 hover:text-blue-600 font-bold transition-colors"
           >
             Services
@@ -49,7 +49,7 @@ export default function Navbar() {
         </div>
 
         {/* Contact Button */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Link href="/contact">
             <button className="bg-[#01016F] hover:bg-blue-900 text-white px-6 py-2 rounded font-medium transition-colors">
               CONTACT
@@ -58,7 +58,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button className="text-gray-700 hover:text-blue-600">
             <svg
               className="w-6 h-6"
@@ -78,7 +78,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu (you can add state management to show/hide this) */}
-      <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
+      <div className="lg:hidden mt-4 pb-4 border-t border-gray-200">
         <div className="flex flex-col space-y-2 pt-4">
           <Link
             href="/"
