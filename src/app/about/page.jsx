@@ -29,7 +29,7 @@ export default function About() {
     }
   ];
   return (
-    <div className=" mx-auto">
+    <div className=" mx-auto p-16">
       <div className="mb-12">
         <div className="flex items-start justify-between mb-8">
           <h1 className="text-5xl font-bold mr-6 flex items-center">

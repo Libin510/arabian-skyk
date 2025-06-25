@@ -1,10 +1,18 @@
-// components/Navbar.jsx
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  // useEffect(() => {
+  //   console.log("Current route:", pathname);
+  // }, [pathname]);
+  
   return (
-    <nav className="bg-gray-100 px-6 py-2 m-[47px] rounded-2xl">
+    <nav className={`bg-gray-100 px-6 py-2 m-[47px] rounded-2xl top-0 left-0 right-0 z-50 shadow-sm ${pathname == "/" ? "fixed" : ""}`}>
       <div className="max-w-78xl mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center">
