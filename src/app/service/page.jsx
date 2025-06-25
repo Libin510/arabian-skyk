@@ -1,8 +1,122 @@
 export default function Service() {
+  const ourServices = [
+    {
+      id: 1,
+      title: "Heavy Haulage & Project Cargo",
+      image: "",
+      description:
+        "We specialize in transporting oversized and heavy cargo safely, on time, and with precision. Whether it's machinery, construction equipment, or large project components, we ensure your cargo reaches its destination securely.",
+      features: [
+        {
+          title: "Tailored Solutions",
+          desc: "For Large And Complex Shipments",
+        },
+        {
+          title: "Expert Drivers & Equipment",
+          desc: "For Handling Sensitive And Oversized Loads",
+        },
+        {
+          title: "Compliance With Local Regulations",
+          desc: "To Ensure Safe And Timely Delivery",
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "Equipment Rental & Leasing",
+      image: "",
+      description:
+        "Our fleet of modern, well-maintained trucks and machinery is available for short- and long-term lease. We offer **flexible rental solutions** that help businesses across sectors with heavy lifting, construction, and more.",
+      features: [
+        {
+          title: "Wide Range of Vehicles & Machinery",
+          desc: "including cranes, flatbeds, and low-loaders",
+        },
+        {
+          title: "On-Demand Rental Services",
+          desc: "to meet immediate project needs",
+        },
+        {
+          title: "Flexible Terms",
+          desc: "for both long-term and short-term rentals",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Customs Clearance",
+      image: "",
+      description:
+        "Navigating the complexities of cross-border transportation can be challenging. Our experienced team handles **customs clearance** quickly and efficiently to ensure your shipments cross borders without delay.",
+      features: [
+        {
+          title: "Seamless Import & Export Processes",
+          desc: "for hassle-free international shipping",
+        },
+        {
+          title: "Expert Knowledge of GCC Regulations",
+          desc: "to ensure compliance",
+        },
+        {
+          title: "Fast & Reliable Service",
+          desc: "that gets your cargo to its destination on time",
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: "Fleet Maintenance & 24/7 Support",
+      image: "",
+      description:
+        "We keep our fleet in top condition through regular maintenance, ensuring maximum safety and reliability on every trip. Our 24/7 support team is always on hand to assist with any issues that may arise during transportation.",
+      features: [
+        {
+          title: "Routine Fleet Inspections & Maintenance",
+          desc: "to prevent downtime",
+        },
+        {
+          title: "24/7 Roadside Assistance",
+          desc: "for emergencies",
+        },
+        {
+          title: "Experienced Technicians",
+          desc: "who ensure our fleet is always operational",
+        },
+      ],
+    },
+  ];
+
+  const whyChooseUs = [
+    {
+      title: "Over 25 Years of Experience",
+      image: "",
+      description:
+        "With decades in the logistics and transport industry, we have the expertise to handle all your transport and logistics needs.",
+    },
+    {
+      title: "Cutting-Edge Technology",
+      image: "",
+      description:
+        "We utilize the latest tracking and management software to keep you updated on your cargo’s status.",
+    },
+    {
+      title: "Scalability",
+      image: "",
+      description:
+        "No matter the size of your shipment or project, we have the resources and flexibility to meet your demands.",
+    },
+    {
+      title: "Across the GCC",
+      image: "",
+      description:
+        " We offer services in the UAE, Saudi Arabia, Oman, Qatar, and beyond, so we can meet your needs wherever you are.",
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-[32px]">
       <div className="grid grid-cols-1 lg:grid-cols-2 p-0 lg:p-4 gap-4 lg:gap-0">
-        <h1 className="text-[50px] lg:text-[75px] font-semibold uppercase">
+        <h1 className="text-[50px] lg:text-[75px] text-[#01016F] font-semibold uppercase">
           our <span className="text-[#EF1E24]">services</span>
         </h1>
         <div className="flex flex-col gap-2 w-auto lg:max-w-[600px] ">
@@ -42,15 +156,131 @@ export default function Service() {
         <h1 className="text-[30px] lg:text-[50px] text-[#01016F] text-center uppercase font-semibold mt-[40px] lg:mt-[115px]">
           our key services
         </h1>
-        <div>
-          <div className="p-[81px]">
-            <p>
-              01.
-              <span className="uppercase text-center">
-                Heavy Haulage & Project Cargo
-              </span>
-            </p>
-          </div>
+        <div className="mt-8">
+          {ourServices.map((service, index) => (
+            <div
+              className="bg-white p-6 lg:p-12 max-w-7xl mx-auto flex flex-col gap-[32px] border border-gray-200 rounded-[16px] shadow-lg mb-8"
+              key={index}
+            >
+              <div className="w-full flex flex-col sm:flex-row items-center sm:items-baseline justify-between gap-4 sm:gap-6">
+                <span className="text-4xl sm:text-6xl font-bold text-blue-900">
+                  0{service.id}.
+                </span>
+
+                <div className="w-full sm:flex-1 flex justify-center text-center">
+                  <h2 className="text-2xl sm:text-4xl font-bold text-black uppercase tracking-wider leading-tight">
+                    {service.title}
+                  </h2>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start mt-0 lg:mt-8">
+                {/* Left Content */}
+                <div className="space-y-8">
+                  {/* Description */}
+                  <div className="space-y-8">
+                    <p className="text-black text-base sm:text-lg leading-relaxed font-medium">
+                      {service.description}
+                    </p>
+
+                    {/* Feature Points */}
+                    <div className="space-y-6">
+                      {service.features &&
+                        service.features.length > 0 &&
+                        service.features.map((item, index) => (
+                          <div className="flex items-start gap-4" key={index}>
+                            <div className="w-4 h-4 bg-red-500 rounded-full mt-1 flex-shrink-0"></div>
+                            <div className="space-y-1">
+                              <h3 className="font-bold text-blue-900 text-base sm:text-lg uppercase tracking-wide">
+                                {item.title}
+                              </h3>
+                              <p className="text-black font-medium text-sm sm:text-base">
+                                {item.desc}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+
+                    {/* Learn More Button */}
+                    <div className="pt-2">
+                      <button className="bg-blue-900 text-white px-2 sm:px-4 py-2 sm:py-3 rounded-full font-semibold hover:bg-blue-800 transition-colors duration-300 flex items-center gap-3 text-sm sm:text-base">
+                        Learn More
+                        <div className="w-5 sm:w-6 h-5 sm:h-6 bg-white rounded-full flex items-center justify-center">
+                          <svg
+                            className="w-3 h-3 sm:w-4 sm:h-4 text-blue-900"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6-6 6-1.41-1.41z" />
+                          </svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-center lg:justify-end">
+                  <div className="bg-gray-400 rounded-2xl w-full h-72 sm:h-[454px] max-w-lg"></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="lg:mb-[200px]">
+        <h1 className="text-[30px] lg:text-[50px]  text-center uppercase font-semibold mt-[20px] lg:mt-[60px]">
+          <span className="text-[#01016F]">why choose</span> us
+        </h1>
+        <div className="bg-white py-8 px-4 max-w-7xl mx-auto mt-8 grid gap-12">
+          {whyChooseUs.map((item, index) => (
+            <div
+              className="grid grid-cols-1 lg:grid-cols-[auto_350px_1fr_auto] gap-6 lg:gap-8 items-center lg:items-start"
+              key={index}
+            >
+              {/* Left - Experience Text */}
+              <div className="text-center lg:text-left">
+                <h2 className="text-base lg:text-lg font-bold text-black uppercase tracking-wide whitespace-nowrap">
+                  {item.title}
+                </h2>
+              </div>
+
+              {/* Center - Image */}
+              <div>
+                <div className="bg-[#BEBDBD] rounded-lg w-[350px] max-w-xs h-[220px] mx-auto lg:mx-0"></div>
+              </div>
+
+              {/* Right - Description Text */}
+              <div className="text-center lg:text-left">
+                <p className="text-black text-sm lg:text-base font-medium leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Arrow Icon */}
+              <div className="mt-4 lg:mt-0">
+                <svg
+                  className="w-6 h-6 lg:w-8 lg:h-8 text-black mx-auto lg:mx-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7 17L17 7M17 7H7M17 7v10"
+                  />
+                </svg>
+              </div>
+
+              {/* Divider */}
+              {whyChooseUs.length - 1 !== index && (
+                <div className="col-span-full border-t border-[#1E1E1E] mt-6"></div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
