@@ -49,7 +49,7 @@ export default function Navbar() {
             Services
           </Link>
           <Link
-            href="/careers"
+            href="/career"
             className="text-gray-700 hover:text-blue-600 font-bold transition-colors"
           >
             Careers
