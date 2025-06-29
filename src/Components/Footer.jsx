@@ -1,6 +1,8 @@
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 function Footer() {
+    const router = useRouter();
     return (
         <div>
             {/* Contact Section */}
@@ -13,7 +15,7 @@ function Footer() {
                     <p className="text-lg mb-8 text-blue-100">
                         Ready To Move Your Business Forward? Contact Us Today To Discuss Your Logistics Needs.
                     </p>
-                    <button className="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
+                    <button className="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors inline-flex items-center" onClick={() => router.push('/contact')}>
                         Get In Touch
                         <span className="ml-2 bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
                             →
@@ -41,21 +43,7 @@ function Footer() {
 
                             </div>
 
-                            {/* Social Media Icons - Top Right */}
-                            <div className="flex justify-end space-x-6 mb-8 lg:absolute lg:top-4 lg:right-8">
-                                <div className="flex items-center space-x-2">
-                                    <div className="w-4 h-4 bg-gray-400 rounded-sm"></div>
-                                    <span className="text-sm text-gray-600 font-medium">INSTAGRAM</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <div className="w-4 h-4 bg-gray-400 rounded-sm"></div>
-                                    <span className="text-sm text-gray-600 font-medium">LINKEDIN</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <div className="w-4 h-4 bg-gray-400 rounded-sm"></div>
-                                    <span className="text-sm text-gray-600 font-medium">FACEBOOK</span>
-                                </div>
-                            </div>
+
 
                             {/* Contact Information */}
                             <div className="space-y-6 text-sm">
@@ -82,7 +70,21 @@ function Footer() {
 
                         {/* Right Side - Navigation */}
                         <div className="lg:col-span-8">
-                            <div className="grid grid-cols-5 gap-8 mb-12">
+                            <div className="flex justify-end space-x-6 mb-8  lg:top-4 lg:right-8">
+                                <div className="flex items-center space-x-2">
+                                    <div className="w-4 h-4 bg-gray-400 rounded-sm"></div>
+                                    <span className="text-sm text-gray-600 font-medium">INSTAGRAM</span>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <div className="w-4 h-4 bg-gray-400 rounded-sm"></div>
+                                    <span className="text-sm text-gray-600 font-medium">LINKEDIN</span>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <div className="w-4 h-4 bg-gray-400 rounded-sm"></div>
+                                    <span className="text-sm text-gray-600 font-medium">FACEBOOK</span>
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-5 gap-8 mb-12 mt-24">
                                 <div className="text-center">
                                     <h4 className="font-bold text-gray-800 text-sm">Home</h4>
                                 </div>
