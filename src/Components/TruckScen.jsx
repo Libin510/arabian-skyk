@@ -17,34 +17,34 @@ function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
 
     setIsLoaded(true);
 
-    const wheelNames = [
-      "wheel001", "wheel002", "wheel003", "wheel004",
-      "wheel005", "wheel006", "wheel007", "wheel008",
-    ];
+    // const wheelNames = [
+    //   "wheel001", "wheel002", "wheel003", "wheel004",
+    //   "wheel005", "wheel006", "wheel007", "wheel008",
+    // ];
 
     const newPivots = [];
 
-    wheelNames.forEach((name) => {
-      const wheel = scene.getObjectByName(name);
-      if (wheel && wheel.parent) {
-        const worldPos = new THREE.Vector3();
-        wheel.getWorldPosition(worldPos);
+    // wheelNames.forEach((name) => {
+    //   const wheel = scene.getObjectByName(name);
+    //   if (wheel && wheel.parent) {
+    //     const worldPos = new THREE.Vector3();
+    //     wheel.getWorldPosition(worldPos);
 
-        const pivot = new THREE.Group();
-        pivot.name = `${name}_pivot`;
+    //     const pivot = new THREE.Group();
+    //     pivot.name = `${name}_pivot`;
 
-        // Add pivot to the same parent as the wheel
-        wheel.parent.add(pivot);
-        pivot.position.copy(worldPos);
+    //     // Add pivot to the same parent as the wheel
+    //     wheel.parent.add(pivot);
+    //     pivot.position.copy(worldPos);
 
-        // Move the wheel inside pivot, and reset its position relative to pivot
-        scene.attach(wheel); // move to scene temporarily to prevent local transform loss
-        pivot.add(wheel);
-        wheel.position.set(0, 0, 0);
+    //     // Move the wheel inside pivot, and reset its position relative to pivot
+    //     scene.attach(wheel); // move to scene temporarily to prevent local transform loss
+    //     pivot.add(wheel);
+    //     wheel.position.set(0, 0, 0);
 
-        newPivots.push(pivot);
-      }
-    });
+    //     newPivots.push(pivot);
+    //   }
+    // });
 
     setWheelPivots(newPivots);
   }, [scene]);

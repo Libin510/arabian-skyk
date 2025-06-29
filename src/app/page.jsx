@@ -1,8 +1,75 @@
 "use client";
-import { LuArrowUpRight } from "react-icons/lu";
+import { LuArrowUpRight, LuFuel } from "react-icons/lu";
 import TruckWrapper from "../Components/TruckWapper";
+import { IoIosArrowForward } from "react-icons/io";
+import { PiHardHat } from "react-icons/pi";
+import { PiBridge } from "react-icons/pi";
+import { PiShieldPlus } from "react-icons/pi";
 
+import { Instrument_Sans } from "next/font/google";
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-instrument-sans",
+});
 export default function Home() {
+  const services = [
+    {
+      id: "01",
+      title: "HEAVY HAULAGE & PROJECT LOGISTICS",
+      // icon: Package,
+      gradient: "from-blue-600 to-purple-600",
+      pattern: "geometric",
+    },
+    {
+      id: "02",
+      title: "CUSTOMS CLEARANCE",
+      // icon: FileCheck,
+      gradient: "from-emerald-500 to-teal-600",
+      pattern: "dots",
+    },
+    {
+      id: "03",
+      title: "FLEET MAINTENANCE & ROADSIDE SUPPORT",
+      // icon: Wrench,
+      gradient: "from-orange-500 to-red-600",
+      pattern: "waves",
+    },
+  ];
+  const features = [
+    { title: "RELIABILITY. EXPERIENCE. SCALE.", howPopup: true },
+    {
+      title: "OVER 25 YEARS OF OPERATION",
+      showPopup: true,
+    },
+    { title: "100+ FLEET VEHICLES" },
+    { title: "OPERATES ACROSS THE GCC" },
+    { title: "24/7 OPERATIONAL SUPPORT", howPopup: true },
+  ];
+
+  const industries = [
+    {
+      icon:<LuFuel />,
+      title: "OIL & GAS",
+      bgColor: "bg-[#01016F]",
+    },
+    {
+      icon: <PiHardHat />,
+      title: "CONSTRUCTION",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <PiBridge />,
+      title: "INFRASTRUCTURE",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <PiShieldPlus />,
+      title: "GOVERNMENT & DEFENSE",
+      bgColor: "bg-[#1E1E1E]",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-100 p-2">
       {/* Hero Section with Video Background */}
@@ -88,7 +155,7 @@ export default function Home() {
 
       {/* About Us Section */}
       <section className="py-16 px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
+        <div className="mx-auto">
           <h2 className="text-[45px] 3xl:text-[60px] text-[#01016F] font-semibold text-center mb-12">
             ABOUT <span className="text-[#EF1E24]">US</span>
           </h2>
@@ -123,7 +190,7 @@ export default function Home() {
           <h2 className="text-4xl text-[#01016F] font-bold text-center mb-12">
             OUR <span className="text-red-500">SERVICES</span>
           </h2>
-          <TruckWrapper />
+          {/* <TruckWrapper /> */}
           <div className="text-center mb-8">
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">
               As Logistics Service Providers, We Offer A Wide Range Of Services
@@ -133,164 +200,137 @@ export default function Home() {
           </div>
 
           {/* Service Items */}
-          <div className="space-y-6 max-w-4xl mx-auto">
-            {/* Heavy Haulage */}
-            <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-              <div className="flex items-center space-x-4">
-                <div className="w-32 h-20 bg-gray-300 rounded flex items-center justify-center">
-                  <span className="text-xs text-gray-600">Service Image</span>
+          <div className="py-16 px-8 flex justify-between">
+            <div className=" ">
+              {services.map((item, index) => (
+                <div key={index} className=" border-gray-200 ">
+                  <div className="flex flex-col gap-3">
+                    <h3 className="font-semibold text-gray-800 text-lg underline">
+                      {index + 1}. {item.title}
+                    </h3>
+                    <div className="w-[400px] h-[200px] bg-gray-300 rounded flex items-center justify-center">
+                      <span className="text-xs text-gray-600">
+                        Service Image
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-800 text-sm">
-                    01. HEAVY HAULAGE & PROJECT LOGISTICS
-                  </h3>
-                </div>
-              </div>
-              <div className="text-gray-400">→</div>
+              ))}
             </div>
 
-            {/* Customer Clearance */}
-            <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-              <div className="flex items-center space-x-4">
-                <div className="w-32 h-20 bg-gray-300 rounded flex items-center justify-center">
-                  <span className="text-xs text-gray-600">Service Image</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-800 text-sm">
-                    02. CUSTOMER CLEARANCE
-                  </h3>
-                </div>
-              </div>
-              <div className="text-gray-400">→</div>
-            </div>
+            <div className="flex items-center justify-center mx-auto p-8">
+              <div className="relative w-28 h-28 bg-[#01016F] rounded-full flex items-center justify-center group hover:scale-105 transition-transform duration-300 cursor-pointer">
+                {/* Circular Text */}
+                <svg
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 128 128"
+                >
+                  <defs>
+                    <path
+                      id="circle-path"
+                      d="M 64, 64 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0"
+                    />
+                  </defs>
+                  <text className="fill-white text-xl font-normal  tracking-wider">
+                    <textPath href="#circle-path" startOffset="0%">
+                      Explore More Explore More
+                    </textPath>
+                  </text>
+                </svg>
 
-            {/* Fleet Maintenance */}
-            <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-              <div className="flex items-center space-x-4">
-                <div className="w-32 h-20 bg-gray-300 rounded flex items-center justify-center">
-                  <span className="text-xs text-gray-600">Service Image</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-800 text-sm">
-                    03. FLEET MAINTENANCE & ROADSIDE SUPPORT
-                  </h3>
-                </div>
-              </div>
-              <div className="text-gray-400">→</div>
-            </div>
-          </div>
-
-          {/* Central Truck with Logo */}
-          <div className="flex justify-center mt-12">
-            <div className="relative">
-              <img
-                src="/truck-service.png"
-                alt="Arabian Sky Transport Truck"
-                className="w-80 h-auto"
-                // onError={(e) => {
-                //   e.target.style.display = 'none';
-                //   e.target.nextSibling.style.display = 'flex';
-                // }}
-              />
-              <div
-                className="w-80 h-32 bg-gray-800 rounded-lg flex items-center justify-center"
-                style={{ display: "none" }}
-              >
-                <span className="text-white text-lg">Truck Service Icon</span>
-              </div>
-
-              {/* Circular Logo */}
-              <div className="absolute -right-8 top-1/2 transform -translate-y-1/2">
-                <div className="w-16 h-16 bg-blue-900 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">AST</span>
+                {/* Center Arrow */}
+                <div className="bg-white rounded-full p-2 z-10 group-hover:rotate-45 transition-transform duration-300">
+                  <LuArrowUpRight className="w-6 h-6 text-[#000000]" />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <div className="w-full">
+        {/* Header Section */}
+        <div className="relative h-[290PX] bg-gradient-to-r from-[#01016F] to-[#0202D5] overflow-hidden">
+          {/* Large Background Text */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h1
+              className={`${instrumentSans.variable} font-sans text-[300px] font-bold text-[#EF1E2480] opacity-70 tracking-wider select-none`}
+            >
+              ARABIANS
+            </h1>
+          </div>
 
+          {/* Overlay Cards/Elements */}
+          <div className="absolute inset-0 flex items-center justify-center gap-40 px-8">
+            <div className="bg-gray-400 bg-opacity-80 rounded-lg w-[250px] h-[120px] shadow-lg"></div>
+            <div className="bg-gray-400 bg-opacity-80 rounded-lg w-[250px] h-[120px] shadow-lg"></div>
+            <div className="bg-gray-400 bg-opacity-80 rounded-lg w-[250px] h-[120px] shadow-lg"></div>
+            <div className="bg-gray-400 bg-opacity-80 rounded-lg w-[250px] h-[120px] shadow-lg"></div>
+          </div>
+        </div>
+
+        {/* White Section Below */}
+        <div className="h-16 bg-white"></div>
+      </div>
       <section className="py-16 px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">
+        <div className=" mx-auto">
+          <h2 className="text-5xl font-bold text-center mb-16 tracking-tight">
             WHY CHOOSE <span className="text-red-500">US</span>
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left side - Features */}
-            <div className="space-y-6">
-              <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-                <span className="font-medium text-gray-800">
-                  RELIABILITY, EXPERIENCE, SCALE
-                </span>
-                <div className="text-gray-400">→</div>
-              </div>
+          <div className="relative">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className={`group flex items-center justify-between py-6 ${
+                  index !== features.length - 1
+                    ? "border-b border-gray-200"
+                    : ""
+                } relative`}
+              >
+                {/* Title */}
+                <h3 className="text-lg font-bold text-black uppercase tracking-wide z-10">
+                  {feature.title}
+                </h3>
 
-              <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-                <span className="font-medium text-gray-800">
-                  OVER 25 YEARS OF OPERATION
-                </span>
-                <div className="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs">25</span>
+                {/* Arrow style changes on hover */}
+                <div className="z-10">
+                  <div className="w-6 h-6 text-black group-hover:hidden">
+                    <LuArrowUpRight className="w-6 h-6" />
+                  </div>
+                  <div className="w-12 h-12 bg-blue-900 rounded-full hidden group-hover:flex items-center justify-center transition duration-300 ease-in-out">
+                    <LuArrowUpRight className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+
+                {/* Center popup box (gray div) on hover */}
+                <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="w-64 h-80 rounded-lg bg-gray-400 shadow-lg"></div>
                 </div>
               </div>
-
-              <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-                <span className="font-medium text-gray-800">
-                  100+ FLEET VEHICLES
-                </span>
-                <div className="text-gray-400">→</div>
-              </div>
-
-              <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-                <span className="font-medium text-gray-800">
-                  OPERATES ACROSS THE GCC
-                </span>
-                <div className="text-gray-400">→</div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <span className="font-medium text-gray-800">
-                  24/7 OPERATIONAL SUPPORT
-                </span>
-                <div className="text-gray-400">→</div>
-              </div>
-            </div>
-
-            {/* Right side - Image placeholder */}
-            <div className="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
-              <span className="text-gray-600 text-lg">Why Choose Us Image</span>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="py-16 px-8 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
+        <div className=" mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">
             INDUSTRIES WE <span className="text-red-500">SERVE</span>
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="bg-blue-900 text-white p-4 rounded-lg text-center">
-              <div className="text-2xl mb-2">🏭</div>
-              <span className="text-sm font-medium">OIL & GAS</span>
-            </div>
-
-            <div className="bg-gray-800 text-white p-4 rounded-lg text-center">
-              <div className="text-2xl mb-2">🏗️</div>
-              <span className="text-sm font-medium">CONSTRUCTION</span>
-            </div>
-
-            <div className="bg-green-700 text-white p-4 rounded-lg text-center">
-              <div className="text-2xl mb-2">🏭</div>
-              <span className="text-sm font-medium">MANUFACTURING</span>
-            </div>
-
-            <div className="bg-gray-600 text-white p-4 rounded-lg text-center">
-              <div className="text-2xl mb-2">🏛️</div>
-              <span className="text-sm font-medium">GOVERNMENT & PUBLIC</span>
-            </div>
+          <div className="flex flex-row gap-6 justify-center">
+            {industries.map((industry, index) => (
+              <div
+                key={index}
+                className={`${industry.bgColor} flex gap-4 items-center text-white p-2 rounded-lg`}
+              >
+                <div className="bg-white size-11 rounded-[8px] flex justify-center text-black items-center text-2xl">
+                  {industry.icon}
+                </div>
+                <span className="text-sm font-semibold">{industry.title}</span>
+                <span className="text-sm font-medium"><IoIosArrowForward /></span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
