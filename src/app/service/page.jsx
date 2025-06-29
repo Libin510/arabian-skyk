@@ -175,15 +175,12 @@ export default function Service() {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start mt-0 lg:mt-8">
-                {/* Left Content */}
                 <div className="space-y-8">
-                  {/* Description */}
                   <div className="space-y-8">
                     <p className="text-black text-base sm:text-lg leading-relaxed font-medium">
                       {service.description}
                     </p>
 
-                    {/* Feature Points */}
                     <div className="space-y-6">
                       {service.features &&
                         service.features.length > 0 &&
@@ -202,7 +199,6 @@ export default function Service() {
                         ))}
                     </div>
 
-                    {/* Learn More Button */}
                     <div className="pt-2">
                       <button className="bg-blue-900 text-white px-2 sm:px-4 py-2 sm:py-3 rounded-full font-semibold hover:bg-blue-800 transition-colors duration-300 flex items-center gap-3 text-sm sm:text-base">
                         Learn More
@@ -221,7 +217,7 @@ export default function Service() {
                 </div>
 
                 <div className="flex justify-center lg:justify-end">
-                  <div className="bg-gray-400 rounded-2xl w-full h-72 sm:h-[454px] max-w-lg"></div>
+                  <div className="bg-[#BEBDBD] rounded-2xl w-full h-72 sm:h-[454px] max-w-lg"></div>
                 </div>
               </div>
             </div>
@@ -236,30 +232,26 @@ export default function Service() {
         <div className="bg-white py-8 px-4 max-w-7xl mx-auto mt-8 grid gap-12">
           {whyChooseUs.map((item, index) => (
             <div
-              className="grid grid-cols-1 lg:grid-cols-[auto_350px_1fr_auto] gap-6 lg:gap-8 items-center lg:items-start"
+              className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8"
               key={index}
             >
-              {/* Left - Experience Text */}
               <div className="text-center lg:text-left">
-                <h2 className="text-base lg:text-lg font-bold text-black uppercase tracking-wide whitespace-nowrap">
+                <h2 className="text-[18px]  font-bold text-black uppercase tracking-wide whitespace-nowrap">
                   {item.title}
                 </h2>
               </div>
 
-              {/* Center - Image */}
               <div>
                 <div className="bg-[#BEBDBD] rounded-lg w-[350px] max-w-xs h-[220px] mx-auto lg:mx-0"></div>
               </div>
 
-              {/* Right - Description Text */}
-              <div className="text-center lg:text-left">
-                <p className="text-black text-sm lg:text-base font-medium leading-relaxed">
+              <div className="ml-0 lg:ml-4 text-center lg:text-left">
+                <p className="text-black text-[16px]  font-medium leading-relaxed">
                   {item.description}
                 </p>
               </div>
 
-              {/* Arrow Icon */}
-              <div className="mt-4 lg:mt-0">
+              <div className="mt-4 lg:mt-0 justify-self-center lg:justify-self-end">
                 <svg
                   className="w-6 h-6 lg:w-8 lg:h-8 text-black mx-auto lg:mx-0"
                   fill="none"
@@ -277,7 +269,7 @@ export default function Service() {
 
               {/* Divider */}
               {whyChooseUs.length - 1 !== index && (
-                <div className="col-span-full border-t border-[#1E1E1E] mt-6"></div>
+                <div className="col-span-full border-t border-[#1E1E1E]"></div>
               )}
             </div>
           ))}
