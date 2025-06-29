@@ -191,7 +191,7 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-8 sm:mb-10 lg:mb-12">
             OUR <span className="text-red-500">SERVICES</span>
           </h2>
-          {/* <TruckWrapper /> */}
+          <TruckWrapper />
           <div className="text-center mb-6 sm:mb-8">
             <p className="text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base px-4">
               As Logistics Service Providers, We Offer A Wide Range Of Services
