@@ -1,6 +1,78 @@
+"use client";
+
+import { useState } from "react";
 import Accordion from "./Accordion";
 
 export default function Career() {
+  const accordionData = [
+    {
+      id: 1,
+      title: "Fleet Operations Manager - 1",
+      location: "Dubai, UAE",
+      type: "Full Time",
+      responsibilities: [
+        "Coordinate Transportation Schedules And Manage Client Relationships",
+        "Track Shipments And Provide Updates To Clients",
+        "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+      ],
+      requirements: [
+        "Experience In Logistics Or Supply Chain Management",
+        "Excellent Organizational And Communication Skills",
+        "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+      ],
+    },
+    {
+      id: 2,
+      title: "Fleet Operations Manager - 2",
+      location: "Dubai, UAE",
+      type: "Full Time",
+      responsibilities: [
+        "Coordinate Transportation Schedules And Manage Client Relationships",
+        "Track Shipments And Provide Updates To Clients",
+        "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+      ],
+      requirements: [
+        "Experience In Logistics Or Supply Chain Management",
+        "Excellent Organizational And Communication Skills",
+        "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+      ],
+    },
+    {
+      id: 3,
+      title: "Fleet Operations Manager - 3",
+      location: "Dubai, UAE",
+      type: "Full Time",
+      responsibilities: [
+        "Coordinate Transportation Schedules And Manage Client Relationships",
+        "Track Shipments And Provide Updates To Clients",
+        "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+      ],
+      requirements: [
+        "Experience In Logistics Or Supply Chain Management",
+        "Excellent Organizational And Communication Skills",
+        "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+      ],
+    },
+    {
+      id: 4,
+      title: "Fleet Operations Manager - 4",
+      location: "Dubai, UAE",
+      type: "Full Time",
+      responsibilities: [
+        "Coordinate Transportation Schedules And Manage Client Relationships",
+        "Track Shipments And Provide Updates To Clients",
+        "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+      ],
+      requirements: [
+        "Experience In Logistics Or Supply Chain Management",
+        "Excellent Organizational And Communication Skills",
+        "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+      ],
+    },
+  ];
+
+  const [selectedId, setSelectedId] = useState(accordionData[0].id);
+
   const reasons = [
     {
       icon: (
@@ -84,6 +156,27 @@ export default function Career() {
     },
   ];
 
+  const steps = [
+    {
+      number: "1",
+      title: "Review Open Positions",
+      description:
+        "Browse Through Our Current Job Openings And Find The Position That Suits Your Skills.",
+    },
+    {
+      number: "2",
+      title: "Submit Your Application",
+      description:
+        "Click 'Apply Now', Fill Out The Form, And Attach Your Resume And Cover Letter.",
+    },
+    {
+      number: "3",
+      title: "Interview Process",
+      description:
+        "Our HR Team Will Review And Contact You If You're Shortlisted For An Interview.",
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-[32px] px-8 lg:px-16 mb-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 p-0 lg:p-4 gap-4 lg:gap-0">
@@ -134,15 +227,75 @@ export default function Career() {
           Open positions
         </h1>
 
-        <div className="mt-[40px] grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-[1200px] mx-auto">
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6 w-full md:max-w-[80%] mx-auto">
           <div>
-            <Accordion />
+            {accordionData
+              .filter((item) => item.id === selectedId)
+              .map((item) => (
+                <Accordion
+                  key={item.id}
+                  data={item}
+                  isExpanded={true}
+                  onToggle={() => {}}
+                />
+              ))}
           </div>
-          <div className="flex flex-col gap-9">
-            <Accordion />
-            <Accordion />
-            <Accordion />
+
+          <div className="flex flex-col gap-6">
+            {accordionData
+              .filter((item) => item.id !== selectedId)
+              .map((item) => (
+                <Accordion
+                  key={item.id}
+                  data={item}
+                  isExpanded={false}
+                  onToggle={() => setSelectedId(item.id)}
+                />
+              ))}
           </div>
+        </div>
+      </div>
+
+      <div className="max-w-full md:max-w-[80%] mx-auto px-2 md:px-6 py-16 bg-white">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
+            HOW TO APPLY
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Follow These Simple Steps To Join Our Team.
+          </p>
+        </div>
+
+        <div className="relative">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className="flex items-start gap-4 md:gap-8 mb-12 md:mb-16 last:mb-0"
+            >
+              <div className="flex-shrink-0 relative">
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-purple-200 rounded-full flex items-center justify-center relative z-10">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-900 rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm md:text-lg font-bold">
+                      {step.number}
+                    </span>
+                  </div>
+                </div>
+                {index < steps.length - 1 && (
+                  <div className="absolute top-full left-1/2 sm:left-10 transform -translate-x-1/2 sm:translate-x-0 w-0.5 h-[calc(100%+2rem)] bg-gray-600 z-0"></div>
+                )}
+              </div>
+
+              {/* Step Content */}
+              <div className="flex-1 p-2 md:p-4 border border-gray-200 bg-white rounded-lg">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
