@@ -43,13 +43,13 @@ export default function Navbar() {
             About Us
           </Link>
           <Link
-            href="/service"
+            href="/services"
             className="text-gray-700 hover:text-blue-600 font-bold transition-colors"
           >
             Services
           </Link>
           <Link
-            href="/career"
+            href="/careers"
             className="text-gray-700 hover:text-blue-600 font-bold transition-colors"
           >
             Careers

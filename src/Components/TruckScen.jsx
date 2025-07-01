@@ -17,62 +17,47 @@ function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
 
     setIsLoaded(true);
 
-    // const wheelNames = [
-    //   "wheel001", "wheel002", "wheel003", "wheel004",
-    //   "wheel005", "wheel006", "wheel007", "wheel008",
-    // ];
-
     const newPivots = [];
 
-    // wheelNames.forEach((name) => {
-    //   const wheel = scene.getObjectByName(name);
-    //   if (wheel && wheel.parent) {
-    //     const worldPos = new THREE.Vector3();
-    //     wheel.getWorldPosition(worldPos);
+    // Collect wheels by exact name
+    const wheelNames = [
+      "wheel001",
+      "wheel002",
+      "wheel003",
+      "wheel004",
+      "wheel005",
+      "wheel006",
+      "wheel007",
+      "wheel008",
+    ];
 
-    //     const pivot = new THREE.Group();
-    //     pivot.name = `${name}_pivot`;
-
-    //     // Add pivot to the same parent as the wheel
-    //     wheel.parent.add(pivot);
-    //     pivot.position.copy(worldPos);
-
-    //     // Move the wheel inside pivot, and reset its position relative to pivot
-    //     scene.attach(wheel); // move to scene temporarily to prevent local transform loss
-    //     pivot.add(wheel);
-    //     wheel.position.set(0, 0, 0);
-
-    //     newPivots.push(pivot);
-    //   }
-    // });
+    scene.traverse((child) => {
+    if (child.isMesh) {
+      console.log("Mesh:", child.name);
+    }
+  });
 
     setWheelPivots(newPivots);
   }, [scene]);
 
- useFrame((_, delta) => {
-  if (!truckRef.current) return;
+  useFrame((_, delta) => {
+    if (!truckRef.current) return;
 
-  const rotationSpeed = (Math.PI * 2) / 20; // full rotation every 20s
+    if (hasScrolled && scrollSpeed > 0.01) {
+      const movement = scrollSpeed * delta * 30;
+      const direction = scrollDirection === "down" ? 1 : -1;
+      const nextX = truckRef.current.position.x + direction * movement;
 
-  wheelPivots.forEach((pivot) => {
-    if (pivot) {
-      // Rotate like a real truck tire — forward/backward
-      // pivot.rotation.x += rotationSpeed * delta;
+      truckRef.current.position.x = nextX;
+
+      // Rotate wheels based on movement
+      const rotationAmount = direction * movement * 1.5;
+      wheelPivots.forEach((pivot) => {
+        // Try rotating on Z-axis first
+        pivot.rotation.z -= rotationAmount;
+      });
     }
   });
-
-  if (hasScrolled && scrollSpeed > 0.01) {
-    const movement = scrollSpeed * delta * 30;
-    const direction = scrollDirection === "down" ? 1 : -1;
-    const nextX = truckRef.current.position.x + direction * movement;
-
-    const halfWidth = viewWidth / 2;
-    if (nextX >= -halfWidth && nextX <= halfWidth) {
-      truckRef.current.position.x = nextX;
-    }
-  }
-});
-
 
   if (!isLoaded) {
     return (
@@ -175,11 +160,11 @@ export default function TruckScene() {
   }, []);
 
   return (
-    <div
-      ref={sectionRef}
-      className="left-0 w-screen h-[600px] z-0"
-    >
-      <Canvas camera={{ position: [0, 0, 20], fov: 35 }} gl={{ antialias: true, alpha: true }}>
+    <div ref={sectionRef} className="left-0 w-screen h-[600px] z-0">
+      <Canvas
+        camera={{ position: [0, 0, 20], fov: 35 }}
+        gl={{ antialias: true, alpha: true }}
+      >
         <Suspense fallback={<LoadingFallback />}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[5, 5, 5]} intensity={1} castShadow />

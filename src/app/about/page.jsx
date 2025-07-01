@@ -106,32 +106,35 @@ export default function About() {
     setCurrentIndex(index);
   };
 
-  // Calculate which leaders to show (current + next 3, with wrapping)
+  // Calculate which leaders to show (responsive count)
   const getVisibleLeaders = () => {
     const visible = [];
-    for (let i = 0; i < 4; i++) {
+    const count = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 4;
+    for (let i = 0; i < count; i++) {
       const index = (currentIndex + i) % leaders.length;
       visible.push({ ...leaders[index], displayIndex: i });
     }
     return visible;
   };
 
-  const visibleLeaders = getVisibleLeaders();
+  const visibleLeaders = typeof window !== 'undefined' ? getVisibleLeaders() : leaders.slice(0, 4);
+
   return (
-    <div className=" mx-auto p-16">
-      <div className="mb-12">
-        <div className="flex items-start justify-between mb-8">
-          <h1 className="text-5xl font-bold mr-6 flex items-center">
+    <div className="mx-auto p-4 md:p-8 lg:p-16">
+      {/* About Us Header Section */}
+      <div className="mb-8 md:mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center lg:text-left">
             <span className="text-blue-900">ABOUT</span>{' '}
-            <span className="text-red-500 ml-2">US</span>
+            <span className="text-red-500">US</span>
           </h1>
-          <div className="ml-6  max-w-xl">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Our Story</h2>
+          <div className="lg:ml-6 max-w-none lg:max-w-xl">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center lg:text-left">Our Story</h2>
             <div className="space-y-2">
-              <p className="text-lg font-semibold text-gray-800">
+              <p className="text-base md:text-lg font-semibold text-gray-800 text-center lg:text-left">
                 Driving The Region Since 1998
               </p>
-              <p className="text-base text-gray-700 leading-relaxed max-w-4xl">
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center lg:text-left">
                 We Are One Of The UAE's Leading Logistics And Transport Providers, With A Reputation
                 Built On Precision, Safety, And Customer-First Service.
               </p>
@@ -140,256 +143,219 @@ export default function About() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-gray-300 rounded-2xl h-80 flex items-center justify-center">
+      {/* Content Placeholders */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+        <div className="bg-gray-300 rounded-2xl h-60 md:h-80 flex items-center justify-center">
           <div className="text-center text-gray-600">
-            <div className="w-16 h-16 bg-gray-400 rounded-full mx-auto mb-4"></div>
-            <p className="text-sm">Content Placeholder</p>
+            <div className="w-12 md:w-16 h-12 md:h-16 bg-gray-400 rounded-full mx-auto mb-4"></div>
+            <p className="text-xs md:text-sm">Content Placeholder</p>
           </div>
         </div>
-
-        <div className="bg-gray-300 rounded-2xl h-80 flex items-center justify-center">
+        <div className="bg-gray-300 rounded-2xl h-60 md:h-80 flex items-center justify-center">
           <div className="text-center text-gray-600">
-            <div className="w-16 h-16 bg-gray-400 rounded-full mx-auto mb-4"></div>
-            <p className="text-sm">Content Placeholder</p>
+            <div className="w-12 md:w-16 h-12 md:h-16 bg-gray-400 rounded-full mx-auto mb-4"></div>
+            <p className="text-xs md:text-sm">Content Placeholder</p>
           </div>
         </div>
       </div>
 
-      <div className="mt-16">
-        <div className="flex items-start justify-between mb-8">
-          <h1 className="text-[24px] text-[rgb(1,1,111)] ">
-            our mission and vision
-
+      {/* Mission and Vision Section */}
+      <div className="mt-8 md:mt-16">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
+          <h1 className="text-lg md:text-xl lg:text-2xl text-[rgb(1,1,111)] font-semibold text-center lg:text-left">
+            OUR MISSION AND VISION
           </h1>
-          <div className="ml-6  max-w-xl">
-
-            <div className="space-y-2">
-              <p className="text-lg font-semibold text-[#EF1E24]">
-                mission
-              </p>
-              <p className="text-base text-gray-700 leading-relaxed max-w-4xl">
-                To provide world-class logistics solutions that exceed expectations, offering unmatched safety, reliability, and on-time delivery, no matter how challenging the task.
-
-              </p>
+          <div className="lg:ml-6 max-w-none lg:max-w-xl">
+            <div className="space-y-4">
+              <div>
+                <p className="text-base md:text-lg font-semibold text-[#EF1E24] text-center lg:text-left">
+                  MISSION
+                </p>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center lg:text-left">
+                  To provide world-class logistics solutions that exceed expectations, offering unmatched safety, reliability, and on-time delivery, no matter how challenging the task.
+                </p>
+              </div>
+              <div>
+                <p className="text-base md:text-lg font-semibold text-[#EF1E24] text-center lg:text-left">
+                  VISION
+                </p>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center lg:text-left">
+                  To be the leading logistics and transport partner in the GCC, known for our exceptional service, innovative solutions, and commitment to sustainability.
+                </p>
+              </div>
+              <div className="text-center lg:text-left">
+                <button className="text-xs md:text-sm text-white bg-[#01016F] px-4 py-2 rounded-2xl">
+                  Get in touch
+                </button>
+              </div>
             </div>
-            <div className="space-y-2 mt-4">
-              <p className="text-lg font-semibold text-[#EF1E24]">
-                vision
-              </p>
-              <p className="text-base text-gray-700 leading-relaxed max-w-4xl">
-                To be the leading logistics and transport partner in the GCC, known for our exceptional service, innovative solutions, and commitment to sustainability.
-
-              </p>
-            </div>
-            <button className="text-[14px] text-[#FFFFFF] bg-[#01016F] p-2 rounded-2xl mt-4">Get in touch</button>
           </div>
-
         </div>
       </div>
-      <div className="mb-12 mt-16">
-        <h1 className="text-3xl font-bold text-blue-900 mb-2">OUR VALUES</h1>
-        {/* <div className="w-32 h-1 bg-blue-900"></div> */}
+
+      {/* Our Values Section */}
+      <div className="mb-8 md:mb-12 mt-8 md:mt-16">
+        <h1 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2 text-center lg:text-left">OUR VALUES</h1>
       </div>
 
-
-      <div className="space-y-16">
+      <div className="space-y-8 md:space-y-16">
         {values.map((value, index) => (
           <div key={value.id} className="relative">
-
-            <div className="flex items-center gap-72 justify-between">
-
-              <div className="w-48 flex-shrink-0">
-                <h2 className="text-[18px]  text-black font-semibold tracking-wide">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-4 md:gap-8 lg:gap-72">
+              <div className="w-full lg:w-48 flex-shrink-0 text-center lg:text-left">
+                <h2 className="text-base md:text-lg text-black font-semibold tracking-wide">
                   {value.title}
                 </h2>
               </div>
 
-
-              <div className="flex items-center gap-4  flex-1 justify-end">
-
-                <div className="w-64 h-40 bg-gray-400 rounded-lg flex-shrink-0 flex items-center justify-center">
-
+              <div className="flex flex-col md:flex-row items-center gap-4 flex-1 lg:justify-end">
+                <div className="w-full md:w-64 h-32 md:h-40 bg-gray-400 rounded-lg flex-shrink-0 order-1 md:order-none">
                   <div className="w-full h-full bg-gray-400 rounded-lg"></div>
                 </div>
 
-                <div className="flex-1">
-                  <p className="text-gray-800 text-[16px] leading-relaxed">
+                <div className="flex-1 text-center md:text-left">
+                  <p className="text-gray-800 text-sm md:text-base leading-relaxed">
                     {value.description}
                   </p>
                 </div>
               </div>
             </div>
 
-
             {index < values.length - 1 && (
-              <div className="w-full h-px bg-gray-300 mt-12"></div>
+              <div className="w-full h-px bg-gray-300 mt-8 md:mt-12"></div>
             )}
           </div>
         ))}
       </div>
-      <div className="mt-32">
-        <div className="flex items-start justify-between mb-8">
-          <h1 className="text-[24px] text-[rgb(1,1,111)] ">
+
+      {/* Our Fleet Section */}
+      <div className="mt-16 md:mt-32">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
+          <h1 className="text-lg md:text-xl lg:text-2xl text-[rgb(1,1,111)] font-semibold text-center lg:text-left">
             OUR FLEET
-
           </h1>
-          <div className="ml-6  max-w-xl">
-
+          <div className="lg:ml-6 max-w-none lg:max-w-xl">
             <div className="space-y-2">
-              <p className="text-lg font-semibold text-[#000]">
+              <p className="text-base md:text-lg font-semibold text-black text-center lg:text-left">
                 Precision, Power, and Capability
               </p>
-              <p className="text-base text-[#000] leading-relaxed max-w-4xl">
+              <p className="text-sm md:text-base text-black leading-relaxed text-center lg:text-left">
                 With over 100 vehicles in our fleet, we operate one of the largest and most versatile transport networks in the region. Our fleet is equipped to handle everything from light cargo to oversized, project-specific freight, all managed by experienced drivers and operators. Each vehicle is regularly maintained to ensure maximum safety and efficiency.
-
               </p>
             </div>
           </div>
         </div>
-        <div className="flex justify-between gap-4 w-full">
-          <div className="w-1/4 h-[340px] bg-gray-400 rounded-lg flex items-center justify-center">
-
-          </div>
-          <div className="w-1/4 h-[340px] bg-gray-400 rounded-lg flex items-center justify-center">
-
-          </div>
-          <div className="w-1/4 h-[340px] bg-gray-400 rounded-lg flex items-center justify-center">
-
-          </div>
-          <div className="w-1/4 h-[340px] bg-gray-400 rounded-lg flex items-center justify-center">
-
-          </div>
+        
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
+          {[1, 2, 3, 4].map((item) => (
+            <div key={item} className="aspect-square lg:h-[340px] bg-gray-400 rounded-lg"></div>
+          ))}
         </div>
-
-      </div>
-      <div className="mb-12 mt-16">
-        <h1 className="text-3xl font-bold text-blue-900 mb-2 text-center">WHY CHOOSE <span className="text-black">US</span></h1>
       </div>
 
-      <div className="space-y-8">
+      {/* Why Choose Us Section */}
+      <div className="mb-8 md:mb-12 mt-8 md:mt-16">
+        <h1 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2 text-center">
+          WHY CHOOSE <span className="text-black">US</span>
+        </h1>
+      </div>
+
+      <div className="space-y-6 md:space-y-8">
         {features.map((feature, index) => (
-          <div key={index} className="flex flex-col lg:flex-row items-start lg:items-center gap-6 justify-between">
-            {/* Content Section */}
-            <div className="flex-1 lg:max-w-md">
-              <div className="mb-4">
+          <div key={index} className="flex flex-col lg:flex-row items-start lg:items-center gap-4 md:gap-6 justify-between">
+            <div className="flex-1 lg:max-w-md order-2 lg:order-1">
+              <div className="mb-4 text-center lg:text-left">
                 <span className="inline-block bg-[#01016F] text-white text-xs font-bold px-3 py-2 rounded-full uppercase tracking-wide">
                   {feature.badge}
                 </span>
               </div>
-              <p className="text-gray-800 text-sm leading-relaxed font-medium">
+              <p className="text-gray-800 text-sm leading-relaxed font-medium text-center lg:text-left">
                 {feature.title}
               </p>
             </div>
-            <div className="w-[40%] h-[260px] bg-gray-400 rounded-lg flex-shrink-0 flex items-center justify-center">
-
+            <div className="w-full lg:w-[40%] h-48 md:h-[260px] bg-gray-400 rounded-lg flex-shrink-0 order-1 lg:order-2">
               <div className="w-full h-full bg-gray-400 rounded-lg"></div>
             </div>
-
           </div>
         ))}
       </div>
-       <div className="mt-32">
-        <div className="flex items-start justify-between mb-8">
-          <h1 className="text-[24px] text-[rgb(1,1,111)] ">
+
+      {/* Sustainability Section */}
+      <div className="mt-16 md:mt-32">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
+          <h1 className="text-lg md:text-xl lg:text-2xl text-[rgb(1,1,111)] font-semibold text-center lg:text-left">
             SUSTAINABILITY AT OUR CORE
-
-
           </h1>
-          <div className="ml-6  max-w-xl">
-
-            <div className="space-y-2">
-             
-              <p className="text-base text-[#000] leading-relaxed max-w-4xl">
-                We understand the impact our industry can have on the environment, which is why we are dedicated to minimizing our carbon footprint through sustainable practices. This includes eco-friendly vehicle upgrades, route optimization to reduce fuel consumption, and investing in cleaner technologies.
-
-
-              </p>
-            </div>
+          <div className="lg:ml-6 max-w-none lg:max-w-xl">
+            <p className="text-sm md:text-base text-black leading-relaxed text-center lg:text-left">
+              We understand the impact our industry can have on the environment, which is why we are dedicated to minimizing our carbon footprint through sustainable practices. This includes eco-friendly vehicle upgrades, route optimization to reduce fuel consumption, and investing in cleaner technologies.
+            </p>
           </div>
         </div>
-        </div>
-
-
-
- <div className="w-full max-w-7xl mx-auto px-4 py-12 bg-white">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-900 tracking-wider">
-          MEET <span className="text-[#01016F]">OUR</span> LEADERSHIP TEAM
-        </h2>
       </div>
 
-      {/* Carousel Container */}
-      <div className="relative">
+      {/* Leadership Team Section */}
+      <div className="w-full max-w-7xl mx-auto px-0 md:px-4 py-8 md:py-12 bg-white">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 tracking-wider">
+            MEET <span className="text-[#01016F]">OUR</span> LEADERSHIP TEAM
+          </h2>
+        </div>
 
-
-        {/* Cards Container */}
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {visibleLeaders.map((leader, index) => (
               <div
                 key={`${leader.id}-${currentIndex}`}
-                className={`group cursor-pointer transition-all duration-500 transform hover:scale-105 `}
-                onClick={() => {
-                  // Always go to next slide when any card is clicked
-                  nextSlide();
-                }}
+                className="group cursor-pointer transition-all duration-500 transform hover:scale-105"
+                onClick={() => nextSlide()}
               >
                 <div className="relative overflow-hidden rounded-lg shadow-lg bg-gradient-to-br from-blue-50 to-blue-100">
-                  {/* Image Container */}
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative h-64 md:h-80 overflow-hidden">
                     <img
                       src={leader.image}
                       alt={leader.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     
-                    {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                     
-                    {/* Content Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
                       <div className="mb-2">
-                        <p className="text-sm font-medium opacity-90 mb-1">Name</p>
-                        <h3 className="text-2xl font-bold mb-2">{leader.title}</h3>
+                        <p className="text-xs md:text-sm font-medium opacity-90 mb-1">Name</p>
+                        <h3 className="text-lg md:text-2xl font-bold mb-2">{leader.title}</h3>
                       </div>
                       
-                      <p className="text-sm leading-relaxed opacity-95 line-clamp-4">
+                      <p className="text-xs md:text-sm leading-relaxed opacity-95 line-clamp-4">
                         {leader.experience}
                       </p>
                     </div>
                   </div>
                   
-                  {/* Hover Effect */}
                   <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 transition-all duration-300"></div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Dots Indicator */}
-        <div className="flex justify-center mt-8 space-x-2">
-          {leaders.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? 'bg-blue-500 scale-125'
-                  : 'bg-gray-300 hover:bg-gray-400'
-              }`}
-              aria-label={`Go to leader ${index + 1}`}
-            />
-          ))}
+          <div className="flex justify-center mt-6 md:mt-8 space-x-2">
+            {leaders.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-blue-500 scale-125'
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to leader ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-
-    </div>
-<Footer/>
-
+      <Footer/>
     </div>
   );
 }

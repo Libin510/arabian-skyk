@@ -8,6 +8,7 @@ import { PiShieldPlus } from "react-icons/pi";
 
 import { Instrument_Sans } from "next/font/google";
 import Footer from "@/Components/Footer";
+import TruckWrapper1 from "@/Components/TruckWapper1";
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -186,12 +187,12 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="bg-white pb-8 sm:pb-12 lg:pb-16">
-        <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-white pb-8  w-screen sm:pb-12 lg:pb-16">
+        <div className=" mx-auto w-screen  px-4 sm:px-6 lg:px-0">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-8 sm:mb-10 lg:mb-12">
             OUR <span className="text-red-500">SERVICES</span>
           </h2>
-          <TruckWrapper />
+          <TruckWrapper className="w-screen" />
           <div className="text-center mb-6 sm:mb-8">
             <p className="text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base px-4">
               As Logistics Service Providers, We Offer A Wide Range Of Services
@@ -201,16 +202,14 @@ export default function Home() {
           </div>
 
           {/* Service Items */}
-          <div className="py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row justify-between gap-8 lg:gap-12">
-            <div className="flex-1">
-              {services.map((item, index) => (
-                <div
-                  key={index}
-                  className="border-gray-200 mb-6 sm:mb-8 last:mb-0"
-                >
+          <div className="py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              {/* Left: First Service Card */}
+              <div className="flex flex-col gap-8">
+                <div className="border-gray-200">
                   <div className="flex flex-col gap-3 sm:gap-4">
                     <h3 className="font-semibold text-gray-800 text-sm sm:text-base lg:text-lg underline">
-                      {index + 1}. {item.title}
+                      1. {services[0].title}
                     </h3>
                     <div className="w-full max-w-[400px] h-[150px] sm:h-[180px] lg:h-[200px] bg-gray-300 rounded flex items-center justify-center">
                       <span className="text-xs text-gray-600">
@@ -219,33 +218,59 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Right: TruckWrapper1 */}
+              {/* <div className="flex items-center justify-center">
+                <TruckWrapper1 />
+              </div> */}
             </div>
 
-            {/* Explore More Button - Responsive positioning */}
-            <div className="flex items-center justify-center lg:mx-auto p-4 sm:p-6 lg:p-8">
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-[#01016F] rounded-full flex items-center justify-center group hover:scale-105 transition-transform duration-300 cursor-pointer">
-                {/* Circular Text */}
-                <svg
-                  className="absolute inset-0 w-full h-full"
-                  viewBox="0 0 128 128"
-                >
-                  <defs>
-                    <path
-                      id="circle-path"
-                      d="M 64, 64 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0"
-                    />
-                  </defs>
-                  <text className="fill-white text-sm sm:text-lg lg:text-xl font-normal tracking-wider">
-                    <textPath href="#circle-path" startOffset="0%">
-                      Explore More Explore More
-                    </textPath>
-                  </text>
-                </svg>
+            {/* Remaining Services and Explore Button */}
+            <div className="mt-10 flex flex-col lg:flex-row justify-between gap-8 lg:gap-12">
+              {/* Services 2 and 3 */}
+              <div className="flex-1">
+                {services.slice(1).map((item, index) => (
+                  <div
+                    key={index}
+                    className="border-gray-200 mb-6 sm:mb-8 last:mb-0"
+                  >
+                    <div className="flex flex-col gap-3 sm:gap-4">
+                      <h3 className="font-semibold text-gray-800 text-sm sm:text-base lg:text-lg underline">
+                        {index + 2}. {item.title}
+                      </h3>
+                      <div className="w-full max-w-[400px] h-[150px] sm:h-[180px] lg:h-[200px] bg-gray-300 rounded flex items-center justify-center">
+                        <span className="text-xs text-gray-600">
+                          Service Image
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-                {/* Center Arrow */}
-                <div className="bg-white rounded-full p-1.5 sm:p-2 z-10 group-hover:rotate-45 transition-transform duration-300">
-                  <LuArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#000000]" />
+              {/* Explore Button */}
+              <div className="flex items-center justify-center lg:mx-auto p-4 sm:p-6 lg:p-8">
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-[#01016F] rounded-full flex items-center justify-center group hover:scale-105 transition-transform duration-300 cursor-pointer">
+                  <svg
+                    className="absolute inset-0 w-full h-full"
+                    viewBox="0 0 128 128"
+                  >
+                    <defs>
+                      <path
+                        id="circle-path"
+                        d="M 64, 64 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0"
+                      />
+                    </defs>
+                    <text className="fill-white text-sm sm:text-lg lg:text-xl font-normal tracking-wider">
+                      <textPath href="#circle-path" startOffset="0%">
+                        Explore More Explore More
+                      </textPath>
+                    </text>
+                  </svg>
+                  <div className="bg-white rounded-full p-1.5 sm:p-2 z-10 group-hover:rotate-45 transition-transform duration-300">
+                    <LuArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#000000]" />
+                  </div>
                 </div>
               </div>
             </div>
