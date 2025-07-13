@@ -6,7 +6,8 @@ function Footer() {
     return (
         <div>
             {/* Contact Section */}
-            <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-b from-[#01016F] to-[#0202D5] text-white">
+           <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-r from-[#1131A6] via-[#1131A6] to-[#F70105] text-white">
+
                 <div className="max-w-6xl mx-auto text-center md:text-left">
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
                         CONTACT US FOR A<br />

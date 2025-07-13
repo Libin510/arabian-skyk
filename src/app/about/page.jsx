@@ -302,57 +302,42 @@ export default function About() {
           </h2>
         </div>
 
-        <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {visibleLeaders.map((leader, index) => (
-              <div
-                key={`${leader.id}-${currentIndex}`}
-                className="group cursor-pointer transition-all duration-500 transform hover:scale-105"
-                onClick={() => nextSlide()}
-              >
-                <div className="relative overflow-hidden rounded-lg shadow-lg bg-gradient-to-br from-blue-50 to-blue-100">
-                  <div className="relative h-64 md:h-80 overflow-hidden">
-                    <img
-                      src={leader.image}
-                      alt={leader.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
-                      <div className="mb-2">
-                        <p className="text-xs md:text-sm font-medium opacity-90 mb-1">Name</p>
-                        <h3 className="text-lg md:text-2xl font-bold mb-2">{leader.title}</h3>
-                      </div>
-                      
-                      <p className="text-xs md:text-sm leading-relaxed opacity-95 line-clamp-4">
-                        {leader.experience}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 transition-all duration-300"></div>
-                </div>
-              </div>
-            ))}
-          </div>
+     <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
+  {leaders.map((leader, index) => {
+    const isActive = index === currentIndex;
+    const isBefore = index < currentIndex;
+    const isAfter = index > currentIndex;
 
-          <div className="flex justify-center mt-6 md:mt-8 space-x-2">
-            {leaders.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'bg-blue-500 scale-125'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                aria-label={`Go to leader ${index + 1}`}
-              />
-            ))}
+    return (
+      <div
+        key={`${leader.id}-${index}`}
+        className={`absolute transition-all duration-700 ease-in-out rounded-xl shadow-lg cursor-pointer group
+          ${isActive ? 'z-30 scale-100 blur-0' : 'z-10 scale-90 blur-sm'}
+          ${isBefore ? '-translate-x-10 -rotate-3' : ''}
+          ${isAfter ? 'translate-x-10 rotate-3' : ''}
+        `}
+        style={{ width: '320px', height: '460px' }}
+        onClick={nextSlide}
+      >
+        <div className="relative w-full h-full overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
+          <img
+            src={leader.image}
+            alt={leader.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+          <div className="absolute bottom-0 p-4 text-white">
+            <p className="text-xs font-medium opacity-90">Name</p>
+            <h3 className="text-xl font-bold">{leader.title}</h3>
+            <p className="text-sm opacity-95 mt-2 line-clamp-4">{leader.experience}</p>
           </div>
         </div>
+      </div>
+    );
+  })}
+
+  
+</div>
       </div>
 
       <Footer/>
