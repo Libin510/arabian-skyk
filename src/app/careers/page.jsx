@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Accordion from "./Accordion";
+import { gsap } from "gsap";
+import Footer from "@/Components/Footer";
 
 export default function Career() {
   const accordionData = [
@@ -70,8 +72,6 @@ export default function Career() {
       ],
     },
   ];
-
-  const [selectedId, setSelectedId] = useState(accordionData[0].id);
 
   const reasons = [
     {
@@ -177,6 +177,41 @@ export default function Career() {
     },
   ];
 
+  const [selectedId, setSelectedId] = useState(accordionData[0].id);
+  const cardRefs = useRef([]);
+
+  const handleMouseMove = (e, index) => {
+    const card = cardRefs.current[index];
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = -(y - centerY) / 10;
+    const rotateY = (x - centerX) / 10;
+
+    gsap.to(card, {
+      rotationX: rotateX,
+      rotationY: rotateY,
+      transformPerspective: 800,
+      transformOrigin: "center",
+      ease: "power2.out",
+      duration: 0.4,
+    });
+  };
+
+  const handleMouseLeave = (index) => {
+    gsap.to(cardRefs.current[index], {
+      rotationX: 0,
+      rotationY: 0,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+  };
+
   return (
     <div className="flex flex-col gap-[32px] px-8 lg:px-16 mb-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 p-0 lg:p-4 gap-4 lg:gap-0">
@@ -207,6 +242,9 @@ export default function Career() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mt-[40px]">
           {reasons.map((reason, index) => (
             <div
+              ref={(el) => (cardRefs.current[index] = el)}
+              onMouseMove={(e) => handleMouseMove(e, index)}
+              onMouseLeave={() => handleMouseLeave(index)}
               key={index}
               className="flex flex-col gap-4 h-[320px] w-[320px] justify-center items-center mt-[40px] shadow-md border border-gray-200 rounded-[16px] p-4 text-center mx-auto"
             >
@@ -298,6 +336,8 @@ export default function Career() {
           ))}
         </div>
       </div>
+
+      <Footer/>
     </div>
   );
 }
