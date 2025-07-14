@@ -7,7 +7,7 @@ import * as THREE from "three";
 
 // ----------------- Truck Component -----------------
 function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
-  const { scene } = useGLTF("/truck_gltb_Final.glb");
+  const { scene } = useGLTF("/truck_gltb_Final_ktx2.glb");
   const truckRef = useRef();
   const [isLoaded, setIsLoaded] = useState(false);
   const [wheelPivots, setWheelPivots] = useState([]);
@@ -32,10 +32,10 @@ function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
     ];
 
     scene.traverse((child) => {
-    if (child.isMesh) {
-      console.log("Mesh:", child.name);
-    }
-  });
+      if (child.isMesh) {
+        console.log("Mesh:", child.name);
+      }
+    });
 
     setWheelPivots(newPivots);
   }, [scene]);
@@ -48,7 +48,18 @@ function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
       const direction = scrollDirection === "down" ? 1 : -1;
       const nextX = truckRef.current.position.x + direction * movement;
 
-      truckRef.current.position.x = nextX;
+          // Calculate horizontal bounds
+          const leftBound = -viewWidth / 2 - 2; // Allow truck to go even further left
+          const rightBound = viewWidth / 2 - 3;
+
+          // Clamp nextX so truck doesn't go outside bounds
+          if (nextX < leftBound) {
+            truckRef.current.position.x = leftBound;
+          } else if (nextX > rightBound) {
+            truckRef.current.position.x = rightBound;
+          } else {
+            truckRef.current.position.x = nextX;
+          }
 
       // Rotate wheels based on movement
       const rotationAmount = direction * movement * 1.5;
@@ -69,13 +80,13 @@ function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
   }
 
   return (
-   <primitive
-  ref={truckRef}
-  object={scene}
-  scale={[1.1, 1.1, 1.1]}
-position={[-viewWidth / 2 - 3, -1.7, 0]} // ✅ Adjust Y to match vertical alignment
-  rotation={[0, Math.PI / 2, 0]}
-/>
+    <primitive
+      ref={truckRef}
+      object={scene}
+      scale={[1.1, 1.1, 1.1]}
+      position={[-viewWidth / 2 - 3, -1.7, 0]} // ✅ Adjust Y to match vertical alignment
+      rotation={[0, Math.PI / 2, 0]}
+    />
   );
 }
 
@@ -160,9 +171,9 @@ export default function TruckSceen1() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="left-0 w-[100%] h-[600px] z-0">
+    <div ref={sectionRef}  className="left-0 w-full h-[150px] sm:h-[180px] lg:h-[200px] z-0">
       <Canvas
-        camera={{ position: [0, 0, -40], fov: 50 }}
+        camera={{ position: [0, 0, -40], fov: 10 }}
         gl={{ antialias: true, alpha: true }}
       >
         <Suspense fallback={<LoadingFallback />}>

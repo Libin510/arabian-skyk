@@ -12,7 +12,7 @@ export default function Navbar() {
   // }, [pathname]);
   
   return (
-    <nav className={`bg-gray-100 px-6 py-2 m-[47px] rounded-2xl top-0 left-0 right-0 z-50 shadow-sm ${pathname == "/" ? "lg:fixed" : ""}`}>
+    <nav className={`px-6 py-2  top-0 left-0 right-0 z-50  ${pathname == "/" ? "py-5" : " bg-gray-100  m-[47px] shadow-sm rounded-2xl"}`}>
       <div className="max-w-78xl mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center">

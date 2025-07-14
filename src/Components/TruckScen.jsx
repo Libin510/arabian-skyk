@@ -7,7 +7,7 @@ import * as THREE from "three";
 
 // ----------------- Truck Component -----------------
 function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
-  const { scene } = useGLTF("/truck_gltb_Final.glb");
+  const { scene } = useGLTF("/truck_gltb_Final_trailerSk_ktx2.glb");
   const truckRef = useRef();
   const [isLoaded, setIsLoaded] = useState(false);
   const [wheelPivots, setWheelPivots] = useState([]);
@@ -18,9 +18,11 @@ function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
     setIsLoaded(true);
 
     const newPivots = [];
-
     // Collect wheels by exact name
     const wheelNames = [
+      "WheelFL",
+      "WheelFR",
+      "wheel",
       "wheel001",
       "wheel002",
       "wheel003",
@@ -28,15 +30,15 @@ function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
       "wheel005",
       "wheel006",
       "wheel007",
-      "wheel008",
     ];
 
     scene.traverse((child) => {
-    if (child.isMesh) {
-      console.log("Mesh:", child.name);
-    }
-  });
-
+      if (child.isMesh && wheelNames.includes(child.name)) {
+        newPivots.push(child);
+        console.log("Wheel mesh collected:", child.name);
+        console.log("Mesh found:", child.name)
+      }
+    });
     setWheelPivots(newPivots);
   }, [scene]);
 
@@ -53,8 +55,8 @@ function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
       // Rotate wheels based on movement
       const rotationAmount = direction * movement * 1.5;
       wheelPivots.forEach((pivot) => {
-        // Try rotating on Z-axis first
-        pivot.rotation.z -= rotationAmount;
+        // Rotate on X-axis for tires
+        pivot.rotation.x -= rotationAmount;
       });
     }
   });
