@@ -4,7 +4,7 @@ import { useState } from "react";
 
 // app/about/page.jsx
 export default function About() {
- const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const values = [
     {
@@ -91,13 +91,13 @@ export default function About() {
   ];
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === leaders.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? leaders.length - 1 : prevIndex - 1
     );
   };
@@ -245,7 +245,7 @@ export default function About() {
             </div>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
           {[1, 2, 3, 4].map((item) => (
             <div key={item} className="aspect-square lg:h-[340px] bg-gray-400 rounded-lg"></div>
@@ -302,45 +302,45 @@ export default function About() {
           </h2>
         </div>
 
-     <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
-  {leaders.map((leader, index) => {
-    const isActive = index === currentIndex;
-    const isBefore = index < currentIndex;
-    const isAfter = index > currentIndex;
+        <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
+          {leaders.map((leader, index) => {
+            const isActive = index === currentIndex;
+            const isBefore = index < currentIndex;
+            const isAfter = index > currentIndex;
 
-    return (
-      <div
-        key={`${leader.id}-${index}`}
-        className={`absolute transition-all duration-700 ease-in-out rounded-xl shadow-lg cursor-pointer group
+            return (
+              <div
+                key={`${leader.id}-${index}`}
+                className={`absolute transition-all duration-700 ease-in-out rounded-xl shadow-lg cursor-pointer group
           ${isActive ? 'z-30 scale-100 blur-0' : 'z-10 scale-90 blur-sm'}
           ${isBefore ? '-translate-x-10 -rotate-3' : ''}
           ${isAfter ? 'translate-x-10 rotate-3' : ''}
         `}
-        style={{ width: '320px', height: '460px' }}
-        onClick={nextSlide}
-      >
-        <div className="relative w-full h-full overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
-          <img
-            src={leader.image}
-            alt={leader.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-          <div className="absolute bottom-0 p-4 text-white">
-            <p className="text-xs font-medium opacity-90">Name</p>
-            <h3 className="text-xl font-bold">{leader.title}</h3>
-            <p className="text-sm opacity-95 mt-2 line-clamp-4">{leader.experience}</p>
-          </div>
+                style={{ width: '320px', height: '460px' }}
+                onClick={nextSlide}
+              >
+                <div className="relative w-full h-full overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
+                  <img
+                    src={leader.image}
+                    alt={leader.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                  <div className="absolute bottom-0 p-4 text-white">
+                    <p className="text-xs font-medium opacity-90">Name</p>
+                    <h3 className="text-xl font-bold">{leader.title}</h3>
+                    <p className="text-sm opacity-95 mt-2 line-clamp-4">{leader.experience}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+
+
         </div>
       </div>
-    );
-  })}
 
-  
-</div>
-      </div>
-
-      <Footer/>
+      <Footer />
     </div>
   );
 }
