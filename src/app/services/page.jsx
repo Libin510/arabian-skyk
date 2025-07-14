@@ -1,4 +1,64 @@
+"use client";
+import Footer from "@/Components/Footer";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+
 export default function Service() {
+  const headerRef = useRef();
+
+  const [letterSpans, setLetterSpans] = useState([]);
+
+  useEffect(() => {
+    const word1 = "our";
+    const word2 = "services";
+
+    const spanArray = [];
+
+    word1.split("").forEach((char, index) => {
+      spanArray.push(
+        <span
+          key={`our-${index}`}
+          className="inline-block text-[#01016F]"
+          style={{ display: "inline-block" }}
+        >
+          {char}
+        </span>
+      );
+    });
+
+    spanArray.push(
+      <span key="space" style={{ display: "inline-block", width: "0.5rem" }}>
+        {" "}
+      </span>
+    );
+
+    word2.split("").forEach((char, index) => {
+      spanArray.push(
+        <span
+          key={`services-${index}`}
+          className="inline-block text-[#EF1E24]"
+          style={{ display: "inline-block" }}
+        >
+          {char}
+        </span>
+      );
+    });
+
+    setLetterSpans(spanArray);
+  }, []);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      gsap.from(headerRef.current.querySelectorAll("span"), {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+    }
+  }, [letterSpans]);
+
   const ourServices = [
     {
       id: 1,
@@ -116,8 +176,11 @@ export default function Service() {
   return (
     <div className="flex flex-col gap-[32px] px-8 lg:px-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 p-0 lg:p-4 gap-4 lg:gap-0">
-        <h1 className="text-[37px] lg:text-[75px] text-[#01016F] font-semibold uppercase">
-          our <span className="text-[#EF1E24]">services</span>
+        <h1
+          className="text-[37px] lg:text-[75px] text-[#01016F] font-semibold uppercase"
+          ref={headerRef}
+        >
+          {letterSpans}
         </h1>
         <div className="flex flex-col gap-2 w-auto lg:max-w-[600px] ">
           <p className="text-[20px] lg:text-[24px] font-semibold uppercase">
@@ -131,9 +194,10 @@ export default function Service() {
             team is ready to deliver solutions that keep your operations running
             smoothly.
           </p>
-          <div className="flex gap-2 items-center justify-center bg-[#01016F] text-white p-2 max-w-[135px] rounded-[30px]">
+          <div className="group flex gap-2 items-center justify-center bg-[#01016F] text-white p-2 max-w-[150px] rounded-[30px] hover:bg-blue-700 transition-colors duration-300">
             <p className="text-[14px]">get in touch</p>{" "}
             <svg
+              className="group-hover:translate-x-1 group-hover:rotate-45 transition-transform duration-300"
               xmlns="http://www.w3.org/2000/svg"
               width="28"
               height="27"
@@ -159,7 +223,7 @@ export default function Service() {
         <div className="mt-8">
           {ourServices.map((service, index) => (
             <div
-              className="bg-white p-6 lg:p-12 max-w-7xl mx-auto flex flex-col gap-[32px] border border-gray-200 rounded-[16px] shadow-lg mb-8"
+              className="sticky top-4 bg-white p-6 lg:p-12 max-w-7xl mx-auto flex flex-col gap-[32px] border border-gray-200 rounded-[16px] shadow-lg mb-8 transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-2xl"
               key={index}
             >
               <div className="w-full flex flex-col sm:flex-row items-center sm:items-baseline justify-between gap-4 sm:gap-6">
@@ -225,7 +289,7 @@ export default function Service() {
         </div>
       </div>
 
-      <div className="lg:mb-[200px]">
+      <div>
         <h1 className="text-[30px] lg:text-[50px]  text-center uppercase font-semibold mt-[20px] lg:mt-[60px]">
           <span className="text-[#01016F]">why choose</span> us
         </h1>
@@ -275,6 +339,7 @@ export default function Service() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
