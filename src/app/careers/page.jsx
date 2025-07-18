@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Accordion from "./Accordion";
 import { gsap } from "gsap";
 import Footer from "@/Components/Footer";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Career() {
   const accordionData = [
@@ -178,7 +179,12 @@ export default function Career() {
   ];
 
   const [selectedId, setSelectedId] = useState(accordionData[0].id);
+  const [letterSpans, setLetterSpans] = useState([]);
+  const [isClicked, setIsClicked] = useState(null);
+
   const cardRefs = useRef([]);
+  const headerRef = useRef();
+  const openRef = useRef(null);
 
   const handleMouseMove = (e, index) => {
     const card = cardRefs.current[index];
@@ -212,11 +218,96 @@ export default function Career() {
     });
   };
 
+  useEffect(() => {
+    const word1 = "join";
+    const word2 = "our";
+    const word3 = "team";
+
+    const spanArray = [];
+
+    word1.split("").forEach((char, index) => {
+      spanArray.push(
+        <span
+          key={`join-${index}`}
+          className="inline-block text-[#01016F]"
+          style={{ display: "inline-block" }}
+        >
+          {char}
+        </span>
+      );
+    });
+
+    spanArray.push(
+      <span key="space" style={{ display: "inline-block", width: "0.5rem" }}>
+        {" "}
+      </span>
+    );
+
+    word2.split("").forEach((char, index) => {
+      spanArray.push(
+        <span
+          key={`our-${index}`}
+          className="inline-block text-[#01016F]"
+          style={{ display: "inline-block" }}
+        >
+          {char}
+        </span>
+      );
+    });
+
+    spanArray.push(
+      <span key="space-2" style={{ display: "inline-block", width: "0.5rem" }}>
+        {" "}
+      </span>
+    );
+
+    word3.split("").forEach((char, index) => {
+      spanArray.push(
+        <span
+          key={`team-${index}`}
+          className="inline-block text-[#EF1E24]"
+          style={{ display: "inline-block" }}
+        >
+          {char}
+        </span>
+      );
+    });
+
+    setLetterSpans(spanArray);
+  }, []);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      gsap.from(headerRef.current.querySelectorAll("span"), {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+    }
+  }, [letterSpans]);
+
+  useEffect(() => {
+    if (openRef.current && isClicked !== null) {
+      openRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [isClicked]);
+
+  console.log(isClicked);
+  
+
   return (
     <div className="flex flex-col gap-[32px] px-8 lg:px-16 mb-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 p-0 lg:p-4 gap-4 lg:gap-0">
-        <h1 className="text-[50px] lg:text-[75px] text-[#01016F] font-semibold uppercase">
-          join OUR <span className="text-[#EF1E24]">TEAM</span>
+        <h1
+          className="text-[45px] lg:text-[75px] text-[#01016F] font-semibold uppercase "
+          ref={headerRef}
+        >
+          {letterSpans}
         </h1>
         <div className="flex flex-col gap-2 w-auto lg:max-w-[600px] ">
           <p className="text-[20px] lg:text-[42px] font-semibold">
@@ -267,28 +358,43 @@ export default function Career() {
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6 w-full md:max-w-[80%] mx-auto">
           <div>
-            {accordionData
-              .filter((item) => item.id === selectedId)
-              .map((item) => (
-                <Accordion
-                  key={item.id}
-                  data={item}
-                  isExpanded={true}
-                  onToggle={() => {}}
-                />
-              ))}
+            <AnimatePresence mode="wait">
+              {accordionData
+                .filter((item) => item.id === selectedId)
+                .map((item) => (
+                  <motion.div
+                    key={item.id}
+                    ref={openRef}
+                    layout
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <Accordion
+                      data={item}
+                      isExpanded={true}
+                      onToggle={() => {}}
+                    />
+                  </motion.div>
+                ))}
+            </AnimatePresence>
           </div>
 
           <div className="flex flex-col gap-6">
             {accordionData
               .filter((item) => item.id !== selectedId)
               .map((item) => (
-                <Accordion
-                  key={item.id}
-                  data={item}
-                  isExpanded={false}
-                  onToggle={() => setSelectedId(item.id)}
-                />
+                <motion.div key={item.id} layout>
+                  <Accordion
+                    data={item}
+                    isExpanded={false}
+                    onToggle={() => {
+                      setSelectedId(item.id);
+                      setIsClicked(!isClicked);
+                    }}
+                  />
+                </motion.div>
               ))}
           </div>
         </div>
@@ -311,7 +417,7 @@ export default function Career() {
               className="flex items-start gap-4 md:gap-8 mb-12 md:mb-16 last:mb-0"
             >
               <div className="flex-shrink-0 relative">
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-purple-200 rounded-full flex items-center justify-center relative z-10">
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-purple-200 rounded-full flex items-center justify-center relative z-10 scale-up">
                   <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-900 rounded-full flex items-center justify-center">
                     <span className="text-white text-sm md:text-lg font-bold">
                       {step.number}
@@ -324,7 +430,7 @@ export default function Career() {
               </div>
 
               {/* Step Content */}
-              <div className="flex-1 p-2 md:p-4 border border-gray-200 bg-white rounded-lg">
+              <div className="flex-1 p-2 md:p-4 border border-gray-200 bg-white rounded-lg shadow-md">
                 <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">
                   {step.title}
                 </h3>
@@ -337,7 +443,7 @@ export default function Career() {
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }

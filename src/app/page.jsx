@@ -239,9 +239,9 @@ export default function Home() {
               <div className="relative z-10 text-center sm:text-left">
                 {/* FIXED: Removed animation delay from LCP elements */}
                 {showTitle && (
-                 <h2 className="font-bold uppercase leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-6xl">
+                 <h2 className="font-bold uppercase leading-tight text-3xl md:text-4xl lg:text-6xl">
                  <span className="block">Arabian Sky</span>
-                 <span className="block mt-1 text-3xl md:text-6xl lg:text-8xl font-bold">
+                 <span className="block mt-1 text-4xl md:text-6xl lg:text-8xl font-bold">
                    Transport
                  </span>
                </h2>
