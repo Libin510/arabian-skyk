@@ -241,7 +241,7 @@ export default function Home() {
                 {showTitle && (
                  <h2 className="font-bold uppercase leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-6xl">
                  <span className="block">Arabian Sky</span>
-                 <span className="block mt-1 text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold">
+                 <span className="block mt-1 text-3xl md:text-6xl lg:text-8xl font-bold">
                    Transport
                  </span>
                </h2>
