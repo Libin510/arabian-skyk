@@ -2,23 +2,19 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment } from "@react-three/drei";
-import { useEffect, useRef, useState, Suspense } from "react";
+import { useEffect, useRef, useState, Suspense, memo } from "react";
 import * as THREE from "three";
 
 // ----------------- Truck Component -----------------
-function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
-  const { scene } = useGLTF("/truck_gltb_Final_trailerSk_ktx2.glb");
+const Truck = memo(function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
+  const { scene } = useGLTF("/truck_optimized.glb");
   const truckRef = useRef();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [wheelPivots, setWheelPivots] = useState([]);
+  const wheelPivots = useRef([]);
 
   useEffect(() => {
     if (!scene) return;
 
-    setIsLoaded(true);
-
-    const newPivots = [];
-    // Collect wheels by exact name
+    // Collect wheel meshes by name
     const wheelNames = [
       "WheelFL",
       "WheelFR",
@@ -34,64 +30,48 @@ function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
 
     scene.traverse((child) => {
       if (child.isMesh && wheelNames.includes(child.name)) {
-        newPivots.push(child);
-        console.log("Wheel mesh collected:", child.name);
-        console.log("Mesh found:", child.name)
+        wheelPivots.current.push(child);
+        child.frustumCulled = false; // avoid popping
       }
     });
-    setWheelPivots(newPivots);
+
+    truckRef.current = scene;
   }, [scene]);
 
   useFrame((_, delta) => {
-    if (!truckRef.current) return;
+    if (!truckRef.current || !hasScrolled || scrollSpeed < 0.01) return;
 
-    if (hasScrolled && scrollSpeed > 0.01) {
-      const movement = scrollSpeed * delta * 30;
-      const direction = scrollDirection === "down" ? 1 : -1;
-      const nextX = truckRef.current.position.x + direction * movement;
+    const movement = scrollSpeed * delta * 30;
+    const direction = scrollDirection === "down" ? 1 : -1;
+    truckRef.current.position.x += direction * movement;
 
-      truckRef.current.position.x = nextX;
-
-      // Rotate wheels based on movement
-      const rotationAmount = direction * movement * 1.5;
-      wheelPivots.forEach((pivot) => {
-        // Rotate on X-axis for tires
-        pivot.rotation.x -= rotationAmount;
-      });
-    }
+    const rotationAmount = direction * movement * 1.5;
+    wheelPivots.current.forEach((pivot) => {
+      pivot.rotation.x -= rotationAmount;
+    });
   });
-
-  if (!isLoaded) {
-    return (
-      <mesh position={[0, -1, 0]}>
-        <boxGeometry args={[2, 1, 1]} />
-        <meshStandardMaterial color="gray" />
-      </mesh>
-    );
-  }
 
   return (
     <primitive
-      ref={truckRef}
       object={scene}
       scale={[1.5, 1.5, 1.5]}
       position={[-viewWidth / 2, -1, 0]}
       rotation={[0, Math.PI / 2, 0]}
     />
   );
-}
+});
 
-// ----------------- Loading Placeholder -----------------
+// ----------------- Placeholder While Loading -----------------
 function LoadingFallback() {
   return (
     <mesh position={[0, -1, 0]}>
       <boxGeometry args={[2, 1, 1]} />
-      <meshStandardMaterial color="#cccccc" />
+      <meshStandardMaterial color="#999" />
     </mesh>
   );
 }
 
-// ----------------- Main TruckScene Component -----------------
+// ----------------- TruckScene -----------------
 export default function TruckScene() {
   const [scrollSpeed, setScrollSpeed] = useState(0);
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -99,78 +79,69 @@ export default function TruckScene() {
   const [viewWidth, setViewWidth] = useState(16);
   const sectionRef = useRef(null);
 
-  // Calculate visible world width based on camera settings
+  // Handle visible width calculation
   useEffect(() => {
-    const calculateViewWidth = () => {
+    const updateView = () => {
       const aspect = window.innerWidth / window.innerHeight;
       const fov = 35;
-      const cameraZ = 20;
-      const vHeight = 2 * Math.tan((fov * Math.PI) / 360) * cameraZ;
-      const vWidth = vHeight * aspect;
-      setViewWidth(vWidth);
+      const z = 20;
+      const vHeight = 2 * Math.tan((fov * Math.PI) / 360) * z;
+      setViewWidth(vHeight * aspect);
     };
 
-    calculateViewWidth();
-    window.addEventListener("resize", calculateViewWidth);
-    return () => window.removeEventListener("resize", calculateViewWidth);
+    updateView();
+    window.addEventListener("resize", updateView);
+    return () => window.removeEventListener("resize", updateView);
   }, []);
 
-  // Observe section intersection
+  // Scroll intersection observer
   useEffect(() => {
-    if (!sectionRef.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         setHasScrolled(entry.intersectionRatio > 0.1);
       },
-      { threshold: [0.1, 0.3, 0.9] }
+      { threshold: [0.1, 0.5, 1] }
     );
 
-    observer.observe(sectionRef.current);
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => sectionRef.current && observer.unobserve(sectionRef.current);
   }, []);
 
-  // Scroll speed and direction tracking
+  // Scroll speed tracker
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    let lastY = window.scrollY;
     let lastTime = Date.now();
 
-    const handleScroll = () => {
+    const onScroll = () => {
       const now = Date.now();
-      const deltaY = window.scrollY - lastScrollY;
+      const deltaY = window.scrollY - lastY;
       const deltaTime = Math.max(now - lastTime, 1);
 
       setScrollDirection(deltaY > 0 ? "down" : "up");
-      const speed = Math.abs(deltaY) / deltaTime;
-      setScrollSpeed(Math.min(speed, 1));
+      setScrollSpeed(Math.min(Math.abs(deltaY) / deltaTime, 1));
 
-      lastScrollY = window.scrollY;
+      lastY = window.scrollY;
       lastTime = now;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-    const decayInterval = setInterval(() => {
+    const decay = setInterval(() => {
       setScrollSpeed((prev) => Math.max(prev * 0.95, 0));
     }, 50);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearInterval(decayInterval);
+      window.removeEventListener("scroll", onScroll);
+      clearInterval(decay);
     };
   }, []);
 
   return (
-    <div ref={sectionRef} className="left-0 w-screen h-[600px] z-0">
-      <Canvas
-        camera={{ position: [0, 0, 20], fov: 35 }}
-        gl={{ antialias: true, alpha: true }}
-      >
+    <div ref={sectionRef} className="left-0 w-full h-[600px] !px-0 z-0">
+      <Canvas camera={{ position: [0, 0, 20], fov: 35 }} gl={{ antialias: true, alpha: true }}>
         <Suspense fallback={<LoadingFallback />}>
           <ambientLight intensity={0.6} />
-          <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
-          <pointLight position={[-5, 5, 5]} intensity={0.5} />
+          <directionalLight position={[5, 5, 5]} intensity={1.2} castShadow />
           <Truck
             scrollSpeed={scrollSpeed}
             hasScrolled={hasScrolled}
