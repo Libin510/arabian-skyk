@@ -5,27 +5,30 @@ import { IoIosArrowForward } from "react-icons/io";
 import { PiHardHat } from "react-icons/pi";
 import { PiBridge } from "react-icons/pi";
 import { PiShieldPlus } from "react-icons/pi";
-import Image from 'next/image';
-import Head from 'next/head';
+import Image from "next/image";
+import Head from "next/head";
 
 import { Instrument_Sans } from "next/font/google";
 import Footer from "@/Components/Footer";
 import TruckWrapper1 from "@/Components/TruckWapper1";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import './Home.css';
+import "./Home.css";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-instrument-sans",
-  display: 'swap', // Add font-display swap for better performance
+  display: "swap", // Add font-display swap for better performance
 });
 
 // Suppress hydration warnings for elements that might be affected by browser extensions
-const NoSSR = dynamic(() => Promise.resolve(({ children }) => <>{children}</>), {
-  ssr: false
-});
+const NoSSR = dynamic(
+  () => Promise.resolve(({ children }) => <>{children}</>),
+  {
+    ssr: false,
+  }
+);
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
@@ -105,8 +108,8 @@ export default function Home() {
     window.scrollTo(0, 0);
 
     // SOLUTION 2: Prevent scroll restoration
-    if (typeof window !== 'undefined' && 'scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
+    if (typeof window !== "undefined" && "scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
     }
   }, []);
 
@@ -226,7 +229,7 @@ export default function Home() {
                 alt="Truck"
                 width={200}
                 height={120}
-                className="truck-anim -rotate-[23deg]"
+                className="truck-anim rotate-[-23deg]"
                 onAnimationEnd={() => setTruckArrived(true)}
                 priority // Critical for LCP
                 placeholder="blur"
@@ -239,12 +242,12 @@ export default function Home() {
               <div className="relative z-10 text-center sm:text-left">
                 {/* FIXED: Removed animation delay from LCP elements */}
                 {showTitle && (
-                 <h2 className="font-bold uppercase leading-tight text-3xl md:text-4xl lg:text-6xl">
-                 <span className="block">Arabian Sky</span>
-                 <span className="block mt-1 text-4xl md:text-6xl lg:text-8xl font-bold">
-                   Transport
-                 </span>
-               </h2>
+                  <h2 className="font-bold uppercase leading-tight text-3xl md:text-4xl lg:text-6xl 2xl:text-8xl">
+                    <span className="block">Arabian Sky</span>
+                    <span className="block mt-1 text-4xl md:text-6xl lg:text-8xl 2xl:text-9xl font-bold">
+                      Transport
+                    </span>
+                  </h2>
                 )}
                 {/* FIXED: This is likely your LCP element - removed delay and animation */}
                 {showTitle && (
@@ -260,11 +263,12 @@ export default function Home() {
                   <div className="relative w-full mx-auto">
                     {showVideo && (
                       <>
-                        <p className="absolute -top-9 right-0 z-30 text-white font-bold text-base uppercase bg-[#01016F] px-3 py-1 rounded-t-lg w-[40%]">
-                          <span className="text-red-500 text-xl tracking-widest">*</span> THE WHEELS OF RELIABILITY
+                        <p className="absolute -top-11 right-0 z-30 text-white font-bold text-2xl xs:text-sm md:text-lg text-right  bg-[#01016F] px-3 xs:px-2 py-1 xs:py-0 rounded-t-lg  w-[40%] flex gap-2 ">
+                          <span className="text-red-500 text-3xl">*</span> THE
+                          WHEELS OF RELIABILITY
                         </p>
                         {/* FIXED: Added explicit dimensions and poster for better CLS */}
-                        <div className="relative mx-auto overflow-hidden rounded-b-lg rounded-l-lg z-20 w-full  max-w-[89.375rem] aspect-[1430/539]  max-h-[20rem]">
+                        <div className="relative mx-auto overflow-hidden rounded-b-lg rounded-l-lg z-20 w-full  max-w-[89.375rem] aspect-[1430/539]  max-h-[40rem] lg:h-[20rem]">
                           <video
                             autoPlay
                             loop
@@ -273,12 +277,13 @@ export default function Home() {
                             poster="/truck-poster.jpg"
                             className="absolute top-0 left-0 w-full h-full object-cover z-10"
                           >
-                            <source src="/Truck Logo Reveal.mp4" type="video/mp4" />
+                            <source
+                              src="/Truck Logo Reveal.mp4"
+                              type="video/mp4"
+                            />
                             Your browser does not support the video tag.
                           </video>
                         </div>
-
-
                       </>
                     )}
                   </div>
@@ -318,7 +323,10 @@ export default function Home() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
               {/* Left side - Image placeholder with fixed dimensions */}
-              <div className="bg-[#999999] rounded-xl flex items-center justify-center order-2 lg:order-1 hover-lift" style={{ aspectRatio: '4/3', minHeight: '200px' }}>
+              <div
+                className="bg-[#999999] rounded-xl flex items-center justify-center order-2 lg:order-1 hover-lift"
+                style={{ aspectRatio: "4/3", minHeight: "200px" }}
+              >
                 <span className="text-white text-sm sm:text-lg">
                   Image Placeholder
                 </span>
@@ -351,9 +359,9 @@ export default function Home() {
             <TruckWrapper className="w-full" />
             <div className="text-center mb-6 sm:mb-8 fade-in-up delay-200">
               <p className="text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base px-4">
-                As Logistics Service Providers, We Offer A Wide Range Of Services
-                To Support To Meet The Diverse Logistics Needs Of Businesses
-                Across The UAE And GCC.
+                As Logistics Service Providers, We Offer A Wide Range Of
+                Services To Support To Meet The Diverse Logistics Needs Of
+                Businesses Across The UAE And GCC.
               </p>
             </div>
 
@@ -364,8 +372,9 @@ export default function Home() {
                 {services.slice(0, visibleCards).map((items, index) => (
                   <div
                     key={index}
-                    className={`service-card ${index < visibleCards ? "visible" : ""
-                      } flex flex-col lg:flex-row items-center gap-6 lg:gap-8`}
+                    className={`service-card ${
+                      index < visibleCards ? "visible" : ""
+                    } flex flex-col lg:flex-row items-center gap-6 lg:gap-8`}
                     style={{ animationDelay: `${index * 200}ms` }}
                   >
                     {/* Service Content */}
@@ -375,14 +384,21 @@ export default function Home() {
                           {index + 1}. {items.title}
                         </h3>
                         {/* FIXED: Added explicit dimensions for service images */}
-                        <div className="w-full max-w-[400px] bg-gray-300 rounded flex items-center justify-center hover-lift" style={{ aspectRatio: '4/3', minHeight: '150px' }}>
+                        <div
+                          className="w-full max-w-[400px] bg-gray-300 rounded flex items-center justify-center hover-lift"
+                          style={{ aspectRatio: "4/3", minHeight: "150px" }}
+                        >
                           <span className="text-xs text-gray-600">
                             Service Image
                           </span>
                         </div>
                       </div>
                     </div>
-
+                    {index === 0 && (
+                      <div className="hidden sm:flex items-center justify-center flex-1 w-full lg:w-auto">
+                        <TruckWrapper1 onTruckStopped={handleTruckStopped} />
+                      </div>
+                    )}
                     {/* Circular Explore Button for second card */}
                     {index === 1 && (
                       <div className="flex items-center justify-center lg:mx-auto p-4 sm:p-6 lg:p-8">
@@ -421,15 +437,18 @@ export default function Home() {
 
         {/* Header Section with Background Text */}
         <div className="w-full">
-          <div className="relative overflow-hidden" style={{ minHeight: '200px' }}>
+          <div
+            className="relative overflow-hidden"
+            style={{ minHeight: "200px" }}
+          >
             {/* Animated Background */}
             <div className="absolute inset-0 gradient-animate"></div>
 
             {/* Large Background Text - Enhanced with proper scroll speed */}
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-              <div className="whitespace-nowrap">
+              <div className="whitespace-nowrap py-2">
                 <h1
-                  className={`${instrumentSans.variable} font-sans slide-text text-[80px] sm:text-[150px] md:text-[200px] lg:text-[250px] xl:text-[300px] font-bold text-[#EF1E2480] opacity-70 tracking-wider select-none`}
+                  className={`${instrumentSans.variable} font-sans slide-text text-[80px] sm:text-[150px] md:text-[200px] lg:text-[250px] xl:text-[200px] font-bold text-[#FFFFFF80] opacity-70 tracking-wider select-none`}
                   style={{
                     "--animation-duration": `${35 / scrollSpeed}s`,
                   }}
@@ -445,13 +464,15 @@ export default function Home() {
                 {[...Array(4)].map((_, index) => (
                   <div
                     key={index}
-                    className={`bg-gray-400 bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer float-animation delay-${index * 100}`}
+                    className={`bg-gray-400 bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer float-animation delay-${
+                      index * 100
+                    }`}
                     style={{
                       animationDelay: `${index * 300}ms`,
-                      width: '120px',
-                      height: '80px',
-                      minWidth: '120px',
-                      minHeight: '80px'
+                      width: "120px",
+                      height: "80px",
+                      minWidth: "120px",
+                      minHeight: "80px",
                     }}
                   />
                 ))}
@@ -474,10 +495,11 @@ export default function Home() {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className={`group flex items-center justify-between py-4 sm:py-5 lg:py-6 ${index !== features.length - 1
-                    ? "border-b border-gray-200"
-                    : ""
-                    } relative fade-in-up delay-${index * 100}`}
+                  className={`group flex items-center justify-between py-4 sm:py-5 lg:py-6 ${
+                    index !== features.length - 1
+                      ? "border-b border-gray-200"
+                      : ""
+                  } relative fade-in-up delay-${index * 100}`}
                 >
                   {/* Title */}
                   <h3 className="text-sm sm:text-base lg:text-lg font-bold text-black uppercase tracking-wide z-10 pr-4 transition-colors duration-300 group-hover:text-[#01016F]">
@@ -497,7 +519,10 @@ export default function Home() {
                   {/* Center popup box on hover - Enhanced with fixed dimensions */}
                   {feature.showPopup && (
                     <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 opacity-0 group-hover:opacity-100 transition-all duration-500 hidden sm:block">
-                      <div className="rounded-lg bg-gray-400 shadow-2xl transform group-hover:scale-105 transition-transform duration-500" style={{ width: '200px', height: '250px' }}></div>
+                      <div
+                        className="rounded-lg bg-gray-400 shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
+                        style={{ width: "200px", height: "250px" }}
+                      ></div>
                     </div>
                   )}
                 </div>
@@ -517,10 +542,12 @@ export default function Home() {
               {industries.map((industry, index) => (
                 <div
                   key={index}
-                  className={`${industry.bgColor
-                    } flex gap-3 sm:gap-4 items-center text-white p-3 sm:p-4 lg:p-2 rounded-lg w-full max-w-xs lg:max-w-none hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer fade-in-up delay-${index * 100
-                    }`}
-                  style={{ minHeight: '60px' }} // Reserve space to prevent CLS
+                  className={`${
+                    industry.bgColor
+                  } flex gap-3 sm:gap-4 items-center text-white p-3 sm:p-4 lg:p-2 rounded-lg w-full max-w-xs lg:max-w-none hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer fade-in-up delay-${
+                    index * 100
+                  }`}
+                  style={{ minHeight: "60px" }} // Reserve space to prevent CLS
                 >
                   <div className="bg-white size-10 sm:size-11 rounded-[8px] flex justify-center text-black items-center text-xl sm:text-2xl flex-shrink-0 hover:rotate-12 transition-transform duration-300">
                     {industry.icon}
