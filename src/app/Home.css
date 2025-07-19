@@ -1,14 +1,20 @@
- @keyframes gradientShift {
+@keyframes spin-slow {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
-   0%,
-   100% {
-     background-position: 0% 50%;
-   }
-
-   50% {
-     background-position: 100% 50%;
-   }
- }
+.spin-slow {
+  animation: spin-slow 6s linear infinite;
+}
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+}
 
  @keyframes slideRightToLeft {
    0% {
@@ -93,13 +99,13 @@
  }
 
  .gradient-animate {
-   background: linear-gradient(90deg,
-       #F70105 0%,
-       #1131A6 16.66%,
-       #1131A6 100%);
-   background-size: 400% 400%;
-   animation: gradientShift 8s ease infinite;
- }
+  background: linear-gradient(90deg,
+      #1131A6 0%,
+      #1131A6 83.34%,
+      #F70105 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
 
  .delay-100 {
    animation-delay: 100ms;
@@ -167,7 +173,7 @@
    }
 
    100% {
-     background: linear-gradient(158deg, white 0%, white 50%, #1131A6 50%, #F70105 100%);
+     background:linear-gradient(158deg, white 0%, white 50%, #1131A6 50%, #F70105 100%);
      mask-image: none;
      -webkit-mask-image: none;
    }

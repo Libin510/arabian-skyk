@@ -7,7 +7,7 @@ import * as THREE from "three";
 
 // ----------------- Truck Component -----------------
 const Truck = memo(function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
-  const { scene } = useGLTF("/truck_optimized.glb");
+  const { scene } = useGLTF("/Truck_gltb_remesh_Test1_darco_ktx2.glb");
   const truckRef = useRef();
   const wheelPivots = useRef([]);
 
