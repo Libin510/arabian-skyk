@@ -258,7 +258,7 @@ export default function Home() {
                           <span className="leading-tight">THE WHEELS OF RELIABILITY</span>
                         </p>
                         {/* Video Container - Responsive */}
-                        <div className="relative mx-auto overflow-hidden rounded-b-lg rounded-l-lg z-20 w-full max-w-[89.375rem] aspect-video sm:aspect-[1430/539] max-h-[25rem] sm:max-h-[30rem] lg:max-h-[40rem]">
+                        <div className="relative mx-auto overflow-hidden rounded-b-lg rounded-l-lg z-20 w-full max-w-[89.375rem] aspect-video sm:aspect-[1430/539] max-h-[25rem] sm:max-h-[30rem] md:max-h-[20rem] lg:max-h-[20rem]  2xl:max-h-[40rem]">
                           <video
                             autoPlay
                             loop

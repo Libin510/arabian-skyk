@@ -271,26 +271,50 @@
    }
  }
 
- @media (min-width: 1024px) {
-   .truck-anim {
-     width: 10vw;
-     max-width: 160px;
-     min-width: 80px;
-   }
+@media (min-width: 1024px) {
+  .truck-anim {
+    width: 10vw;
+    max-width: 160px;
+    min-width: 80px;
+  }
 
-   @keyframes truckMove {
-     0% {
-       left: 0;
-       bottom: 80px;
-       transform: translate(0, 0);
-       opacity: 1;
-     }
+  @keyframes truckMove {
+    0% {
+      left: 0;
+      bottom: 80px;
+      transform: translate(0, 0);
+      opacity: 1;
+    }
 
-     100% {
-       left: 100vw;
-       bottom: 86vh;
-       transform: translate(-100%, -100%);
-       opacity: 0.7;
-     }
-   }
- }
+    100% {
+      left: 100vw;
+      bottom: 86vh;
+      transform: translate(-100%, -100%);
+      opacity: 0.7;
+    }
+  }
+}
+
+@media (min-width: 1536px) {
+  .truck-anim {
+    width: 10vw;
+    max-width: 160px;
+    min-width: 80px;
+  }
+
+  @keyframes truckMove {
+    0% {
+      left: 0;
+      bottom: 350px;
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+
+    100% {
+      left: 100vw;
+      bottom: 70vh;
+      transform: translate(-100%, -100%);
+      opacity: 0.7;
+    }
+  }
+}
