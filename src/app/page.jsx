@@ -133,35 +133,35 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    if (!isMounted) return;
+  // useEffect(() => {
+  //   if (!isMounted) return;
 
-    let ticking = false;
+  //   let ticking = false;
 
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+  //   const handleScroll = () => {
+  //     if (!ticking) {
+  //       window.requestAnimationFrame(() => {
+  //         const currentScrollY = window.scrollY;
+  //         const scrollDelta = Math.abs(currentScrollY - lastScrollY);
 
-          const baseSpeed = 1;
-          const speedMultiplier = Math.min(scrollDelta * 0.1, 3);
-          const newSpeed = baseSpeed + speedMultiplier;
+  //         const baseSpeed = 1;
+  //         const speedMultiplier = Math.min(scrollDelta * 0.1, 3);
+  //         const newSpeed = baseSpeed + speedMultiplier;
 
-          if (scrollSpeed !== newSpeed) {
-            setScrollSpeed(newSpeed);
-          }
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
+  //         if (scrollSpeed !== newSpeed) {
+  //           setScrollSpeed(newSpeed);
+  //         }
+  //         setLastScrollY(currentScrollY);
+  //         ticking = false;
+  //       });
 
-        ticking = true;
-      }
-    };
+  //       ticking = true;
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isMounted]);
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [lastScrollY, isMounted]);
 
   useEffect(() => {
     if (truckArrived) {
@@ -361,7 +361,7 @@ export default function Home() {
             {/* Services - Mobile First Approach */}
             <div className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 relative">
               {/* Mobile Layout */}
-              <div className="block lg:hidden">
+              <div className="block lg:hidden scrollbar-hide">
                 <div className="space-y-6 sm:space-y-8">
                   {services.map((item, index) => (
                     <div key={index} className="text-center">
