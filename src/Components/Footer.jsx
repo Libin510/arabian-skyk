@@ -6,7 +6,7 @@ function Footer() {
     return (
         <div>
             {/* Contact Section */}
-           <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-r from-[#1131A6] via-[#1131A6] to-[#F70105] text-white">
+           <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-r from-[#1131A6] via-[#1131A6] to-[#F70105] text-white rounded-3xl">
 
                 <div className="max-w-6xl mx-auto text-center md:text-left">
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
@@ -17,11 +17,11 @@ function Footer() {
                         Ready To Move Your Business Forward? Contact Us Today To Discuss Your Logistics Needs.
                     </p>
                     <button 
-                        className="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors inline-flex items-center" 
+                        className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors inline-flex items-center" 
                         onClick={() => router.push('/contact')}
                     >
                         Get In Touch
-                        <span className="ml-2 bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
+                        <span className="ml-2 bg-[#EF1E24] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
                             →
                         </span>
                     </button>
