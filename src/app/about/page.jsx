@@ -124,7 +124,7 @@ export default function About() {
       {/* About Us Header Section */}
       <div className="mb-8 md:mb-12">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center lg:text-left">
+          <h1 className="text-[37px] lg:text-[75px] font-bold text-center lg:text-left">
             <span className="text-blue-900">ABOUT</span>{' '}
             <span className="text-red-500">US</span>
           </h1>

@@ -25,14 +25,14 @@ export default function Contact() {
   };
 
   return (
-    <div className=" mx-auto p-16">
+    <div className="mx-auto p-4 md:p-8 lg:p-16">
       {/* Header */}
       <div className="mb-12">
         <div className=" items-start  mb-8">
           <h1 className="text-5xl font-bold mr-6 ">
             CONTACT <span className="text-red-500">US</span>
           </h1>
-          <p className="text-gray-600 text-sm leading-relaxed max-w-md">
+          <p className="text-gray-600 text-sm leading-relaxed max-w-md mt-2">
             Have A Question Or Need Assistance? Please Fill Out The Form Below,
             And One Of Our Team Members Will Get Back To You As Soon As
             Possible.
@@ -41,11 +41,11 @@ export default function Contact() {
       </div>
 
       {/* Main Content */}
-      <div className=" mx-auto ">
+     <div className=" mx-auto ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Contact Form */}
+          {/* Contact Form - Increased height to match side panel */}
           <div className="lg:col-span-2">
-            <div className="space-y-4">
+            <div className="space-y-6 h-full flex flex-col">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="text"
@@ -53,7 +53,7 @@ export default function Contact() {
                   placeholder="Full Name*"
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-4 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-6 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
                 <input
@@ -62,7 +62,7 @@ export default function Contact() {
                   placeholder="Company Address*"
                   value={formData.companyAddress}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-4 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-6 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
@@ -74,7 +74,7 @@ export default function Contact() {
                   placeholder="Email Address*"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-4 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-6 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
                 <input
@@ -83,30 +83,34 @@ export default function Contact() {
                   placeholder="Phone Number*"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-4 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-6 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
 
-              <textarea
-                name="message"
-                placeholder="Message"
-                value={formData.message}
-                onChange={handleInputChange}
-                rows={6}
-                className="w-full px-4 py-4 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-              ></textarea>
+              <div className="flex-1">
+                <textarea
+                  name="message"
+                  placeholder="Message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={10}
+                  className="w-full h-full px-4 py-6 bg-gray-200 border-0 rounded-none placeholder-gray-600 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[280px]"
+                ></textarea>
+              </div>
 
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="bg-[#01016F] text-white px-8 py-3 rounded-full font-medium text-sm hover:bg-blue-800 transition-colors duration-200 flex items-center gap-2"
-              >
-                Submit
-                <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-[#01016F] text-xs">→</span>
-                </div>
-              </button>
+              <div className="pt-4">
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className="bg-[#01016F] text-white px-8 py-4 rounded-full font-medium text-sm hover:bg-blue-800 transition-colors duration-200 flex items-center gap-2"
+                >
+                  Submit
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <span className="text-[#01016F] text-xs">→</span>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -199,7 +203,7 @@ export default function Contact() {
         </div>
 
         {/* Map Section */}
-        <div className="mt-8 mb-12">
+        <div className="mt-16 mb-12">
           <div className="w-full h-[544px] bg-gray-300 rounded-lg overflow-hidden relative">
             <iframe
               title="Company Location"
@@ -215,31 +219,28 @@ export default function Contact() {
           </div>
         </div>
       </div>
-      <footer className="bg-white py-12 px-8">
+      <footer className="bg-white py-8 md:py-12 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
             {/* Left Side - Company Info */}
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-4 text-center lg:text-left">
               {/* Logo */}
-              <div className="flex items-center mb-8">
-                <div className=" text-white p-3 rounded-lg mr-4">
+              <div className="flex items-center justify-center lg:justify-start mb-6 md:mb-8">
+                <div className="text-white p-3 rounded-lg">
                   <img
                     src="./arabianskylogo.png"
-                    className="h-[57px] w-[210px]"
-                    alt=""
+                    className="h-10 w-auto md:h-[57px] md:w-[210px]"
+                    alt="Arabian Sky Transport Logo"
                   />
                 </div>
-
               </div>
 
-            
-
               {/* Contact Information */}
-              <div className="space-y-6 text-sm">
+              <div className="space-y-4 md:space-y-6 text-sm">
                 <div>
                   <p className="font-bold text-gray-800 mb-1">Mail</p>
-                  <p className="text-gray-600">arabianskytr@gmail.com</p>
+                  <p className="text-gray-600 break-all md:break-normal">arabianskytr@gmail.com</p>
                 </div>
                 <div>
                   <p className="font-bold text-gray-800 mb-1">Phone</p>
@@ -259,57 +260,59 @@ export default function Contact() {
             </div>
 
             {/* Right Side - Navigation */}
-              {/* Social Media Icons - Top Right */}
-             
             <div className="lg:col-span-8">
-               <div className="flex justify-end space-x-6 mb-8  lg:top-4 lg:right-8">
+              {/* Social Media Icons */}
+              <div className="flex justify-center lg:justify-end flex-wrap gap-4 md:gap-6 mb-6 md:mb-8">
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-gray-400 rounded-sm"></div>
-                  <span className="text-sm text-gray-600 font-medium">INSTAGRAM</span>
+                  <span className="text-xs md:text-sm text-gray-600 font-medium">INSTAGRAM</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-gray-400 rounded-sm"></div>
-                  <span className="text-sm text-gray-600 font-medium">LINKEDIN</span>
+                  <span className="text-xs md:text-sm text-gray-600 font-medium">LINKEDIN</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-gray-400 rounded-sm"></div>
-                  <span className="text-sm text-gray-600 font-medium">FACEBOOK</span>
+                  <span className="text-xs md:text-sm text-gray-600 font-medium">FACEBOOK</span>
                 </div>
               </div>
-              <div className="grid grid-cols-5 gap-8 mb-12 mt-24">
+
+              {/* Navigation Menu */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-8 mb-8 md:mb-12 mt-8 md:mt-24">
                 <div className="text-center">
-                  <h4 className="font-bold text-gray-800 text-sm">Home</h4>
+                  <h4 className="font-bold text-gray-800 text-xs md:text-sm">Home</h4>
                 </div>
                 <div className="text-center">
-                  <h4 className="font-bold text-gray-800 text-sm">About Us</h4>
+                  <h4 className="font-bold text-gray-800 text-xs md:text-sm">About Us</h4>
                 </div>
                 <div className="text-center">
-                  <h4 className="font-bold text-gray-800 text-sm">Services</h4>
+                  <h4 className="font-bold text-gray-800 text-xs md:text-sm">Services</h4>
                 </div>
                 <div className="text-center">
-                  <h4 className="font-bold text-gray-800 text-sm">Careers</h4>
+                  <h4 className="font-bold text-gray-800 text-xs md:text-sm">Careers</h4>
                 </div>
-                <div className="text-center">
-                  <h4 className="font-bold text-gray-800 text-sm">Contact Us</h4>
+                <div className="text-center sm:col-span-1 col-span-2 md:col-span-1">
+                  <h4 className="font-bold text-gray-800 text-xs md:text-sm">Contact Us</h4>
                 </div>
               </div>
 
               {/* Newsletter Section */}
-              <div className="mb-8 mt-48">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
+              <div className="mb-8 mt-12 md:mt-48">
+                <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4 text-center lg:text-left">
                   Subscribe Our Newsletter
                 </h3>
-                <div className="relative max-w-md">
+                <div className="relative max-w-md mx-auto lg:mx-0">
                   <input
                     type="email"
                     placeholder="Enter Your Email"
-                    className="flex-1 w-full px-4 py-3 border border-gray-300 rounded-md text-sm pr-32"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md text-sm pr-24 md:pr-32"
                   />
                   <button
-                    className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#01016F] text-white px-6 py-2 rounded-md text-sm font-semibold"
+                    className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#01016F] text-white px-3 md:px-6 py-2 rounded-md text-xs md:text-sm font-semibold"
                     style={{ height: '80%' }}
                   >
-                    Get Started
+                    <span className="hidden md:inline">Get Started</span>
+                    <span className="md:hidden">Start</span>
                   </button>
                 </div>
               </div>
@@ -317,18 +320,16 @@ export default function Contact() {
           </div>
 
           {/* Bottom Section */}
-
           <div className='mt-8'>
-            <h1 className="w-full text-center text-3xl lg:text-5xl font-bold text-[#1E1E1E] tracking-wider mb-4 lg:mb-0">
+            <h1 className="w-full text-center text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#1E1E1E] tracking-wider mb-4 lg:mb-0 break-all sm:break-normal">
               ARABIANSKYTRANSPORT
             </h1>
           </div>
-          <div className="border-t border-black pt-8 mt-8">
-            <div className="flex justify-between items-center text-xs text-gray-600  ">
-              <p>© COPYRIGHT 2024 - ARABIAN SKY TRANSPORT</p>
-              <p className="mt-0">TERMS AND CONDITIONS</p>
+          <div className="border-t border-black pt-6 md:pt-8 mt-6 md:mt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-600 gap-2">
+              <p className="text-center sm:text-left">© COPYRIGHT 2024 - ARABIAN SKY TRANSPORT</p>
+              <p className="text-center sm:text-right">TERMS AND CONDITIONS</p>
             </div>
-
           </div>
         </div>
       </footer>
