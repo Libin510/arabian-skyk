@@ -104,10 +104,10 @@ export default function Home() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const handleTruckStopped = () => {
@@ -184,7 +184,9 @@ export default function Home() {
           <div className="relative flex items-center justify-center px-4 h-screen">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-b-2 border-[#01016F]"></div>
-              <p className="mt-4 text-[#01016F] text-xs sm:text-sm">Loading...</p>
+              <p className="mt-4 text-[#01016F] text-xs sm:text-sm">
+                Loading...
+              </p>
             </div>
           </div>
         </section>
@@ -210,11 +212,11 @@ export default function Home() {
 
       <div suppressHydrationWarning>
         {/* Hero Section - Enhanced Mobile Responsiveness */}
-        <div className="md:h-[1020px] ">
-        <section className="relative md:h-full h-screen  w-full overflow-hidden">
+
+        <section className="relative min-h-screen w-full overflow-hidden">
           <div className="absolute inset-0 z-0 smoke-animate pointer-events-none"></div>
 
-          <div className="relative flex items-center justify-between px-2 sm:px-4 lg:px-6 py-2 h-screen">
+          <div className="relative flex items-center justify-between px-2 sm:px-4 lg:px-6 py-2 min-h-screen laptop:py-4 laptop:min-h-[100vh]">
             {/* Truck Image - Mobile Optimized */}
             {showSmoke && !truckArrived && (
               <Image
@@ -231,67 +233,190 @@ export default function Home() {
             )}
 
             {/* Content Card - Enhanced Mobile Layout */}
-            <div className="relative w-full h-full  mx-auto">
-              <div className="relative z-10 text-center sm:text-left px-2 sm:px-4 ">
+            <div className="relative w-full h-full mx-auto laptop:h-auto laptop:flex laptop:flex-col laptop:justify-center">
+              <div className="relative z-10 text-center sm:text-left px-2 sm:px-4 laptop:mb-4">
                 {showTitle && (
-                  <h2 className="font-bold uppercase leading-tight text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-6xl">
+                  <h2
+                    className="font-bold uppercase leading-tight 
+            text-xl xs:text-2xl 
+            sm:text-3xl md:text-4xl 
+            lg:text-5xl xl:text-6xl 
+            2xl:text-7xl 3xl:text-8xl
+            laptop:text-3xl laptop:leading-tight laptop:mb-2"
+                  >
                     <span className="block">Arabian Sky</span>
-                    <span className="block mt-1 text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-7xl font-bold">
+                    <span
+                      className="block mt-1 
+              text-2xl xs:text-3xl 
+              sm:text-4xl md:text-5xl 
+              lg:text-6xl xl:text-7xl 
+              2xl:text-8xl 3xl:text-9xl font-bold
+              laptop:text-4xl laptop:mt-0"
+                    >
                       Transport
                     </span>
                   </h2>
                 )}
                 {showTitle && (
-                  <p className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-base font-semibold text-black tracking-tight capitalize max-w-xs sm:max-w-xl mx-auto sm:mx-0">
+                  <p
+                    className="mt-3 sm:mt-4 lg:mt-6 
+            text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 
+            font-semibold text-black tracking-tight capitalize 
+            max-w-xs sm:max-w-xl lg:max-w-2xl xl:max-w-3xl 
+            mx-auto sm:mx-0
+            laptop:mt-2 laptop:text-sm laptop:max-w-lg"
+                  >
                     Powering the UAE and GCC with professional, scalable, and
                     time-critical logistics solutions for over 25 years.
                   </p>
                 )}
               </div>
 
-              <div className="w-full text-right mt-6 sm:mt-10 px-2 sm:px-0">
-                <div className="flex flex-col w-full gap-3 sm:gap-4">
+              <div className="w-full text-right mt-6 sm:mt-8 lg:mt-12 xl:mt-16 px-2 sm:px-0 laptop:mt-4">
+                <div className="flex flex-col w-full gap-3 sm:gap-4 lg:gap-6 laptop:gap-3">
                   <div className="relative w-full mx-auto">
                     {showVideo && (
                       <>
-                        <p className="absolute -top-8 sm:-top-11 right-0 z-30 text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg text-right bg-[#01016F] px-2 sm:px-3 py-1 rounded-t-lg w-[50%] sm:w-[40%] flex gap-1 sm:gap-2 items-center">
-                          <span className="text-red-500 text-lg sm:text-2xl md:text-3xl">*</span> 
-                          <span className="leading-tight">THE WHEELS OF RELIABILITY</span>
-                        </p>
-                        {/* Video Container - Responsive */}
-                        <div className="relative mx-auto overflow-hidden rounded-b-lg rounded-l-lg z-20 w-full  aspect-video sm:aspect-[1430/539] max-h-[25rem] sm:max-h-[30rem] md:max-h-[20rem] lg:max-h-[20rem]  2xl:max-h-[40rem]">
-                          <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            poster="/truck-poster.jpg"
-                            className="absolute top-0 left-0 w-full h-full object-cover z-10"
+                        <p
+                          className="absolute -top-6 sm:-top-8 lg:-top-12 xl:-top-14 right-0 z-30 
+                  text-white font-bold 
+                  text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 
+                  text-right bg-[#01016F] 
+                  px-2 sm:px-3 lg:px-4 py-1 sm:py-2 
+                  rounded-t-lg w-[60%] sm:w-[50%] lg:w-[45%] xl:w-[40%] 
+                  flex gap-1 sm:gap-2 items-center
+                  laptop:-top-8 laptop:text-sm laptop:px-3 laptop:py-1.5 laptop:w-[45%]"
+                        >
+                          <span
+                            className="text-red-500 
+                    text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl
+                    laptop:text-lg"
                           >
-                            <source
-                              src="/Truck Logo Reveal.mp4"
-                              type="video/mp4"
-                            />
-                            Your browser does not support the video tag.
-                          </video>
+                            *
+                          </span>
+                          <span className="leading-tight">
+                            THE WHEELS OF RELIABILITY
+                          </span>
+                        </p>
+
+                        {/* Video Container - Fixed for Laptop Screens */}
+                        <div className="relative mx-auto overflow-hidden rounded-b-lg rounded-l-lg z-20 w-full">
+                          {/* Mobile and Tablet */}
+                          <div
+                            className="block laptop:hidden lg:hidden 
+                    aspect-video 
+                    max-h-[200px] xs:max-h-[250px] sm:max-h-[300px] md:max-h-[350px]"
+                          >
+                            <video
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              poster="/truck-poster.jpg"
+                              className="absolute top-0 left-0 w-full h-full object-cover z-10"
+                            >
+                              <source
+                                src="/Truck Logo Reveal.mp4"
+                                type="video/mp4"
+                              />
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+
+                          {/* Laptop Specific (1366x768, 1440x900) */}
+                          <div
+                            className="hidden laptop:block lg:hidden
+                    aspect-[2/1] 
+                    max-h-[220px] w-full"
+                          >
+                            <video
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              poster="/truck-poster.jpg"
+                              className="absolute top-0 left-0 w-full h-full object-cover z-10"
+                            >
+                              <source
+                                src="/Truck Logo Reveal.mp4"
+                                type="video/mp4"
+                              />
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+
+                          {/* Desktop and Large Screens */}
+                          <div
+                            className="hidden lg:block laptop:hidden
+                    aspect-[16/9] lg:aspect-[2.5/1] xl:aspect-[3/1] 
+                    max-h-[300px] lg:max-h-[400px] xl:max-h-[450px] 2xl:max-h-[500px]"
+                          >
+                            <video
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              poster="/truck-poster.jpg"
+                              className="absolute top-0 left-0 w-full h-full object-cover z-10"
+                            >
+                              <source
+                                src="/Truck Logo Reveal.mp4"
+                                type="video/mp4"
+                              />
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
                         </div>
                       </>
                     )}
                   </div>
-                  
-                  {/* CTA Card - Mobile Optimized */}
-                  <div className="relative w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[85vw] lg:max-w-[1430px] z-10 min-h-[60px] mx-auto">
+
+                  {/* CTA Card - Enhanced for Laptop */}
+                  <div
+                    className="relative w-fit 
+            max-w-[95vw] sm:max-w-[90vw] md:max-w-[85vw] 
+            lg:max-w-[80vw] xl:max-w-[75vw] 2xl:max-w-[1400px] 
+            laptop:max-w-[85vw]
+            z-10 min-h-[60px]"
+                  >
                     {showCard && (
-                      <div className="bg-[#01016F] text-white rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 shadow-lg">
-                        <h3 className="text-white font-semibold text-xs sm:text-sm md:text-base leading-tight text-center sm:text-left">
+                      <div
+                        className="bg-[#01016F] text-white 
+                rounded-xl sm:rounded-2xl 
+                px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10
+                py-3 sm:py-4 md:py-5 lg:py-6 xl:py-7
+                laptop:px-4 laptop:py-3
+                flex flex-col sm:flex-row items-center justify-between 
+                gap-3 sm:gap-4 lg:gap-6 xl:gap-8 laptop:gap-4 shadow-lg"
+                      >
+                        <h3
+                          className="text-white font-semibold 
+                  text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 
+                  laptop:text-sm
+                  leading-tight text-center sm:text-left"
+                        >
                           We Have All Kinds Of Solution{" "}
                           <br className="hidden sm:block" />
                           To Deliver Your Goods
                         </h3>
 
-                        <button className="bg-white text-[#01016F] flex items-center gap-2 font-semibold text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-full hover:scale-105 transition-transform duration-300 whitespace-nowrap">
+                        <button
+                          className="bg-white text-[#01016F] flex items-center gap-2 
+                  font-semibold 
+                  text-xs sm:text-sm md:text-base lg:text-lg 
+                  laptop:text-sm
+                  px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8
+                  py-2 sm:py-2.5 md:py-3 lg:py-3.5 xl:py-4
+                  laptop:px-4 laptop:py-2
+                  rounded-full hover:scale-105 transition-transform duration-300 
+                  whitespace-nowrap"
+                        >
                           Get a free quote
-                          <span className="text-[#01016F] text-base sm:text-lg">
+                          <span
+                            className="text-[#01016F] 
+                    text-base sm:text-lg md:text-xl lg:text-2xl
+                    laptop:text-lg"
+                          >
                             <LuArrowUpRight />
                           </span>
                         </button>
@@ -303,7 +428,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-</div>
+
         {/* About Us Section - Enhanced Responsiveness */}
         <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="mx-auto max-w-7xl">
@@ -315,10 +440,10 @@ export default function Home() {
               {/* Image placeholder - Mobile optimized */}
               <div
                 className="bg-[#999999] rounded-xl flex items-center justify-center order-2 lg:order-1 hover-lift"
-                style={{ 
-                  aspectRatio: "4/3", 
+                style={{
+                  aspectRatio: "4/3",
                   minHeight: isMobile ? "180px" : "200px",
-                  maxHeight: isMobile ? "250px" : "300px"
+                  maxHeight: isMobile ? "250px" : "300px",
                 }}
               >
                 <span className="text-white text-xs sm:text-sm md:text-base lg:text-lg">
@@ -371,10 +496,10 @@ export default function Home() {
                       </h3>
                       <div
                         className="w-full bg-gray-300 rounded flex items-center justify-center mx-auto hover-lift"
-                        style={{ 
-                          aspectRatio: "4/2", 
+                        style={{
+                          aspectRatio: "4/2",
                           maxWidth: "400px",
-                          minHeight: "120px" 
+                          minHeight: "120px",
                         }}
                       >
                         <span className="text-xs text-gray-600">
@@ -384,7 +509,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                
+
                 {/* Mobile Explore Button */}
                 <div className="flex justify-center mt-8">
                   <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-[#01016F] rounded-full flex items-center justify-center group hover:scale-110 transition-all duration-300 cursor-pointer pulse-glow">
@@ -438,7 +563,10 @@ export default function Home() {
                           />
                         </defs>
                         <text className="fill-white text-sm sm:text-lg lg:text-xl font-normal tracking-wider">
-                          <textPath href="#circle-path-desktop" startOffset="0%">
+                          <textPath
+                            href="#circle-path-desktop"
+                            startOffset="0%"
+                          >
                             Explore More • Explore More •
                           </textPath>
                         </text>
@@ -506,9 +634,11 @@ export default function Home() {
 
             {/* Responsive Overlay Cards */}
             <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-              <div className={`grid gap-4 sm:gap-8 md:gap-12 lg:gap-20 xl:gap-40 max-w-full ${
-                isMobile ? 'grid-cols-2' : 'grid-cols-4'
-              }`}>
+              <div
+                className={`grid gap-4 sm:gap-8 md:gap-12 lg:gap-20 xl:gap-40 max-w-full ${
+                  isMobile ? "grid-cols-2" : "grid-cols-4"
+                }`}
+              >
                 {[...Array(isMobile ? 2 : 4)].map((_, index) => (
                   <div
                     key={index}
@@ -566,9 +696,9 @@ export default function Home() {
                     <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 opacity-0 group-hover:opacity-100 transition-all duration-500 hidden md:block">
                       <div
                         className="rounded-lg bg-gray-400 shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
-                        style={{ 
-                          width: isMobile ? "150px" : "200px", 
-                          height: isMobile ? "180px" : "250px" 
+                        style={{
+                          width: isMobile ? "150px" : "200px",
+                          height: isMobile ? "180px" : "250px",
                         }}
                       ></div>
                     </div>
