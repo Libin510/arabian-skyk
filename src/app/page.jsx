@@ -179,8 +179,8 @@ export default function Home() {
 
   if (!isMounted) {
     return (
-      <div className=" bg-white">
-        <section className="relative overflow-hidden">
+      <div className=" bg-white ">
+        <section className="relative h-screen overflow-hidden">
           <div className="relative flex items-center justify-center px-4 h-screen">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-b-2 border-[#01016F]"></div>
@@ -210,10 +210,11 @@ export default function Home() {
 
       <div suppressHydrationWarning>
         {/* Hero Section - Enhanced Mobile Responsiveness */}
-        <section className="relative  w-full overflow-hidden">
+        <div className="md:h-[1020px] ">
+        <section className="relative md:h-full h-screen  w-full overflow-hidden">
           <div className="absolute inset-0 z-0 smoke-animate pointer-events-none"></div>
 
-          <div className="relative flex items-center justify-between px-2 sm:px-4 lg:px-6 py-2 h-full">
+          <div className="relative flex items-center justify-between px-2 sm:px-4 lg:px-6 py-2 h-screen">
             {/* Truck Image - Mobile Optimized */}
             {showSmoke && !truckArrived && (
               <Image
@@ -230,12 +231,12 @@ export default function Home() {
             )}
 
             {/* Content Card - Enhanced Mobile Layout */}
-            <div className="relative w-full max-w-7xl mx-auto">
-              <div className="relative z-10 text-center sm:text-left px-2 sm:px-4">
+            <div className="relative w-full h-full  mx-auto">
+              <div className="relative z-10 text-center sm:text-left px-2 sm:px-4 ">
                 {showTitle && (
-                  <h2 className="font-bold uppercase leading-tight text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">
+                  <h2 className="font-bold uppercase leading-tight text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-6xl">
                     <span className="block">Arabian Sky</span>
-                    <span className="block mt-1 text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold">
+                    <span className="block mt-1 text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-7xl font-bold">
                       Transport
                     </span>
                   </h2>
@@ -258,7 +259,7 @@ export default function Home() {
                           <span className="leading-tight">THE WHEELS OF RELIABILITY</span>
                         </p>
                         {/* Video Container - Responsive */}
-                        <div className="relative mx-auto overflow-hidden rounded-b-lg rounded-l-lg z-20 w-full max-w-[89.375rem] aspect-video sm:aspect-[1430/539] max-h-[25rem] sm:max-h-[30rem] md:max-h-[20rem] lg:max-h-[20rem]  2xl:max-h-[40rem]">
+                        <div className="relative mx-auto overflow-hidden rounded-b-lg rounded-l-lg z-20 w-full  aspect-video sm:aspect-[1430/539] max-h-[25rem] sm:max-h-[30rem] md:max-h-[20rem] lg:max-h-[20rem]  2xl:max-h-[40rem]">
                           <video
                             autoPlay
                             loop
@@ -302,7 +303,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-
+</div>
         {/* About Us Section - Enhanced Responsiveness */}
         <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="mx-auto max-w-7xl">

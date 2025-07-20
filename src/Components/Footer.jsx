@@ -6,7 +6,7 @@ function Footer() {
     return (
         <div>
             {/* Contact Section */}
-           <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-r from-[#1131A6] via-[#1131A6] to-[#F70105] text-white rounded-3xl">
+            <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-r from-[#1131A6] via-[#1131A6] to-[#F70105] text-white rounded-3xl">
 
                 <div className="max-w-6xl mx-auto text-center md:text-left">
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
@@ -16,8 +16,8 @@ function Footer() {
                     <p className="text-base md:text-lg mb-6 md:mb-8 text-blue-100 max-w-2xl mx-auto md:mx-0">
                         Ready To Move Your Business Forward? Contact Us Today To Discuss Your Logistics Needs.
                     </p>
-                    <button 
-                        className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors inline-flex items-center" 
+                    <button
+                        className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors inline-flex items-center"
                         onClick={() => router.push('/contact')}
                     >
                         Get In Touch
@@ -131,9 +131,10 @@ function Footer() {
 
                     {/* Bottom Section */}
                     <div className='mt-8'>
-                        <h1 className="w-full text-center text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#1E1E1E] tracking-wider mb-4 lg:mb-0 break-all sm:break-normal">
-                            ARABIANSKYTRANSPORT
-                        </h1>
+                        <h3 className="text-[calc(7vw-0.5rem)] text-center font-semibold text-[#1E1E1E] tracking-wider whitespace-nowrap overflow-hidden">
+    ARABIANSKYTRANSPORT
+  </h3>
+
                     </div>
                     <div className="border-t border-black pt-6 md:pt-8 mt-6 md:mt-8">
                         <div className="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-600 gap-2">
