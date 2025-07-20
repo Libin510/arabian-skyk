@@ -179,7 +179,7 @@ export default function Home() {
 
   if (!isMounted) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className=" bg-white">
         <section className="relative overflow-hidden">
           <div className="relative flex items-center justify-center px-4 h-screen">
             <div className="text-center">
@@ -210,7 +210,7 @@ export default function Home() {
 
       <div suppressHydrationWarning>
         {/* Hero Section - Enhanced Mobile Responsiveness */}
-        <section className="relative h-screen w-full overflow-hidden">
+        <section className="relative  w-full overflow-hidden">
           <div className="absolute inset-0 z-0 smoke-animate pointer-events-none"></div>
 
           <div className="relative flex items-center justify-between px-2 sm:px-4 lg:px-6 py-2 h-full">

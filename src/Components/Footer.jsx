@@ -29,8 +29,8 @@ function Footer() {
             </section>
 
             {/* Footer Section */}
-            <footer className="bg-white py-8 md:py-12 px-4 md:px-8">
-                <div className="max-w-7xl mx-auto">
+            <footer className="bg-white py-12 md:py-16 px-4 md:px-8 ">
+                <div className=" mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
                         {/* Left Side - Company Info */}
