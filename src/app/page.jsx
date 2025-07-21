@@ -378,7 +378,7 @@ export default function Home() {
                   >
                     {showCard && (
                       <div
-                        className="bg-[#01016F] text-white 
+                        className="bg-[#01016F] mt-2 sm:mt-0 text-white 
                 rounded-xl sm:rounded-2xl 
                 px-3 sm:px-4 md:px-6 lg:px-8 
                 py-3 sm:py-4 md:py-5 lg:py-6 
