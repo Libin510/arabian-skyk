@@ -275,8 +275,8 @@ export default function Home() {
                 )}
               </div>
 
-              <div className="w-full text-right px-2 sm:px-0 ">
-                <div className="flex flex-col w-full sm:gap-4 lg:gap-6 laptop:gap-3">
+              <div className="w-full text-right sm:px-0 ">
+                <div className="flex flex-col w-full sm:gap-4 px-2 lg:gap-6 laptop:gap-3">
                   <div className="relative w-full mx-auto">
                     {showVideo && (
                       <>
@@ -471,7 +471,7 @@ export default function Home() {
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 fade-in-up">
               OUR <span className="text-red-500">SERVICES</span>
             </h2>
-            {/* <TruckWrapper className="w-full" /> */}
+            <TruckWrapper className="w-full" />
             <div className="text-center mb-4 sm:mb-6 md:mb-8 fade-in-up delay-200 px-4">
               <p className="text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base">
                 As Logistics Service Providers, We Offer A Wide Range Of
