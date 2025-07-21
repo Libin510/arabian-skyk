@@ -7,6 +7,7 @@ import { PiBridge } from "react-icons/pi";
 import { PiShieldPlus } from "react-icons/pi";
 import Image from "next/image";
 import Head from "next/head";
+import { FaStarOfLife } from "react-icons/fa";
 
 import { Instrument_Sans } from "next/font/google";
 import Footer from "@/Components/Footer";
@@ -213,12 +214,16 @@ export default function Home() {
       <div suppressHydrationWarning>
         {/* Hero Section - Enhanced Mobile Responsiveness */}
 
-        <section className="relative min-h-screen w-full overflow-hidden">
+        <section className="relative w-full overflow-hidden">
           <div className="absolute inset-0 z-0 smoke-animate pointer-events-none"></div>
 
-          <div className="relative flex items-center justify-between px-2 sm:px-4 lg:px-6 py-2 min-h-screen laptop:py-4 laptop:min-h-[100vh]">
+          <div className="relative flex items-center justify-between px-2 sm:px-4 lg:px-6 py-2 min-h-screen laptop:py-4"
+           style={{
+            minHeight: isMobile ? "500px" : "", // or adjust mobile height accordingly
+          }}
+>
             {/* Truck Image - Mobile Optimized */}
-            {showSmoke && !truckArrived && (
+            {showSmoke && (
               <Image
                 src="/truck.png"
                 alt="Truck"
@@ -233,25 +238,23 @@ export default function Home() {
             )}
 
             {/* Content Card - Enhanced Mobile Layout */}
-            <div className="relative w-full h-full mx-auto laptop:h-auto laptop:flex laptop:flex-col laptop:justify-center">
+            <div className="relative w-full h-full mx-auto laptop:flex laptop:flex-col laptop:justify-center">
               <div className="relative z-10 text-center sm:text-left px-2 sm:px-4 laptop:mb-4">
                 {showTitle && (
                   <h2
                     className="font-bold uppercase leading-tight 
             text-xl xs:text-2xl 
             sm:text-3xl md:text-4xl 
-            lg:text-5xl xl:text-6xl 
-            2xl:text-7xl 3xl:text-8xl
+            lg:text-6xl
             laptop:text-3xl laptop:leading-tight laptop:mb-2"
                   >
                     <span className="block">Arabian Sky</span>
                     <span
                       className="block mt-1 
               text-2xl xs:text-3xl 
-              sm:text-4xl md:text-5xl 
-              lg:text-6xl xl:text-7xl 
-              2xl:text-8xl 3xl:text-9xl font-bold
-              laptop:text-4xl laptop:mt-0"
+              sm:text-4xl md:text-7xl 
+               font-bold
+              "
                     >
                       Transport
                     </span>
@@ -259,12 +262,12 @@ export default function Home() {
                 )}
                 {showTitle && (
                   <p
-                    className="mt-3 sm:mt-4 lg:mt-6 
-            text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 
+                    className=" 
+            text-xs sm:text-sm md:text-base lg:text-lg 
             font-semibold text-black tracking-tight capitalize 
             max-w-xs sm:max-w-xl lg:max-w-2xl xl:max-w-3xl 
             mx-auto sm:mx-0
-            laptop:mt-2 laptop:text-sm laptop:max-w-lg"
+           "
                   >
                     Powering the UAE and GCC with professional, scalable, and
                     time-critical logistics solutions for over 25 years.
@@ -272,29 +275,23 @@ export default function Home() {
                 )}
               </div>
 
-              <div className="w-full text-right mt-6 sm:mt-8 lg:mt-12 xl:mt-16 px-2 sm:px-0 laptop:mt-4">
-                <div className="flex flex-col w-full gap-3 sm:gap-4 lg:gap-6 laptop:gap-3">
+              <div className="w-full text-right px-2 sm:px-0 ">
+                <div className="flex flex-col w-full sm:gap-4 lg:gap-6 laptop:gap-3">
                   <div className="relative w-full mx-auto">
                     {showVideo && (
                       <>
                         <p
-                          className="absolute -top-6 sm:-top-8 lg:-top-12 xl:-top-14 right-0 z-30 
-                  text-white font-bold 
-                  text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 
-                  text-right bg-[#01016F] 
+                          className="w-fit sm:-top-8 lg:-top-12 xl:-top-13 justify-self-end z-30 font-bold  bg-[#01016F] 
                   px-2 sm:px-3 lg:px-4 py-1 sm:py-2 
-                  rounded-t-lg w-[60%] sm:w-[50%] lg:w-[45%] xl:w-[40%] 
-                  flex gap-1 sm:gap-2 items-center
-                  laptop:-top-8 laptop:text-sm laptop:px-3 laptop:py-1.5 laptop:w-[45%]"
+                  rounded-t-lg 
+                  flex gap-1 sm:gap-2
+                  text-red-500 
+                  items-center
+                 "
                         >
-                          <span
-                            className="text-red-500 
-                    text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl
-                    laptop:text-lg"
-                          >
-                            *
-                          </span>
-                          <span className="leading-tight">
+                          <FaStarOfLife className="size-[13px] lg:size-[17px]" />
+
+                          <span className="text-[0.924rem] lg:text-[1.125rem] font-instrument-sans font-semibold text-white justify-self-center">
                             THE WHEELS OF RELIABILITY
                           </span>
                         </p>
@@ -349,7 +346,7 @@ export default function Home() {
                           <div
                             className="hidden lg:block laptop:hidden
                     aspect-[16/9] lg:aspect-[2.5/1] xl:aspect-[3/1] 
-                    max-h-[300px] lg:max-h-[400px] xl:max-h-[450px] 2xl:max-h-[500px]"
+                    max-h-[300px] lg:max-h-[400px] xl:max-h-[450px] 2xl:max-h-[400px]"
                           >
                             <video
                               autoPlay
@@ -383,15 +380,15 @@ export default function Home() {
                       <div
                         className="bg-[#01016F] text-white 
                 rounded-xl sm:rounded-2xl 
-                px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10
-                py-3 sm:py-4 md:py-5 lg:py-6 xl:py-7
+                px-3 sm:px-4 md:px-6 lg:px-8 
+                py-3 sm:py-4 md:py-5 lg:py-6 
                 laptop:px-4 laptop:py-3
                 flex flex-col sm:flex-row items-center justify-between 
-                gap-3 sm:gap-4 lg:gap-6 xl:gap-8 laptop:gap-4 shadow-lg"
+                gap-3 sm:gap-4 lg:gap-6 shadow-lg"
                       >
                         <h3
                           className="text-white font-semibold 
-                  text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 
+                  text-xs sm:text-sm md:text-base lg:text-base 
                   laptop:text-sm
                   leading-tight text-center sm:text-left"
                         >
@@ -401,19 +398,18 @@ export default function Home() {
                         </h3>
 
                         <button
-                          className="bg-white text-[#01016F] flex items-center gap-2 
+                          className="bg-white text-black flex items-center gap-2 
                   font-semibold 
-                  text-xs sm:text-sm md:text-base lg:text-lg 
-                  laptop:text-sm
-                  px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8
-                  py-2 sm:py-2.5 md:py-3 lg:py-3.5 xl:py-4
-                  laptop:px-4 laptop:py-2
+                  text-xs sm:text-sm md:text-base lg:text-base 
+                  pl-2 md:pl-5 lg:l-6 pr-1
+                  py-2 sm:py-2
+                  
                   rounded-full hover:scale-105 transition-transform duration-300 
                   whitespace-nowrap"
                         >
                           Get a free quote
                           <span
-                            className="text-[#01016F] 
+                            className="text-white rounded-full p-2 bg-[#01016F] 
                     text-base sm:text-lg md:text-xl lg:text-2xl
                     laptop:text-lg"
                           >
@@ -475,7 +471,7 @@ export default function Home() {
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 fade-in-up">
               OUR <span className="text-red-500">SERVICES</span>
             </h2>
-            <TruckWrapper className="w-full" />
+            {/* <TruckWrapper className="w-full" /> */}
             <div className="text-center mb-4 sm:mb-6 md:mb-8 fade-in-up delay-200 px-4">
               <p className="text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base">
                 As Logistics Service Providers, We Offer A Wide Range Of

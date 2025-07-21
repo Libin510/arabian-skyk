@@ -244,7 +244,7 @@
    width: 120px;
    height: 60px;
    z-index: 10;
-   animation: truckMove 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+   /* animation: truckMove 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; */
  }
 
  @media (max-width: 640px) {
@@ -272,7 +272,7 @@
    }
  }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .truck-anim {
     width: 10vw;
     max-width: 160px;
@@ -296,29 +296,31 @@
       opacity: 0.7;
     }
   }
-}
+} */
 
 @media (min-width: 1536px) {
   .truck-anim {
     width: 10vw;
     max-width: 160px;
     min-width: 80px;
-    bottom: 22rem;
+    bottom: 20rem;
+     animation: truckMove 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   @keyframes truckMove {
     0% {
       left: 0;
-      bottom: 22rem;
+      bottom: 1rem;
       transform: translate(0, 0);
       opacity: 1;
     }
 
     100% {
-      left: 100vw;
-      bottom: 57rem;
-      transform: translate(-100%, -100%);
-      opacity: 0.7;
+      left: 80vw;
+      bottom: 38rem;
+       transform: translate(0, -35%); /* Optional subtle upward shift */
+      opacity: 1;  
+ 
     }
   }
 }
