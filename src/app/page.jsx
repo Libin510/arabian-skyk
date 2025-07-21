@@ -275,8 +275,8 @@ export default function Home() {
                 )}
               </div>
 
-              <div className="w-full text-right sm:px-0 ">
-                <div className="flex flex-col w-full sm:gap-4 px-2 lg:gap-6 laptop:gap-3">
+              <div className="w-full text-right px-8 sm:px-0 ">
+                <div className="flex flex-col w-full sm:gap-4 lg:gap-6 laptop:gap-3">
                   <div className="relative w-full mx-auto">
                     {showVideo && (
                       <>

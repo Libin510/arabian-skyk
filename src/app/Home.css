@@ -304,14 +304,14 @@
     width: 10vw;
     max-width: 160px;
     min-width: 80px;
-    bottom: 20rem;
+    bottom: 5rem;
      animation: truckMove 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   @keyframes truckMove {
     0% {
       left: 0;
-      bottom: 1rem;
+      bottom: 5rem;
       transform: translate(0, 0);
       opacity: 1;
     }
