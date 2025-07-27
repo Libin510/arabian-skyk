@@ -240,8 +240,8 @@
  .truck-anim {
    position: absolute;
    left: 0;
-   /* bottom: -70px; */
-   width: 120px;
+   top: 2.5rem;
+   width: 80px;
    height: 60px;
    z-index: 10;
    /* animation: truckMove 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; */
@@ -250,7 +250,7 @@
  @media (max-width: 640px) {
    .truck-anim {
      width: 24vw;
-     max-width: 80px;
+     max-width: 160px;
      min-width: 40px;
      bottom: 20rem;
      animation: truckMove 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; 
@@ -301,7 +301,8 @@
 
 @media (min-width: 1536px) {
   .truck-anim {
-    width: 10vw;
+    width: 15vw;
+    height: 12vh;
     max-width: 160px;
     min-width: 80px;
     bottom: 5rem;

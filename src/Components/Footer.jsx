@@ -1,12 +1,13 @@
 import { useRouter } from 'next/navigation';
 import React from 'react'
+import { LuArrowUpRight } from 'react-icons/lu';
 
 function Footer() {
     const router = useRouter();
     return (
         <div>
             {/* Contact Section */}
-            <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-r from-[#1131A6] via-[#1131A6] to-[#F70105] text-white rounded-3xl">
+            <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-r from-[#1131A6] via-[#1131A6] to-[#F70105] text-white rounded-2xl">
 
                 <div className="max-w-6xl mx-auto text-center md:text-left">
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
@@ -16,7 +17,7 @@ function Footer() {
                     <p className="text-base md:text-lg mb-6 md:mb-8 text-blue-100 max-w-2xl mx-auto md:mx-0">
                         Ready To Move Your Business Forward? Contact Us Today To Discuss Your Logistics Needs.
                     </p>
-                    <button
+                    {/* <button
                         className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors inline-flex items-center"
                         onClick={() => router.push('/contact')}
                     >
@@ -24,12 +25,30 @@ function Footer() {
                         <span className="ml-2 bg-[#EF1E24] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
                             →
                         </span>
-                    </button>
+                    </button> */}
+                    <button
+                            className="bg-white text-black flex items-center gap-2 
+                  font-semibold 
+                  text-xs sm:text-sm lg:text-base 
+                  pl-2 md:pl-5 lg:l-6 pr-1
+                  py-1
+                  
+                  rounded-full hover:scale-105 transition-transform duration-300 
+                  whitespace-nowrap"
+                          >
+                            Get In Touch
+                            <span
+                              className="text-white rounded-full p-2 lg:p-4 bg-[#EF1E24] 
+                    text-sm md:text-xl lg:text-2xl"
+                            >
+                              <LuArrowUpRight />
+                            </span>
+                          </button>
                 </div>
             </section>
 
             {/* Footer Section */}
-            <footer className="bg-white py-12 md:py-16 px-4 md:px-8 ">
+            <footer className="bg-white pt-16 lg:pt-12">
                 <div className=" mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
@@ -37,7 +56,7 @@ function Footer() {
                         <div className="lg:col-span-4 text-center lg:text-left">
                             {/* Logo */}
                             <div className="flex items-center justify-center lg:justify-start mb-6 md:mb-8">
-                                <div className="text-white p-3 rounded-lg">
+                                <div className="text-white rounded-lg">
                                     <img
                                         src="./arabianskylogo.png"
                                         className="h-10 w-auto md:h-[57px] md:w-[210px]"
@@ -107,7 +126,7 @@ function Footer() {
                             </div>
 
                             {/* Newsletter Section */}
-                            <div className="mb-8 mt-12 md:mt-48">
+                            <div className="mb-8 mt-12 md:mt-40">
                                 <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4 text-center lg:text-left">
                                     Subscribe Our Newsletter
                                 </h3>
@@ -131,12 +150,12 @@ function Footer() {
 
                     {/* Bottom Section */}
                     <div className='mt-8'>
-                        <h3 className="text-[calc(7vw-0.5rem)] text-center font-semibold text-[#1E1E1E] tracking-wider whitespace-nowrap overflow-hidden">
+                        <h3 className="text-[6.5vw] md:text-[6vw] leading-none text-center font-semibold text-[#1E1E1E] tracking-wider whitespace-nowrap overflow-hidden">
     ARABIANSKYTRANSPORT
   </h3>
 
                     </div>
-                    <div className="border-t border-black pt-6 md:pt-8 mt-6 md:mt-8">
+                    <div className="border-t border-black py-4">
                         <div className="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-600 gap-2">
                             <p className="text-center sm:text-left">© COPYRIGHT 2024 - ARABIAN SKY TRANSPORT</p>
                             <p className="text-center sm:text-right">TERMS AND CONDITIONS</p>
