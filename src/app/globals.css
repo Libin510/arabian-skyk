@@ -7,7 +7,6 @@ html {
 body {
   @apply font-sans text-base;
   overflow-x: hidden;
-
 }
 
 :root {
@@ -35,7 +34,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 } */
 @keyframes scaleUp {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -55,4 +55,9 @@ body {
 .scrollbar-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+.box {
+  border: 1px solid;
+  border-image: linear-gradient(to right, red, blue) 1;
 }
