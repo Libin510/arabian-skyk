@@ -22,8 +22,8 @@ export default function Navbar() {
   }, [pathname]);
   
   return (
-    <nav className={`px-4 sm:px-6 py-2 top-0 left-0 right-0 z-50 ${pathname == "/" ? "py-5 bg-transparent" : "bg-gray-100 m-4 sm:m-[47px] shadow-sm rounded-2xl"}`}>
-      <div className="max-w-78xl mx-auto flex items-center justify-between">
+    <nav className={` py-2 absolute top-0 left-0 right-0 z-50 ${pathname == "/" ? "py-5 bg-transparent" : "bg-gray-100 m-4 sm:m-[47px] shadow-sm rounded-2xl"}`}>
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-2 flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center">
           <div className="flex items-center space-x-2">
@@ -31,7 +31,7 @@ export default function Navbar() {
             <div className="p-2 rounded">
               <img
                 src="./arabianskylogo.png"
-                className="h-[40px] w-[150px] sm:h-[57px] sm:w-[210px]"
+                className="w-[100px] h-[30px] lg:h-[40px] lg:w-[150px]"
                 alt=""
               />
             </div>
@@ -109,7 +109,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`lg:hidden mt-4 pb-4 border-t border-gray-200 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
+      <div className={`lg:hidden mt-4 pb-4 border-t bg-white border-gray-200 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
         <div className="flex flex-col space-y-2 pt-4">
           <Link
             href="/"
