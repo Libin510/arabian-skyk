@@ -17,7 +17,7 @@ const TruckImage = ({ dimensions, setTruckArrived }) => {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <div className="box overflow-hidden" style={transformStyle} >
+    <div className="box " style={transformStyle} >
     <Image
       src="/truck.png"
       alt="Truck"

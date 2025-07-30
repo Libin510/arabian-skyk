@@ -221,6 +221,8 @@
   position: absolute;
   bottom: 0;
   transform-origin: bottom left;
+  border:none;
+  overflow: hidden;
 }
 @keyframes boxMove {
   0% {
