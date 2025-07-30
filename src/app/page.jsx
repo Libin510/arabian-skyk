@@ -217,13 +217,14 @@ export default function Home() {
         <section className="relative w-full overflow-hidden">
           <div className="absolute inset-0 z-0 smoke-animate pointer-events-none"></div>
 
-          <div className="relative flex items-center justify-between px-2 sm:px-4 lg:px-6 py-2 min-h-screen laptop:py-4"
-           style={{
-            minHeight: isMobile ? "500px" : "", // or adjust mobile height accordingly
-          }}
->
+          <div
+            className="relative flex items-center justify-between px-2 sm:px-4 lg:px-6 py-2 min-h-screen laptop:py-4"
+            style={{
+              minHeight: isMobile ? "500px" : "", // or adjust mobile height accordingly
+            }}
+          >
             {/* Truck Image - Mobile Optimized */}
-            {showSmoke && (
+            {/* {showSmoke && (
               <Image
                 src="/truck.png"
                 alt="Truck"
@@ -235,7 +236,7 @@ export default function Home() {
                 placeholder="blur"
                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
-            )}
+            )} */}
 
             {/* Content Card - Enhanced Mobile Layout */}
             <div className="relative w-full h-full mx-auto laptop:flex laptop:flex-col laptop:justify-center">
@@ -471,7 +472,7 @@ export default function Home() {
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 fade-in-up">
               OUR <span className="text-red-500">SERVICES</span>
             </h2>
-            <TruckWrapper className="w-full" />
+            {/* <TruckWrapper className="w-full" /> */}
             <div className="text-center mb-4 sm:mb-6 md:mb-8 fade-in-up delay-200 px-4">
               <p className="text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base">
                 As Logistics Service Providers, We Offer A Wide Range Of

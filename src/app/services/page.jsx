@@ -63,7 +63,8 @@ export default function Service() {
     {
       id: 1,
       title: "Heavy Haulage & Project Cargo",
-      image: "",
+      image:
+        "https://i.pinimg.com/736x/85/0c/4d/850c4dd67e7f062851c1d78a2b15b196.jpg",
       description:
         "We specialize in transporting oversized and heavy cargo safely, on time, and with precision. Whether it's machinery, construction equipment, or large project components, we ensure your cargo reaches its destination securely.",
       features: [
@@ -84,7 +85,8 @@ export default function Service() {
     {
       id: 2,
       title: "Equipment Rental & Leasing",
-      image: "",
+      image:
+        "https://i.pinimg.com/1200x/bd/1b/6c/bd1b6cfe9f22b310649056a31659c38e.jpg",
       description:
         "Our fleet of modern, well-maintained trucks and machinery is available for short- and long-term lease. We offer **flexible rental solutions** that help businesses across sectors with heavy lifting, construction, and more.",
       features: [
@@ -105,7 +107,8 @@ export default function Service() {
     {
       id: 3,
       title: "Customs Clearance",
-      image: "",
+      image:
+        "https://i.pinimg.com/736x/dd/3e/3d/dd3e3d378d5f22d7336ac9fec2e9907c.jpg",
       description:
         "Navigating the complexities of cross-border transportation can be challenging. Our experienced team handles **customs clearance** quickly and efficiently to ensure your shipments cross borders without delay.",
       features: [
@@ -126,7 +129,8 @@ export default function Service() {
     {
       id: 4,
       title: "Fleet Maintenance & 24/7 Support",
-      image: "",
+      image:
+        "https://i.pinimg.com/736x/f0/cb/b3/f0cbb35578c3615d4f5e04111f11f657.jpg",
       description:
         "We keep our fleet in top condition through regular maintenance, ensuring maximum safety and reliability on every trip. Our 24/7 support team is always on hand to assist with any issues that may arise during transportation.",
       features: [
@@ -149,25 +153,29 @@ export default function Service() {
   const whyChooseUs = [
     {
       title: "Over 25 Years of Experience",
-      image: "",
+      image:
+        "https://media.istockphoto.com/id/1423325870/photo/tow-truck-transportation.jpg?s=612x612&w=0&k=20&c=EeLFErlEi3n7k9Yfn_Gcuja6cJwf41ISci3q8f6HVuw=",
       description:
         "With decades in the logistics and transport industry, we have the expertise to handle all your transport and logistics needs.",
     },
     {
       title: "Cutting-Edge Technology",
-      image: "",
+      image:
+        "https://media.istockphoto.com/id/1340887706/photo/outside-of-logistics-retail-warehouse-with-inventory-manager-using-tablet-computer-talking-to.jpg?s=612x612&w=0&k=20&c=BSKvIWQwcKonh_A5D65y1YZKG77k7Qgvn1VvZViVIQE=",
       description:
         "We utilize the latest tracking and management software to keep you updated on your cargo’s status.",
     },
     {
       title: "Scalability",
-      image: "",
+      image:
+        "https://media.istockphoto.com/id/1395748211/photo/van-full-of-moving-boxes-and-furniture-near-house.jpg?s=612x612&w=0&k=20&c=pa1S7xB4fw6R5i3wdibeO1DdwfQ5a9gGJLQDTu5I3LM=",
       description:
         "No matter the size of your shipment or project, we have the resources and flexibility to meet your demands.",
     },
     {
       title: "Across the GCC",
-      image: "",
+      image:
+        "https://media.istockphoto.com/id/1445074332/photo/bright-colorful-big-rigs-semi-trucks-with-semi-trailers-standing-in-the-row-on-truck-stop.jpg?s=612x612&w=0&k=20&c=N5fVLeFT119Yv0QSH2Z9UgDXFOLW1qXHqL0p7EPkPRs=",
       description:
         " We offer services in the UAE, Saudi Arabia, Oman, Qatar, and beyond, so we can meet your needs wherever you are.",
     },
@@ -194,8 +202,12 @@ export default function Service() {
             team is ready to deliver solutions that keep your operations running
             smoothly.
           </p>
-          <div className="group flex gap-2 items-center justify-center bg-[#01016F] text-white p-2 max-w-[150px] rounded-[30px] hover:bg-blue-700 transition-colors duration-300">
-            <p className="text-[14px]">get in touch</p>{" "}
+
+          <button
+            type="button"
+            className="group bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white px-8 py-4 rounded-full font-medium text-sm hover:bg-blue-800 transition-colors duration-200 flex items-center gap-2 max-w-[180px] w-auto"
+          >
+            get in touch
             <svg
               className="group-hover:translate-x-1 group-hover:rotate-45 transition-transform duration-300"
               xmlns="http://www.w3.org/2000/svg"
@@ -210,11 +222,16 @@ export default function Service() {
                 fill="black"
               />
             </svg>
-          </div>
+          </button>
         </div>
       </div>
 
-      <div className="bg-[#BEBDBD] h-[465px] w-auto rounded-[16px]"></div>
+      <img
+        src="https://media.istockphoto.com/id/1355096028/photo/big-ten-wheels-truck-with-container-f.jpg?s=612x612&w=0&k=20&c=pZmj3qy_HoubQQ8J_w8Z7iAmro11Cdl6Eiybmp0jfxU="
+        alt="main_image"
+        className="h-[465px] w-auto rounded-[16px]"
+      />
+      {/* <div className="bg-[#BEBDBD] h-[465px] w-auto rounded-[16px]"></div> */}
 
       <div>
         <h1 className="text-[30px] lg:text-[37px] text-[#01016F] text-center uppercase font-semibold mt-[40px] lg:mt-[115px]">
@@ -223,7 +240,7 @@ export default function Service() {
         <div className="mt-8">
           {ourServices.map((service, index) => (
             <div
-              className="sticky top-4 bg-white p-6 lg:p-12 max-w-7xl mx-auto flex flex-col gap-[32px] border border-gray-200 rounded-[16px] shadow-lg mb-8 transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-2xl"
+              className="sticky top-4 bg-white p-6 lg:p-12 max-w-7xl mx-auto flex flex-col gap-[32px] border border-gray-200 rounded-[16px] mb-8 transform transition-all duration-300 shadow-2xl"
               key={index}
             >
               <div className="w-full flex flex-col sm:flex-row items-center sm:items-baseline justify-between gap-4 sm:gap-6">
@@ -264,7 +281,7 @@ export default function Service() {
                     </div>
 
                     <div className="pt-2">
-                      <button className="bg-blue-900 text-white px-2 sm:px-4 py-2 sm:py-3 rounded-full font-semibold hover:bg-blue-800 transition-colors duration-300 flex items-center gap-3 text-sm sm:text-base">
+                      <button className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white px-2 sm:px-4 py-2 sm:py-3 rounded-full font-semibold hover:bg-blue-800 transition-colors duration-300 flex items-center gap-3 text-sm sm:text-base">
                         Learn More
                         <div className="w-5 sm:w-6 h-5 sm:h-6 bg-white rounded-full flex items-center justify-center">
                           <svg
@@ -281,7 +298,15 @@ export default function Service() {
                 </div>
 
                 <div className="flex justify-center lg:justify-end">
-                  <div className="bg-[#BEBDBD] rounded-2xl w-full h-72 sm:h-[454px] max-w-lg"></div>
+                  {service?.image ? (
+                    <img
+                      src={service.image}
+                      alt=""
+                      className="rounded-2xl w-full h-72 sm:h-[454px] max-w-lg"
+                    />
+                  ) : (
+                    <div className="bg-[#BEBDBD] rounded-2xl w-full h-72 sm:h-[454px] max-w-lg"></div>
+                  )}
                 </div>
               </div>
             </div>
@@ -296,7 +321,7 @@ export default function Service() {
         <div className="bg-white py-8 px-4 max-w-7xl mx-auto mt-8 grid gap-12">
           {whyChooseUs.map((item, index) => (
             <div
-              className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8"
+              className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8"
               key={index}
             >
               <div className="text-center lg:text-left">
@@ -306,7 +331,15 @@ export default function Service() {
               </div>
 
               <div>
-                <div className="bg-[#BEBDBD] rounded-lg w-[350px] max-w-xs h-[220px] mx-auto lg:mx-0"></div>
+                {item?.image ? (
+                  <img
+                    src={item?.image}
+                    alt=""
+                    className="rounded-lg w-[350px] max-w-xs h-[220px] mx-auto lg:mx-0 shadow-xl"
+                  />
+                ) : (
+                  <div className="bg-[#BEBDBD] rounded-lg w-[350px] max-w-xs h-[220px] mx-auto lg:mx-0"></div>
+                )}
               </div>
 
               <div className="ml-0 lg:ml-4 text-center lg:text-left">
@@ -315,7 +348,7 @@ export default function Service() {
                 </p>
               </div>
 
-              <div className="mt-4 lg:mt-0 justify-self-center lg:justify-self-end">
+              {/* <div className="mt-4 lg:mt-0 justify-self-center lg:justify-self-end">
                 <svg
                   className="w-6 h-6 lg:w-8 lg:h-8 text-black mx-auto lg:mx-0"
                   fill="none"
@@ -329,11 +362,11 @@ export default function Service() {
                     d="M7 17L17 7M17 7H7M17 7v10"
                   />
                 </svg>
-              </div>
+              </div> */}
 
               {/* Divider */}
               {whyChooseUs.length - 1 !== index && (
-                <div className="col-span-full border-t border-[#1E1E1E]"></div>
+                <div className="col-span-full border-t border-gray-400"></div>
               )}
             </div>
           ))}
