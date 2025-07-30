@@ -168,113 +168,87 @@ export default function Home() {
   // }
   // {isLoading && <Preloader />}
   return (
-    <div className="w-full relative">
+    <div className="w-screen relative">
       {isLoading && (
-        <div className="fixed inset-0 z-[9999] bg-white">
+        <div className="fixed inset-0 bg-white z-[9999]">
           <Preloader />
         </div>
       )}
-      <div
-        className={`transition-opacity duration-500 ${isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'
-          }`}
-      >
-        <div className="w-full h-72 sm:h-200 bg-white mt-5 relative" ref={divRef}>
-          <div className="right_angle_triangle"></div>
 
+      <div
+        className={`transition-opacity duration-500 ${
+          isLoading ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        {/* Truck Container */}
+        <div
+          className="w-full h-[50vh] sm:h-[60vh] lg:h-[70vh] hd:h-[100vh] 2xl:h-[90vh] bg-white mt-5 relative"
+          ref={divRef}
+        >
+          <div className="right_angle_triangle"></div>
           {showSmoke && (
             <TruckImage
               dimensions={dimensions}
-              setTruckArrived={(value) => {
-                setTruckArrived(value);
-              }}
+              setTruckArrived={(value) => setTruckArrived(value)}
             />
           )}
         </div>
+
+        {/* Truck Arrived Content */}
         {truckArrived && (
-          <div className="absolute top-20 left-0 w-full z-10 px-8">
-            {/* Title and Description */}
-            <div className="relative z-10 text-left laptop:mb-4">
-              <h2 className="font-bold uppercase leading-tight text-[8vw] lg:text-[3.5vw]">
+          <div className="absolute top-20 2xl:top-32  left-1/2 transform -translate-x-1/2 w-full max-w-screen-2xl mx-auto z-10 px-4 sm:px-6 lg:px-8">
+            {/* Title & Description */}
+            <div className="relative z-10 text-left mb-4">
+              <h2 className="font-bold uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[3.5vw]">
                 <span className="block leading-[0.5]">Arabian Sky</span>
-                <span className="block leading-tight text-[10.5vw] lg:text-[5vw] font-bold">
+                <span className="block text-[10.5vw] md:text-[6.5vw] lg:text-[5vw] font-bold">
                   Transport
                 </span>
               </h2>
-              <p className="text-xs lg:text-[1.2rem] font-semibold text-black tracking-tight capitalize w-[75%] md:w-[65%] lg:w-[45%]">
+              <p className="text-sm md:text-base lg:text-lg font-semibold text-black tracking-tight capitalize max-w-[85%] md:max-w-[65%] lg:max-w-[45%]">
                 Powering the UAE and GCC with professional, scalable, and
                 time-critical logistics solutions for over 25 years.
               </p>
             </div>
 
             {/* Video Section */}
-            <div className="w-full text-right pt-[1rem] lg:pt-0">
-              <div className="flex flex-col w-full sm:gap-2 lg:gap-6 laptop:gap-3">
+            <div className="w-full text-right pt-4">
+              <div className="flex flex-col gap-4">
                 <div className="relative w-full mx-auto">
-                  <p className="w-fit sm:-top-8 lg:-top-12 xl:-top-13 justify-self-end z-30 font-bold bg-[#01016F] px-2 sm:px-3 lg:px-4 py-1 sm:py-2 rounded-t-lg flex gap-1 sm:gap-2 text-red-500 items-center">
-                    <FaStarOfLife className="size-[13px] lg:size-[17px]" />
-                    <span className="text-[0.924rem] lg:text-[1rem] font-instrument-sans font-semibold text-white justify-self-center">
+                  <p className="w-fit -mt-4 sm:-mt-8 lg:-mt-12 justify-self-end font-bold bg-[#01016F] px-3 py-2 rounded-t-lg flex items-center gap-2 text-white text-sm">
+                    <FaStarOfLife className="size-[13px] lg:size-[17px] text-red-500" />
+                    <span className="font-instrument-sans font-semibold text-sm lg:text-base 2xl:text-xl">
                       THE WHEELS OF RELIABILITY
                     </span>
                   </p>
 
-                  {/* Video Blocks by screen size */}
-                  <div className="relative mx-auto overflow-hidden rounded-b-lg rounded-l-lg z-20 w-full">
-                    {/* Mobile & Tablet */}
-                    <div className="block laptop:hidden lg:hidden aspect-video max-h-[200px] xs:max-h-[250px] sm:max-h-[300px] md:h-[550px]">
-                      <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        poster="/truck-poster.jpg"
-                        className="absolute top-0 left-0 w-full h-full object-cover z-10"
-                      >
-                        <source src="/Truck Logo Reveal.mp4" type="video/mp4" />
-                      </video>
-                    </div>
-
-                    {/* Laptop */}
-                    <div className="hidden laptop:block lg:hidden aspect-[2/1] max-h-[220px] w-full">
-                      <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        poster="/truck-poster.jpg"
-                        className="absolute top-0 left-0 w-full h-full object-cover z-10"
-                      >
-                        <source src="/Truck Logo Reveal.mp4" type="video/mp4" />
-                      </video>
-                    </div>
-
-                    {/* Desktop */}
-                    <div className="hidden lg:block laptop:hidden aspect-[16/9] lg:aspect-[2.5/1] xl:aspect-[3/1] max-h-[350px]">
-                      <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        poster="/truck-poster.jpg"
-                        className="absolute top-0 left-0 w-full h-full object-cover z-10"
-                      >
-                        <source src="/Truck Logo Reveal.mp4" type="video/mp4" />
-                      </video>
-                    </div>
+                  {/* Unified Responsive Video */}
+                  <div className="relative w-full aspect-video overflow-hidden rounded-b-lg rounded-l-lg z-20 max-h-[200px] sm:max-h-[300px] md:max-h-[350px] lg:max-h-[450px] 2xl:max-h-[550px] lg:aspect-[2.5/1] xl:aspect-[3/1]">
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      poster="/truck-poster.jpg"
+                      className="absolute top-0 left-0 w-full h-full object-cover z-10"
+                    >
+                      <source src="/Truck Logo Reveal.mp4" type="video/mp4" />
+                    </video>
                   </div>
                 </div>
 
                 {/* CTA Section */}
-                <div className="relative w-full md:w-[65%] lg:w-[35%]">
-                  <div className="bg-[#01016F] mt-2 sm:mt-0 text-white lg:rounded-xl rounded-lg px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 lg:py-6 laptop:px-4 laptop:py-3 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 lg:gap-6 shadow-lg">
-                    <h3 className="text-white font-semibold text-xs lg:text-base leading-tight text-center sm:text-left">
+                <div className="relative w-full md:max-w-[65%] lg:max-w-[48%] 2xl:max-w-[40%]">
+                  <div className="bg-[#01016F] text-white rounded-lg lg:rounded-xl px-4 py-4 md:px-6 md:py-5 lg:px-8 lg:py-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+                    <h3 className="text-white font-semibold text-sm lg:text-base 2xl:text-xl leading-tight text-center sm:text-left">
                       We Have All Kinds Of Solution{" "}
                       <br className="hidden sm:block" />
                       To Deliver Your Goods
                     </h3>
 
-                    <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-sm pl-2 md:pl-5 pr-1 py-1 rounded-full hover:scale-105 transition-transform duration-300 whitespace-nowrap">
+                    <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-base 2xl:text-xl px-3 py-2 rounded-full hover:scale-105 transition-transform">
                       Get a free quote
-                      <span className="text-white rounded-full p-2 lg:p-2 bg-[#01016F] text-sm md:text-xl lg:text-2xl">
+                      <span className="bg-[#01016F] text-white rounded-full p-2 text-base lg:text-xl">
                         <LuArrowUpRight />
                       </span>
                     </button>
@@ -284,6 +258,7 @@ export default function Home() {
             </div>
           </div>
         )}
+
         {/* About Us Section - Enhanced Responsiveness */}
         <div className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-2">
           <section className="py-12 lg:py-40 bg-white">
@@ -306,9 +281,9 @@ export default function Home() {
                     <span className="text-[#01016F]">Our</span> Story
                   </h3>
                   <p className="text-[#000000] mb-4 sm:mb-6 font-medium leading-relaxed text-sm sm:text-base lg:mx-0">
-                    Driving the Region Since 1998 We are one of the UAE's leading
-                    logistics and transport providers, with a reputation built on
-                    precision, safety, and customer-first service.
+                    Driving the Region Since 1998 We are one of the UAE's
+                    leading logistics and transport providers, with a reputation
+                    built on precision, safety, and customer-first service.
                   </p>
                   <button className="bg-[#01016F] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-blue-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
                     Know more
@@ -477,14 +452,16 @@ export default function Home() {
             {/* Responsive Overlay Cards */}
             <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
               <div
-                className={`grid gap-4 sm:gap-8 md:gap-12 lg:gap-20 xl:gap-40 max-w-full ${isMobile ? "grid-cols-2" : "grid-cols-4"
-                  }`}
+                className={`grid gap-4 sm:gap-8 md:gap-12 lg:gap-20 xl:gap-40 max-w-full ${
+                  isMobile ? "grid-cols-2" : "grid-cols-4"
+                }`}
               >
                 {[...Array(isMobile ? 2 : 4)].map((_, index) => (
                   <div
                     key={index}
-                    className={`bg-gray-400 bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer float-animation delay-${index * 100
-                      }`}
+                    className={`bg-gray-400 bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer float-animation delay-${
+                      index * 100
+                    }`}
                     style={{
                       animationDelay: `${index * 300}ms`,
                       width: isMobile ? "80px" : "15vw",
@@ -569,10 +546,12 @@ export default function Home() {
                 {industries.map((industry, index) => (
                   <div
                     key={index}
-                    className={`${industry.bgColor
-                      } flex gap-3 lg:gap-4 items-center text-white p-2 rounded-lg w-full hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer fade-in-up delay-${index * 100
-                      }`}
-                  // style={{ minHeight: "60px" }} // Reserve space to prevent CLS
+                    className={`${
+                      industry.bgColor
+                    } flex gap-3 lg:gap-4 items-center text-white p-2 rounded-lg w-full hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer fade-in-up delay-${
+                      index * 100
+                    }`}
+                    // style={{ minHeight: "60px" }} // Reserve space to prevent CLS
                   >
                     <div className="bg-white size-8 sm:size-11 rounded flex justify-center text-black items-center text-sm lg:text-2xl hover:rotate-12 transition-transform duration-300">
                       {industry.icon}
