@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^10.6.1",
-    "@studio-freight/lenis": "^1.0.42",
+    "@react-three/drei": "9.79.1",
     "@react-three/fiber": "^9.1.2",
+    "@studio-freight/lenis": "^1.0.42",
     "axios": "^1.11.0",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.12",
