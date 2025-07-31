@@ -120,7 +120,7 @@ export default function About() {
   const visibleLeaders = typeof window !== 'undefined' ? getVisibleLeaders() : leaders.slice(0, 4);
 
   return (
-    <div className="mx-auto p-4 md:p-8 lg:p-16">
+    <div className="mx-auto p-4 md:p-8 lg:p-16 mt-32">
       {/* About Us Header Section */}
       <div className="mb-8 md:mb-12">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">

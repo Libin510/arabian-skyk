@@ -25,7 +25,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="mx-auto p-4 md:p-8 lg:p-16">
+    <div className="mx-auto p-4 md:p-8 lg:p-16 mt-32">
       {/* Header */}
       <div className="mb-12">
         <div className=" items-start  mb-8">

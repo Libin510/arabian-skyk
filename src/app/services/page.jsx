@@ -182,7 +182,7 @@ export default function Service() {
   ];
 
   return (
-    <div className="flex flex-col gap-[32px] px-8 lg:px-16">
+    <div className="flex flex-col gap-[32px] px-8 lg:px-16 mt-38">
       <div className="grid grid-cols-1 lg:grid-cols-2 p-0 lg:p-4 gap-4 lg:gap-0">
         <h1
           className="text-[37px] lg:text-[75px] text-[#01016F] font-semibold uppercase"

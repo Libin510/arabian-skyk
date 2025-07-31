@@ -5,27 +5,27 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 const images = [
   {
     id: 1,
-    src: 'https://images.unsplash.com/photo-1682806816936-c3ac11f65112?q=80&w=1274&auto=format&fit=crop',
+    src: 'https://www.renault-trucks.com/sites/corporate/files/2021-09/p038798%20%281%29.png',
     alt: 'RELIABILITY. EXPERIENCE. SCALE.',
   },
   {
     id: 2,
-    src: 'https://images.unsplash.com/photo-1681063762354-d542c03bbfc5?q=80&w=1274&auto=format&fit=crop',
+    src: 'https://cdn.pixabay.com/photo/2019/09/29/20/45/trucks-4514377_1280.jpg',
     alt: 'OVER 25 YEARS OF OPERATION',
   },
   {
     id: 3,
-    src: 'https://images.unsplash.com/photo-1679640034489-a6db1f096b70?q=80&w=1274&auto=format&fit=crop',
+    src: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i9iVU3m.hOg0/v0/-1x-1.webp',
     alt: '100+ FLEET VEHICLES',
   },
   {
     id: 4,
-    src: 'https://images.unsplash.com/photo-1679482451632-b2e126da7142?q=80&w=1274&auto=format&fit=crop',
+    src: 'https://images.pexels.com/photos/93398/pexels-photo-93398.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
     alt: 'OPERATES ACROSS THE GCC',
   },
   {
     id: 5,
-    src: 'https://images.unsplash.com/photo-1679482451632-b2e126da7142?q=80&w=1274&auto=format&fit=crop',
+    src: 'https://extramiletx.com/wp-content/uploads/2021/10/9-Things-To-Prepare-For-Night-Truck-Driving.jpg',
     alt: '24/7 OPERATIONAL SUPPORT',
   },
 ];

@@ -182,7 +182,7 @@ export default function Home() {
       >
         {/* Truck Container */}
         <div
-          className="w-full h-[60vh] sm:h-[70vh] lg:h-[80vh] hd:h-[100vh] 2xl:h-[100vh] bg-white mt-5 relative"
+          className="w-full h-[90vh] sm:h-[70vh] lg:h-[80vh] hd:h-[100vh] 2xl:h-[100vh] bg-white mt-5 relative"
           ref={divRef}
         >
           <div className="right_angle_triangle"></div>
@@ -205,7 +205,7 @@ export default function Home() {
                   Transport
                 </span>
               </h2>
-              <p className="text-sm md:text-base lg:text-lg font-semibold text-black tracking-tight capitalize max-w-[85%] md:max-w-[65%] lg:max-w-[45%]">
+              <p className="text-sm md:text-base lg:text-base font-semibold text-black tracking-tight capitalize max-w-[85%] md:max-w-[65%] lg:max-w-[65%]">
                 Powering the UAE and GCC with professional, scalable, and
                 time-critical logistics solutions for over 25 years.
               </p>
@@ -216,14 +216,14 @@ export default function Home() {
               <div className="flex flex-col gap-4">
                 <div className="relative w-full mx-auto">
                   <p className="w-fit -mt-4 sm:-mt-8 lg:-mt-12 justify-self-end font-bold bg-[#01016F] px-3 py-2 rounded-t-lg flex items-center gap-2 text-white text-sm">
-                    <FaStarOfLife className="size-[13px] lg:size-[17px] text-red-500" />
-                    <span className="font-instrument-sans font-semibold text-sm lg:text-base 2xl:text-xl">
+                    <FaStarOfLife className="size-[13px] lg:size-[16px] text-red-500" />
+                    <span className="font-instrument-sans font-semibold text-sm lg:text-sm 2xl:text-xl">
                       THE WHEELS OF RELIABILITY
                     </span>
                   </p>
 
                   {/* Unified Responsive Video */}
-                  <div className="relative w-full aspect-video overflow-hidden rounded-b-lg rounded-l-lg z-20 max-h-[200px] sm:max-h-[300px] md:max-h-[350px] lg:max-h-[450px] 2xl:max-h-[550px] lg:aspect-[2.5/1] xl:aspect-[3/1]">
+                  <div className="relative w-full aspect-video overflow-hidden rounded-b-lg rounded-l-lg z-20 max-h-[200px] sm:max-h-[300px] md:max-h-[350px] lg:max-h-[250px] 2xl:max-h-[550px] lg:aspect-[2.5/1] xl:aspect-[3/1]">
                     <video
                       autoPlay
                       loop
@@ -240,15 +240,15 @@ export default function Home() {
                 {/* CTA Section */}
                 <div className="relative w-full md:max-w-[65%] lg:max-w-[48%] 2xl:max-w-[40%]">
                   <div className="bg-[#01016F] text-white rounded-lg lg:rounded-xl px-4 py-4 md:px-6 md:py-5 lg:px-8 lg:py-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-                    <h3 className="text-white font-semibold text-sm lg:text-base 2xl:text-xl leading-tight text-center sm:text-left">
+                    <h3 className="text-white font-semibold text-sm lg:text-sm 2xl:text-xl leading-tight text-center sm:text-left">
                       We Have All Kinds Of Solution{" "}
                       <br className="hidden sm:block" />
                       To Deliver Your Goods
                     </h3>
 
-                    <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-base 2xl:text-xl px-3 py-2 rounded-full hover:scale-105 transition-transform">
+                    <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-sm 2xl:text-xl px-3 py-2 rounded-full hover:scale-105 transition-transform">
                       Get a free quote
-                      <span className="bg-[#01016F] text-white rounded-full p-2 text-base lg:text-xl">
+                      <span className="bg-[#01016F] text-white rounded-full p-2 text-base lg:text-sm 2xl:text-base">
                         <LuArrowUpRight />
                       </span>
                     </button>
