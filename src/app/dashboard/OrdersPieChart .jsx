@@ -1,3 +1,4 @@
+"use client";
 import { ChartPie, TrendingUp } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 
