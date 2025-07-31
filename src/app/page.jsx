@@ -182,7 +182,7 @@ export default function Home() {
       >
         {/* Truck Container */}
         <div
-          className="w-full h-[50vh] sm:h-[60vh] lg:h-[70vh] hd:h-[100vh] 2xl:h-[90vh] bg-white mt-5 relative"
+          className="w-full h-[60vh] sm:h-[70vh] lg:h-[80vh] hd:h-[100vh] 2xl:h-[100vh] bg-white mt-5 relative"
           ref={divRef}
         >
           <div className="right_angle_triangle"></div>
