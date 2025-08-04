@@ -34,6 +34,7 @@ import {
 import Link from "next/link";
 import OrdersPieChart from "./OrdersPieChart ";
 import TableComponent from "./TableComponent ";
+import JobApplications from "./JobApplications";
 import API, { action } from "../Api"; // Import your API configuration
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
@@ -132,6 +133,7 @@ export default function AdminDashboard() {
     } else if (activeSection === "services") {
       fetchServices();
     }
+    // Job applications are handled within the component itself
   }, [activeSection]);
 
   // API Functions for Careers
@@ -578,13 +580,13 @@ export default function AdminDashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex">
-      {/* Sidebar */}
+    <div className="h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex overflow-hidden">
+      {/* Fixed Sidebar */}
       <div
         className={`${isSidebarOpen ? "w-64" : "w-16"
-          } transition-all duration-300 bg-black/20 backdrop-blur-xl border-r border-white/10`}
+          } transition-all duration-300 bg-black/20 backdrop-blur-xl border-r border-white/10 flex flex-col h-full`}
       >
-        <div className="p-4">
+        <div className="p-4 flex-1">
           {/* Logo */}
           <div className="flex items-center space-x-3 mb-8">
             <div
@@ -646,11 +648,22 @@ export default function AdminDashboard() {
               <MapPin className="w-5 h-5" />
               {isSidebarOpen && <span>Service Management</span>}
             </button>
+
+            <button
+              onClick={() => setActiveSection("applications")}
+              className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${activeSection === "applications"
+                  ? "bg-white/10 text-white"
+                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                }`}
+            >
+              <Users className="w-5 h-5" />
+              {isSidebarOpen && <span>Job Applications</span>}
+            </button>
           </nav>
         </div>
 
         {/* Logout Button */}
-        <div className="absolute bottom-4 left-4 right-4">
+        <div className="p-4">
           <Link href={"/login"}>
             <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-red-400 hover:bg-red-400/10 transition-colors">
               <LogOut className="w-5 h-5" />
@@ -661,9 +674,9 @@ export default function AdminDashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="bg-black/20 backdrop-blur-xl border-b border-white/10 p-4">
+      <div className="flex-1 flex flex-col h-full">
+        {/* Fixed Header */}
+        <header className="bg-black/20 backdrop-blur-xl border-b border-white/10 p-4 flex-shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
@@ -683,8 +696,8 @@ export default function AdminDashboard() {
           </div>
         </header>
 
-        {/* Content Area */}
-        <main className="flex-1 p-6 overflow-auto">
+        {/* Scrollable Content Area */}
+        <main className="flex-1 p-6 overflow-y-auto">
           {/* Analytics Section */}
           {activeSection === "analytics" && (
             <div className="space-y-6">
@@ -1062,6 +1075,9 @@ export default function AdminDashboard() {
               </div>
             </div>
           )}
+
+          {/* Job Applications Section */}
+          {activeSection === "applications" && <JobApplications />}
         </main>
       </div>
 

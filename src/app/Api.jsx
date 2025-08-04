@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const API = {
-  HOST: "http://localhost:3033/",
+
+    HOST: 'http://localhost:3033/',
+
 
   //login
   LOGIN: { url: "login", method: "POST" },
@@ -12,6 +14,8 @@ const API = {
   ADD_CAREER: { url: "career/add", method: "POST" },
   UPDATE_CAREER: { url: "career/update", method: "POST" },
   DELETE_CAREER: { url: "career/delete", method: "POST" },
+    APPLY_JOB: { url: "career/job/apply", method: "POST" },
+    GET_JOB_APPLICATIONS: { url: "career/job/list", method: "POST" },
 
   //Order
   GET_ORDER: { url: "order/get", method: "POST" },
@@ -25,8 +29,13 @@ const API = {
   UPDATE_SERVICE: { url: "service/update", method: "POST" },
   DELETE_SERVICE: { url: "service/delete", method: "POST" },
 
-  //Dasboard
-  GET_DASHBOARD: { url: "dashboard/get", method: "POST" },
+    //Dasboard
+    GET_DASHBOARD: { url: "dashboard/get", method: "POST" },
+
+    //Contact
+    ADD_CONTACT: { url: "contact", method: "POST" },
+
+
 };
 
 export default API;

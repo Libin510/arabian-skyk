@@ -3,7 +3,7 @@
 import React from "react";
 import { ChevronUp, ChevronDown, MapPin, Clock } from "lucide-react";
 
-const Accordion = ({ data, isExpanded, onToggle }) => {
+const Accordion = ({ data, isExpanded, onToggle, onApplyNow }) => {
   return (
     <div className="bg-white rounded-2xl border-3 border-[#01016F] overflow-hidden shadow-sm">
       {/* Header */}
@@ -12,13 +12,16 @@ const Accordion = ({ data, isExpanded, onToggle }) => {
         className="w-full p-6 bg-white hover:bg-gray-50 transition-colors text-left rounded-2xl"
       >
         <div className="flex justify-between items-start mb-2 md:mb-4">
-          <h2 className="text-[20px] font-semibold text-gray-900">
+          <h2 className="text-[20px] font-semibold text-gray-900 capitalize">
             {data.title}
           </h2>
           <div className="flex items-center gap-3">
             <button
               className="bg-[#01016F] text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-900 transition-colors hidden md:flex"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                onApplyNow(data.title);
+              }}
             >
               Apply Now
             </button>
@@ -31,7 +34,10 @@ const Accordion = ({ data, isExpanded, onToggle }) => {
         </div>
         <button
           className="bg-[#01016F] w-full text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-900 transition-colors flex md:hidden"
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            onApplyNow(data.title);
+          }}
         >
           Apply Now
         </button>

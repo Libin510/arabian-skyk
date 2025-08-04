@@ -1,78 +1,80 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import Accordion from "./Accordion";
+import JobApplicationModal from "./JobApplicationModal";
 import { gsap } from "gsap";
 import Footer from "@/Components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
+import API, { action } from "../Api";
 
 export default function Career() {
-  const accordionData = [
-    {
-      id: 1,
-      title: "Fleet Operations Manager - 1",
-      location: "Dubai, UAE",
-      type: "Full Time",
-      responsibilities: [
-        "Coordinate Transportation Schedules And Manage Client Relationships",
-        "Track Shipments And Provide Updates To Clients",
-        "Collaborate With Drivers And Operations To Ensure Timely Delivery",
-      ],
-      requirements: [
-        "Experience In Logistics Or Supply Chain Management",
-        "Excellent Organizational And Communication Skills",
-        "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
-      ],
-    },
-    {
-      id: 2,
-      title: "Fleet Operations Manager - 2",
-      location: "Dubai, UAE",
-      type: "Full Time",
-      responsibilities: [
-        "Coordinate Transportation Schedules And Manage Client Relationships",
-        "Track Shipments And Provide Updates To Clients",
-        "Collaborate With Drivers And Operations To Ensure Timely Delivery",
-      ],
-      requirements: [
-        "Experience In Logistics Or Supply Chain Management",
-        "Excellent Organizational And Communication Skills",
-        "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
-      ],
-    },
-    {
-      id: 3,
-      title: "Fleet Operations Manager - 3",
-      location: "Dubai, UAE",
-      type: "Full Time",
-      responsibilities: [
-        "Coordinate Transportation Schedules And Manage Client Relationships",
-        "Track Shipments And Provide Updates To Clients",
-        "Collaborate With Drivers And Operations To Ensure Timely Delivery",
-      ],
-      requirements: [
-        "Experience In Logistics Or Supply Chain Management",
-        "Excellent Organizational And Communication Skills",
-        "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
-      ],
-    },
-    {
-      id: 4,
-      title: "Fleet Operations Manager - 4",
-      location: "Dubai, UAE",
-      type: "Full Time",
-      responsibilities: [
-        "Coordinate Transportation Schedules And Manage Client Relationships",
-        "Track Shipments And Provide Updates To Clients",
-        "Collaborate With Drivers And Operations To Ensure Timely Delivery",
-      ],
-      requirements: [
-        "Experience In Logistics Or Supply Chain Management",
-        "Excellent Organizational And Communication Skills",
-        "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
-      ],
-    },
-  ];
+  // const accordionData = [
+  //   {
+  //     id: 1,
+  //     title: "Fleet Operations Manager - 1",
+  //     location: "Dubai, UAE",
+  //     type: "Full Time",
+  //     responsibilities: [
+  //       "Coordinate Transportation Schedules And Manage Client Relationships",
+  //       "Track Shipments And Provide Updates To Clients",
+  //       "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+  //     ],
+  //     requirements: [
+  //       "Experience In Logistics Or Supply Chain Management",
+  //       "Excellent Organizational And Communication Skills",
+  //       "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+  //     ],
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Fleet Operations Manager - 2",
+  //     location: "Dubai, UAE",
+  //     type: "Full Time",
+  //     responsibilities: [
+  //       "Coordinate Transportation Schedules And Manage Client Relationships",
+  //       "Track Shipments And Provide Updates To Clients",
+  //       "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+  //     ],
+  //     requirements: [
+  //       "Experience In Logistics Or Supply Chain Management",
+  //       "Excellent Organizational And Communication Skills",
+  //       "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+  //     ],
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Fleet Operations Manager - 3",
+  //     location: "Dubai, UAE",
+  //     type: "Full Time",
+  //     responsibilities: [
+  //       "Coordinate Transportation Schedules And Manage Client Relationships",
+  //       "Track Shipments And Provide Updates To Clients",
+  //       "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+  //     ],
+  //     requirements: [
+  //       "Experience In Logistics Or Supply Chain Management",
+  //       "Excellent Organizational And Communication Skills",
+  //       "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+  //     ],
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Fleet Operations Manager - 4",
+  //     location: "Dubai, UAE",
+  //     type: "Full Time",
+  //     responsibilities: [
+  //       "Coordinate Transportation Schedules And Manage Client Relationships",
+  //       "Track Shipments And Provide Updates To Clients",
+  //       "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+  //     ],
+  //     requirements: [
+  //       "Experience In Logistics Or Supply Chain Management",
+  //       "Excellent Organizational And Communication Skills",
+  //       "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+  //     ],
+  //   },
+  // ];
 
   const reasons = [
     {
@@ -177,10 +179,12 @@ export default function Career() {
         "Our HR Team Will Review And Contact You If You're Shortlisted For An Interview.",
     },
   ];
-
-  const [selectedId, setSelectedId] = useState(accordionData[0].id);
+  const [accordionData, setAccordionData] = useState([]);
+  const [selectedId, setSelectedId] =  useState(accordionData[0]?.id);
   const [letterSpans, setLetterSpans] = useState([]);
   const [isClicked, setIsClicked] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedJobTitle, setSelectedJobTitle] = useState("");
 
   const cardRefs = useRef([]);
   const headerRef = useRef();
@@ -298,7 +302,85 @@ export default function Career() {
   }, [isClicked]);
 
   console.log(isClicked);
-  
+
+  const handleApplyNow = (jobTitle) => {
+    setSelectedJobTitle(jobTitle);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedJobTitle("");
+  };
+
+  const fetchCareers = async () => {
+    try {
+      const result = await action(API.GET_CAREER);
+      console.log("Fetched careers:", result);
+
+      if (result?.careers) {
+        // Transform API data to match expected format
+        const formattedCareers = result.careers.map((career, index) => ({
+          id: career._id || index + 1, // Use _id as id, fallback to index
+          title: career.post, // Map 'post' to 'title'
+          location: career.place, // Map 'place' to 'location'
+          type: career.type,
+          description: career.description,
+          // Split description into responsibilities and requirements
+          responsibilities: [
+            career.description,
+            "Track Shipments And Provide Updates To Clients",
+            "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+          ],
+          requirements: [
+            "Experience In Logistics Or Supply Chain Management",
+            "Excellent Organizational And Communication Skills",
+            "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+          ],
+          createdAt: career.createdAt,
+          updatedAt: career.updatedAt,
+        }));
+        
+        setAccordionData(formattedCareers);
+        // Set the first item as selected by default
+        if (formattedCareers.length > 0) {
+          setSelectedId(formattedCareers[0].id);
+        }
+      } else if (Array.isArray(result)) {
+        // If result is already an array, format it the same way
+        const formattedCareers = result.map((career, index) => ({
+          id: career._id || index + 1,
+          title: career.post,
+          location: career.place,
+          type: career.type,
+          description: career.description,
+          responsibilities: [
+            career.description,
+            "Track Shipments And Provide Updates To Clients",
+            "Collaborate With Drivers And Operations To Ensure Timely Delivery",
+          ],
+          requirements: [
+            "Experience In Logistics Or Supply Chain Management",
+            "Excellent Organizational And Communication Skills",
+            "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
+          ],
+          createdAt: career.createdAt,
+          updatedAt: career.updatedAt,
+        }));
+        
+        setAccordionData(formattedCareers);
+        // Set the first item as selected by default
+        if (formattedCareers.length > 0) {
+          setSelectedId(formattedCareers[0].id);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching careers:", error);
+    }
+  };
+  useEffect(() => {
+    fetchCareers();
+  }, []);
 
   return (
     <div className="flex flex-col gap-[32px] px-8 lg:px-16 mb-4 mt-38">
@@ -374,7 +456,8 @@ export default function Career() {
                     <Accordion
                       data={item}
                       isExpanded={true}
-                      onToggle={() => {}}
+                      onToggle={() => { }}
+                      onApplyNow={handleApplyNow}
                     />
                   </motion.div>
                 ))}
@@ -393,6 +476,7 @@ export default function Career() {
                       setSelectedId(item.id);
                       setIsClicked(!isClicked);
                     }}
+                    onApplyNow={handleApplyNow}
                   />
                 </motion.div>
               ))}
@@ -444,6 +528,13 @@ export default function Career() {
       </div>
 
       <Footer />
+
+      {/* Job Application Modal */}
+      <JobApplicationModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        jobTitle={selectedJobTitle}
+      />
     </div>
   );
 }
