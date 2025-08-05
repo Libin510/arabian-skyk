@@ -82,41 +82,41 @@ export default function Home() {
   const divRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  useEffect(() => {
-    const updateDimensions = () => {
-      if (divRef.current) {
-        const rect = divRef.current.getBoundingClientRect();
-        const newDimensions = {
-          width: rect.width,
-          height: rect.height,
-        };
+  // useEffect(() => {
+  //   const updateDimensions = () => {
+  //     if (divRef.current) {
+  //       const rect = divRef.current.getBoundingClientRect();
+  //       const newDimensions = {
+  //         width: rect.width,
+  //         height: rect.height,
+  //       };
 
-        // Only update if dimensions actually changed
-        if (
-          newDimensions.width !== dimensions.width ||
-          newDimensions.height !== dimensions.height
-        ) {
-          setDimensions(newDimensions);
-          console.log("Div dimensions changed:", newDimensions);
-        }
-      }
-    };
+  //       // Only update if dimensions actually changed
+  //       if (
+  //         newDimensions.width !== dimensions.width ||
+  //         newDimensions.height !== dimensions.height
+  //       ) {
+  //         setDimensions(newDimensions);
+  //         console.log("Div dimensions changed:", newDimensions);
+  //       }
+  //     }
+  //   };
 
-    updateDimensions();
+  //   updateDimensions();
 
-    // Set up resize observer for more precise tracking
-    const resizeObserver = new ResizeObserver(updateDimensions);
-    if (divRef.current) {
-      resizeObserver.observe(divRef.current);
-    }
+  //   // Set up resize observer for more precise tracking
+  //   const resizeObserver = new ResizeObserver(updateDimensions);
+  //   if (divRef.current) {
+  //     resizeObserver.observe(divRef.current);
+  //   }
 
-    window.addEventListener("resize", updateDimensions);
+  //   window.addEventListener("resize", updateDimensions);
 
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener("resize", updateDimensions);
-    };
-  }, [dimensions]);
+  //   return () => {
+  //     resizeObserver.disconnect();
+  //     window.removeEventListener("resize", updateDimensions);
+  //   };
+  // }, [dimensions]);
   console.log(dimensions, "kkkk");
 
   // Hide loader when both conditions are met
@@ -154,21 +154,21 @@ export default function Home() {
 
     return () => clearTimeout(fallbackTimer);
   }, [isLoading]);
-  useEffect(() => {
-    if (showSmoke) {
-      const box = document.querySelector(".box");
-      if (box) {
-        box.classList.add("boxMove");
-      }
-    }
-  }, [showSmoke]);
+  // useEffect(() => {
+  //   if (showSmoke) {
+  //     const box = document.querySelector(".box");
+  //     if (box) {
+  //       box.classList.add("boxMove");
+  //     }
+  //   }
+  // }, [showSmoke]);
   // Show loader while loading
   // if (isLoading) {
   //   return <Preloader />;
   // }
   // {isLoading && <Preloader />}
   return (
-    <div className="w-screen relative">
+    <div className="w-screen relative mt-40">
       {isLoading && (
         <div className="fixed inset-0 bg-white z-[9999]">
           <Preloader />
@@ -182,13 +182,13 @@ export default function Home() {
       >
         {/* Truck Container */}
         <div
-          className="w-full h-[90vh] sm:h-[70vh] lg:h-[80vh] hd:h-[100vh] 2xl:h-[100vh] bg-white mt-5 relative"
+          className="w-full h-[100vh] bg-white mt-5 relative"
           ref={divRef}
         >
           <div className="right_angle_triangle"></div>
           {showSmoke && (
             <TruckImage
-              dimensions={dimensions}
+              // dimensions={dimensions}
               setTruckArrived={(value) => setTruckArrived(value)}
             />
           )}
@@ -196,7 +196,7 @@ export default function Home() {
 
         {/* Truck Arrived Content */}
         {truckArrived && (
-          <div className="absolute top-20 2xl:top-32  left-1/2 transform -translate-x-1/2 w-full max-w-screen-2xl mx-auto z-10 px-4 sm:px-6 lg:px-8">
+          <div className="absolute top-5  left-1/2 transform -translate-x-1/2 w-full max-w-10/12 mx-auto z-10 px-4 sm:px-6 lg:px-8">
             {/* Title & Description */}
             <div className="relative z-10 text-left mb-4">
               <h2 className="font-bold uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[3.5vw]">
@@ -213,7 +213,7 @@ export default function Home() {
 
             {/* Video Section */}
             <div className="w-full text-right pt-4">
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2 w-full mx-auto">
                 <div className="relative w-full mx-auto">
                   <p className="w-fit -mt-4 sm:-mt-8 lg:-mt-12 justify-self-end font-bold bg-[#01016F] px-3 py-2 rounded-t-lg flex items-center gap-2 text-white text-sm">
                     <FaStarOfLife className="size-[13px] lg:size-[16px] text-red-500" />
@@ -223,7 +223,7 @@ export default function Home() {
                   </p>
 
                   {/* Unified Responsive Video */}
-                  <div className="relative w-full aspect-video overflow-hidden rounded-b-lg rounded-l-lg z-20 max-h-[200px] sm:max-h-[300px] md:max-h-[350px] lg:max-h-[250px] 2xl:max-h-[550px] lg:aspect-[2.5/1] xl:aspect-[3/1]">
+                  <div className="relative w-full  mx-auto aspect-video overflow-hidden rounded-b-lg rounded-l-lg z-20 max-h-[200px] sm:max-h-[300px] md:max-h-[350px] lg:max-h-[250px] xl:max-h-[330px] 2xl:max-h-[330px] lg:aspect-[2.5/1] xl:aspect-[3/1]">
                     <video
                       autoPlay
                       loop
@@ -238,15 +238,15 @@ export default function Home() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="relative w-full md:max-w-[65%] lg:max-w-[48%] 2xl:max-w-[40%]">
+                <div className="relative w-full md:max-w-[65%] lg:max-w-[60%] 2xl:max-w-[50%]">
                   <div className="bg-[#01016F] text-white rounded-lg lg:rounded-xl px-4 py-4 md:px-6 md:py-5 lg:px-8 lg:py-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-                    <h3 className="text-white font-semibold text-sm lg:text-sm 2xl:text-xl leading-tight text-center sm:text-left">
+                    <h3 className="text-white font-semibold text-sm lg:text-sm 2xl:text-lg leading-tight text-center sm:text-left">
                       We Have All Kinds Of Solution{" "}
                       <br className="hidden sm:block" />
                       To Deliver Your Goods
                     </h3>
 
-                    <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-sm 2xl:text-xl px-3 py-2 rounded-full hover:scale-105 transition-transform">
+                    <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-sm xl:text-sm 2xl:text-base px-3 py-2 rounded-full hover:scale-105 transition-transform">
                       Get a free quote
                       <span className="bg-[#01016F] text-white rounded-full p-2 text-base lg:text-sm 2xl:text-base">
                         <LuArrowUpRight />

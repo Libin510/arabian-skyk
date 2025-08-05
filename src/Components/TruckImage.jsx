@@ -1,31 +1,54 @@
-// components/TruckImage.js
 "use client";
 
 import Image from "next/image";
-import "../app/Home.css"; // Ensure this path is correct based on your project structure
-import { useEffect } from "react";
+import "../app/Home.css";
+import { useEffect, useState, useRef } from "react";
 
-const TruckImage = ({ dimensions, setTruckArrived }) => {
+const TruckImage = ({ setTruckArrived }) => {
+  const [progress, setProgress] = useState(0);
+  const stopAt = 0.8;
+  const hasAnimated = useRef(false); // ✅ Track animation run
+
+  useEffect(() => {
+    if (hasAnimated.current) return; // ✅ Prevent rerun
+
+    const duration = 2000;
+    const startTime = performance.now();
+
+    const animate = (time) => {
+      const elapsed = time - startTime;
+      const newProgress = Math.min(elapsed / duration, stopAt);
+      setProgress(newProgress);
+
+      if (newProgress < stopAt) {
+        requestAnimationFrame(animate);
+      } else {
+        hasAnimated.current = true; // ✅ Mark as done
+        setTruckArrived(true);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [setTruckArrived]);
+
+  const translateX = progress * 100;
+  const translateY = progress * 100;
+
   const transformStyle = {
-    transform: `translateX(${dimensions.width - 100}px) translateY(-${dimensions.height - 90}px)`,
-    transition: "transform 2s ease-in-out",
+    transform: `translateX(${translateX}vw) translateY(-${translateY}vh)`,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
   };
- useEffect(() => {
-    const timer = setTimeout(() => {
-      setTruckArrived(true);
-    }, 2000); // animation duration = 2s
-    return () => clearTimeout(timer);
-  }, []);
+
   return (
-    <div className="box " style={transformStyle} >
-    <Image
-      src="/truck.png"
-      alt="Truck"
-      fill
-      className="-rotate-[60deg] sm:-rotate-[38deg] md:-rotate-[45deg] lg:-rotate-[39deg] xl:-rotate-[31deg] 2xl:-rotate-[28deg] object-contain"
-    //   sizes="(max-width: 768px) 10px, (max-width: 1024px) 20px, 50px"
-      // onLoadingComplete={() => setTruckArrived(true)}
-    />
+    <div className="box" style={transformStyle}>
+      <Image
+        src="/truck.png"
+        alt="Truck"
+        fill
+        className="-rotate-[60deg] sm:-rotate-[38deg] md:-rotate-[45deg] lg:-rotate-[35deg] xl:-rotate-[27deg] 2xl:-rotate-[28deg] object-contain"
+      />
     </div>
   );
 };
