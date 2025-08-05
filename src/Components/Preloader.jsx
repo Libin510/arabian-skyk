@@ -120,10 +120,10 @@ export default function Preloader() {
               ease: [0.43, 0.13, 0.23, 0.96],
             },
           }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#8a714a] overflow-hidden perspective-1000"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-bl from-[#F70105] to-[#1131A6]  overflow-hidden perspective-1000"
         >
           {/* Particles */}
-          <div className="absolute inset-0 overflow-hidden">
+          {/* <div className="absolute inset-0 overflow-hidden">
             {particles.map((_, i) => (
               <motion.div
                 key={i}
@@ -134,7 +134,7 @@ export default function Preloader() {
                 className="absolute left-1/2 top-1/2 w-2 h-2 bg-white rounded-full"
               />
             ))}
-          </div>
+          </div> */}
 
           <div className="transform-3d">
         

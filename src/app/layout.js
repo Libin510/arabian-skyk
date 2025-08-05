@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono,Raleway,Red_Hat_Display } from "next/font/google";
 import "./globals.css";
 import Clientnavbar from "@/Components/Clientnavbar"; // this is a client component
 import SmoothScroll from "@/Components/SmoothScroll";
@@ -14,6 +14,15 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+const raleway = Raleway({
+  variable: "--font-raleway",
+  subsets: ["latin"],
+})
+
+const redhatdisplay = Red_Hat_Display({
+  variable: "--font-redhatdisplay",
+  subsets: ["latin"],
+})
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -25,7 +34,7 @@ export default function RootLayout({ children }) {
   return (
    
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`font-redhat antialiased`}>
         <Clientnavbar />
         <div>{children}</div>
       </body>

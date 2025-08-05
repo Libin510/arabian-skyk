@@ -150,7 +150,7 @@ function Footer() {
 
                     {/* Bottom Section */}
                     <div className='mt-8'>
-                        <h3 className="text-[6.5vw] md:text-[6vw] leading-none text-center font-semibold text-[#1E1E1E] tracking-wider whitespace-nowrap overflow-hidden">
+                        <h3 className="text-[6.4vw] 2xl:text-[4.7vw] leading-none text-center font-semibold text-[#1E1E1E] tracking-wider whitespace-nowrap overflow-hidden">
     ARABIANSKYTRANSPORT
   </h3>
 

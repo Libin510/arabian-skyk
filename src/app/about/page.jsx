@@ -120,11 +120,11 @@ export default function About() {
   const visibleLeaders = typeof window !== 'undefined' ? getVisibleLeaders() : leaders.slice(0, 4);
 
   return (
-    <div className="mx-auto p-4 md:p-8 lg:p-16 mt-32">
+    <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6 pt-[6rem] lg:pt-[10rem]">
       {/* About Us Header Section */}
       <div className="mb-8 md:mb-12">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
-          <h1 className="text-[37px] lg:text-[75px] font-bold text-center lg:text-left">
+          <h1 className="text-[37px] lg:text-[75px] font-semibold text-center lg:text-left">
             <span className="text-blue-900">ABOUT</span>{' '}
             <span className="text-red-500">US</span>
           </h1>
@@ -195,7 +195,7 @@ export default function About() {
 
       {/* Our Values Section */}
       <div className="mb-8 md:mb-12 mt-8 md:mt-16">
-        <h1 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2 text-center lg:text-left">OUR VALUES</h1>
+        <h1 className="text-2xl font-bold text-blue-900 mb-2 text-center lg:text-left">OUR VALUES</h1>
       </div>
 
       <div className="space-y-8 md:space-y-16">

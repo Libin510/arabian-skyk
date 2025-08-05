@@ -22,8 +22,8 @@ export default function Navbar() {
   }, [pathname]);
   
   return (
-    <nav className={` py-2 absolute top-0 left-0 right-0 z-50 ${pathname == "/" ? "py-5 bg-transparent" : "bg-gray-100 m-4 sm:m-[47px] shadow-sm rounded-2xl"}`}>
-      <div className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-2 flex items-center justify-between">
+    <nav className={` py-2 absolute top-0 left-0 right-0 z-50 ${pathname == "/" ? "py-5 bg-transparent" : ""}`}>
+      <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-2 flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center">
           <div className="flex items-center space-x-2">
