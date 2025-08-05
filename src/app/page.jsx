@@ -8,7 +8,7 @@ import { PiShieldPlus } from "react-icons/pi";
 import Image from "next/image";
 import { FaStarOfLife } from "react-icons/fa6";
 
-import { Instrument_Sans } from "next/font/google";
+import { Instrument_Sans,Raleway } from "next/font/google";
 import Footer from "@/Components/Footer";
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
@@ -22,6 +22,13 @@ const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
   display: "swap",
 });
+
+const raleway = Raleway({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-raleway",
+  display: "swap",
+})
 
 export default function Home() {
   const [showSmoke, setShowSmoke] = useState(false);
@@ -199,13 +206,13 @@ export default function Home() {
           <div className="absolute top-5  left-1/2 transform -translate-x-1/2 w-full max-w-10/12 mx-auto z-10 px-4 sm:px-6 lg:px-8">
             {/* Title & Description */}
             <div className="relative z-10 text-left mb-4">
-              <h2 className="font-bold uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[3.5vw]">
+              <h2 className={`font-redhat font-semibold uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[4.5vw] 2xl:text-[4vw]`}>
                 <span className="block leading-[0.5]">Arabian Sky</span>
-                <span className="block text-[10.5vw] md:text-[6.5vw] lg:text-[5vw] font-bold">
+                <span className="block text-[10.5vw] md:text-[6.5vw] lg:text-[7vw] 2xl:text-[6vw] font-semibold">
                   Transport
                 </span>
               </h2>
-              <p className="text-sm md:text-base lg:text-base font-semibold text-black tracking-tight capitalize max-w-[85%] md:max-w-[65%] lg:max-w-[65%]">
+              <p className="text-sm md:text-base lg:text-base font-semibold text-black tracking-tight capitalize w-[85%] md:w-[65%] lg:w-[55%]">
                 Powering the UAE and GCC with professional, scalable, and
                 time-critical logistics solutions for over 25 years.
               </p>
@@ -217,7 +224,7 @@ export default function Home() {
                 <div className="relative w-full mx-auto">
                   <p className="w-fit -mt-4 sm:-mt-8 lg:-mt-12 justify-self-end font-bold bg-[#01016F] px-3 py-2 rounded-t-lg flex items-center gap-2 text-white text-sm">
                     <FaStarOfLife className="size-[13px] lg:size-[16px] text-red-500" />
-                    <span className="font-instrument-sans font-semibold text-sm lg:text-sm 2xl:text-xl">
+                    <span className="font-instrument-sans font-semibold text-sm lg:text-xl 2xl:text-xl">
                       THE WHEELS OF RELIABILITY
                     </span>
                   </p>
@@ -260,7 +267,7 @@ export default function Home() {
         )}
 
         {/* About Us Section - Enhanced Responsiveness */}
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-2">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
           <section className="py-12 lg:py-40 bg-white">
             <div className="">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 fade-in-up">
@@ -295,7 +302,7 @@ export default function Home() {
         </div>
 
         {/* Services Section - Mobile Responsive Layout */}
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-2">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
           <section className="bg-white py-8 lg:py-20">
             <div className="w-full">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 fade-in-up">
@@ -365,7 +372,7 @@ export default function Home() {
                         alt="Truck"
                         width={600}
                         height={120}
-                        className="justify-self-end mt-10 w-[40vw] h-[16vh] lg:w-[35vw] lg:h-[33vh]"
+                        className="justify-self-end mt-10 w-[40vw] h-[16vh] lg:w-[35vw] lg:h-[27vh] 2xl:w-[25vw] 2xl:h-[22vh]"
                       />
                     </div>
 
@@ -411,7 +418,7 @@ export default function Home() {
                                 {index + 1}. {item.title}
                               </h3>
                               <div
-                                className="w-[50vw] h-[35vh] lg:w-[40vw] lg:h-[45vh] bg-gray-300 rounded flex items-center justify-center hover-lift"
+                                className="w-[50vw] h-[35vh] lg:w-[40vw] lg:h-[45vh] 2xl:w-[35vw] 2xl:h-[45vh] bg-gray-300 rounded-xl flex items-center justify-center hover-lift"
                                 style={{ aspectRatio: "4/2" }}
                               >
                                 <span className="text-xs text-gray-600">
@@ -439,7 +446,7 @@ export default function Home() {
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
               <div className="whitespace-nowrap py-2">
                 <h1
-                  className={`${instrumentSans.variable} font-sans slide-text text-[40px] xs:text-[60px] sm:text-[80px] md:text-[120px] lg:text-[15vw] font-bold text-[#FFFFFF80] opacity-70 tracking-wider select-none`}
+                  className={`${raleway.variable} font-sans slide-text text-[40px] xs:text-[60px] sm:text-[80px] md:text-[120px] lg:text-[15vw] font-bold text-[#FFFFFF80] opacity-70 tracking-wider select-none`}
                   style={{
                     "--animation-duration": `${35 / scrollSpeed}s`,
                   }}
@@ -527,7 +534,7 @@ export default function Home() {
        </div> */}
 
         {/* Industries Section - Responsive Grid */}
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-2">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16 tracking-tight fade-in-up">
             WHY CHOOSE <span className="text-red-500">US</span>
           </h2>
@@ -535,7 +542,7 @@ export default function Home() {
         </div>
 
         {/* Industries We Serve Section */}
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-2">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
           <section className="py-8 sm:py-12 lg:py-16">
             <div className="mx-auto max-w-7xl">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 fade-in-up">
@@ -569,7 +576,7 @@ export default function Home() {
           </section>
         </div>
 
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-2">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
           <Footer />
         </div>
       </div>
