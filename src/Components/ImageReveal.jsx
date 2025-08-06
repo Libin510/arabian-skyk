@@ -103,7 +103,7 @@ const ImageReveal = () => {
             />
           )}
           <h2
-            className={`newFont uppercase lg:text-3xl text-lg font-semibold sm:py-6 py-4 leading-[100%] relative ${
+            className={`newFont uppercase lg:text-2xl text-lg font-semibold sm:py-6 py-4 leading-[100%] relative ${
               activeImage?.id === image?.id
                 ? 'mix-blend-difference z-20 text-black'
                 : ' text-gray-500'

@@ -82,12 +82,22 @@
    }
  }
 
+ @keyframes scroll-left{
+   0% {
+     transform: translateX(0);
+   }
+   100% {
+     transform: translateX(-50%);
+   }
+ }
+
+
  .gradient-animate {
    animation: gradientShift 8s ease infinite;
  }
 
  .slide-text {
-   animation: slideRightToLeft var(--animation-duration, 15s) linear infinite;
+   animation: scroll-left 30s linear infinite;
  }
 
  .float-animation {
@@ -236,3 +246,4 @@
 .boxMove {
   animation: boxMove 2s ease-in-out forwards;
 }
+

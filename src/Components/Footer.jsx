@@ -137,7 +137,7 @@ function Footer() {
                                         className="w-full px-4 py-3 border border-gray-300 rounded-md text-sm pr-24 md:pr-32"
                                     />
                                     <button
-                                        className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#01016F] text-white px-3 md:px-6 py-2 rounded-md text-xs md:text-sm font-semibold"
+                                        className="absolute top-1/2 right-1 -translate-y-1/2 bg-[#01016F] text-white px-3 md:px-6 py-2 rounded text-xs md:text-sm font-semibold"
                                         style={{ height: '80%' }}
                                     >
                                         <span className="hidden md:inline">Get Started</span>

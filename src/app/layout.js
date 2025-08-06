@@ -2,6 +2,8 @@ import { Geist, Geist_Mono,Raleway,Red_Hat_Display } from "next/font/google";
 import "./globals.css";
 import Clientnavbar from "@/Components/Clientnavbar"; // this is a client component
 import SmoothScroll from "@/Components/SmoothScroll";
+import { ReactLenis } from 'lenis/react';
+
 
 
 
@@ -34,10 +36,12 @@ export default function RootLayout({ children }) {
   return (
    
     <html lang="en">
+        <ReactLenis root>
       <body className={`font-redhat antialiased`}>
         <Clientnavbar />
         <div>{children}</div>
       </body>
+      </ReactLenis>
     </html>
    
   );

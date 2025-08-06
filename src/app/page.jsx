@@ -15,6 +15,8 @@ import "./Home.css";
 import ImageReveal from "@/Components/ImageReveal";
 import Preloader from "@/Components/Preloader";
 import TruckImage from "@/Components/TruckImage";
+import ScrollBaseAnimation from "../../components/uilayouts/scroll-text-marque";
+import StickyGallery from "@/Components/StickyGallery";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -175,7 +177,7 @@ export default function Home() {
   // }
   // {isLoading && <Preloader />}
   return (
-    <div className="w-screen relative mt-40">
+    <div className="w-screen relative mt-28 lg:mt-40">
       {isLoading && (
         <div className="fixed inset-0 bg-white z-[9999]">
           <Preloader />
@@ -203,7 +205,7 @@ export default function Home() {
 
         {/* Truck Arrived Content */}
         {truckArrived && (
-          <div className="absolute top-5  left-1/2 transform -translate-x-1/2 w-full max-w-10/12 mx-auto z-10 px-4 sm:px-6 lg:px-8">
+          <div className="absolute top-5  left-1/2 transform -translate-x-1/2 w-full max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
             {/* Title & Description */}
             <div className="relative z-10 text-left mb-4">
               <h2 className={`font-redhat font-semibold uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[4.5vw] 2xl:text-[4vw]`}>
@@ -230,7 +232,7 @@ export default function Home() {
                   </p>
 
                   {/* Unified Responsive Video */}
-                  <div className="relative w-full  mx-auto aspect-video overflow-hidden rounded-b-lg rounded-l-lg z-20 max-h-[200px] sm:max-h-[300px] md:max-h-[350px] lg:max-h-[250px] xl:max-h-[330px] 2xl:max-h-[330px] lg:aspect-[2.5/1] xl:aspect-[3/1]">
+                  <div className="relative w-full  mx-auto aspect-video overflow-hidden rounded-b-lg rounded-l-lg z-20 h-full lg:h-[56vh]">
                     <video
                       autoPlay
                       loop
@@ -253,9 +255,9 @@ export default function Home() {
                       To Deliver Your Goods
                     </h3>
 
-                    <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-sm xl:text-sm 2xl:text-base px-3 py-2 rounded-full hover:scale-105 transition-transform">
+                    <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-sm xl:text-sm 2xl:text-base pl-3 pr-1 py-1 rounded-full hover:scale-105 transition-transform">
                       Get a free quote
-                      <span className="bg-[#01016F] text-white rounded-full p-2 text-base lg:text-sm 2xl:text-base">
+                      <span className="bg-[#01016F] text-white rounded-full p-2 text-base lg:text-2xl">
                         <LuArrowUpRight />
                       </span>
                     </button>
@@ -305,154 +307,48 @@ export default function Home() {
         <div className="max-w-screen-xl mx-auto px-4 md:px-6">
           <section className="bg-white py-8 lg:py-20">
             <div className="w-full">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 fade-in-up">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 fade-in-up">
                 OUR <span className="text-red-500">SERVICES</span>
               </h2>
               {/* <TruckWrapper className="w-full" /> */}
-              <div className="text-center mb-4 sm:mb-6 md:mb-8 fade-in-up delay-200 px-4">
-                <p className="text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base">
+              <div className="text-center fade-in-up delay-200 px-4">
+                <p className="text-gray-600 max-w-3xl mx-auto text-base lg:text-xl">
                   As Logistics Service Providers, We Offer A Wide Range Of
                   Services To Support To Meet The Diverse Logistics Needs Of
                   Businesses Across The UAE And GCC.
                 </p>
               </div>
 
-              {/* Services - Mobile First Approach */}
-              <div className="py-6 sm:py-8 md:py-12 lg:py-16 relative">
-                {/* Mobile Layout */}
-                <div className="block md:hidden scrollbar-hide">
-                  <div className="space-y-6 sm:space-y-8">
-                    {services.map((item, index) => (
-                      <div key={index} className="text-center">
-                        <h3 className="font-semibold text-gray-800 text-sm sm:text-base mb-3 sm:mb-4">
-                          {index + 1}. {item.title}
-                        </h3>
-                        <div className="w-full h-[23vh] bg-gray-300 rounded flex items-center justify-center mx-auto hover-lift">
-                          <span className="text-xs text-gray-600">
-                            Service Image
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Mobile Explore Button */}
-                  <div className="flex justify-center mt-8">
-                    <div className="relative w-20 h-20 bg-[#01016F] rounded-full flex items-center justify-center group hover:scale-110 transition-all duration-300 cursor-pointer pulse-glow">
-                      <svg
-                        className="absolute inset-0 w-full h-full spin-slow"
-                        viewBox="0 0 128 128"
-                      >
-                        <defs>
-                          <path
-                            id="circle-path-mobile"
-                            d="M 64, 64 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
-                          />
-                        </defs>
-                        <text className="fill-white text-base font-normal tracking-wider">
-                          <textPath href="#circle-path-mobile" startOffset="0%">
-                            Explore • Explore •
-                          </textPath>
-                        </text>
-                      </svg>
-                      <div className="bg-white rounded-full p-1.5 z-10 group-hover:rotate-45 transition-transform duration-300">
-                        <LuArrowUpRight className="text-base text-black" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Desktop Layout */}
-                <div className="hidden md:block">
-                  {/* Fixed Truck and Explore Button */}
-                  <div className="absolute top-0 right-0 flex flex-col gap-12 z-20">
-                    <div className="sticky top-8 self-end">
-                      <Image
-                        src="/Truckmg.png"
-                        alt="Truck"
-                        width={600}
-                        height={120}
-                        className="justify-self-end mt-10 w-[40vw] h-[16vh] lg:w-[35vw] lg:h-[27vh] 2xl:w-[25vw] 2xl:h-[22vh]"
-                      />
-                    </div>
-
-                    <div className="sticky top-32 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-40 lg:h-40 p-5 bg-[#01016F] rounded-full flex items-center justify-center group hover:scale-110 transition-all duration-300 cursor-pointer pulse-glow">
-                        <svg
-                          className="absolute inset-0 w-full h-full spin-slow"
-                          viewBox="0 0 128 128"
-                        >
-                          <defs>
-                            <path
-                              id="circle-path-desktop"
-                              d="M 64, 64 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0"
-                            />
-                          </defs>
-                          <text className="fill-white text-sm sm:text-lg lg:text-xl font-normal tracking-wider">
-                            <textPath
-                              href="#circle-path-desktop"
-                              startOffset="0%"
-                            >
-                              Explore More • Explore More •
-                            </textPath>
-                          </text>
-                        </svg>
-                        <div className="bg-white rounded-full p-1.5 sm:p-2 z-10 group-hover:rotate-45 transition-transform duration-300">
-                          <LuArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-black" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Scrollable Content */}
-                  <div className="h-[500px] overflow-y-auto pr-[400px] lg:pr-[640px] scrollbar-hide">
-                    <div className="flex flex-col gap-8 lg:gap-12">
-                      {services.map((item, index) => (
-                        <div
-                          key={index}
-                          className="service-card visible grid grid-cols-1 items-center justify-center"
-                        >
-                          <div className="w-full">
-                            <div className="flex flex-col gap-3 sm:gap-4">
-                              <h3 className="font-semibold text-gray-800 text-sm lg:text-lg underline">
-                                {index + 1}. {item.title}
-                              </h3>
-                              <div
-                                className="w-[50vw] h-[35vh] lg:w-[40vw] lg:h-[45vh] 2xl:w-[35vw] 2xl:h-[45vh] bg-gray-300 rounded-xl flex items-center justify-center hover-lift"
-                                style={{ aspectRatio: "4/2" }}
-                              >
-                                <span className="text-xs text-gray-600">
-                                  Service Image
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <StickyGallery/>
             </div>
           </section>
         </div>
+        
 
         {/* Background Animation Section - Mobile Optimized */}
         <div className="w-full">
-          <div className="relative overflow-hidden 15vh md:25vh lg:36vh">
+          <div className="relative overflow-hidden h-[15vh] md:h-[25vh] lg:h-[36vh]">
             <div className="absolute inset-0 gradient-animate"></div>
 
             {/* Responsive Background Text */}
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
               <div className="whitespace-nowrap py-2">
-                <h1
-                  className={`${raleway.variable} font-sans slide-text text-[40px] xs:text-[60px] sm:text-[80px] md:text-[120px] lg:text-[15vw] font-bold text-[#FFFFFF80] opacity-70 tracking-wider select-none`}
+                {/* <h1
+                  className={`slide-text text-[40px] xs:text-[60px] sm:text-[80px] md:text-[120px] lg:text-[15vw] font-bold text-[#FFFFFF80] opacity-70 tracking-wider select-none`}
                   style={{
                     "--animation-duration": `${35 / scrollSpeed}s`,
                   }}
                 >
-                  ARABIAN SKY TRANSPORT
-                </h1>
+                  ARABIAN SKY TRANSPORT ARABIAN SKY TRANSPORT
+                </h1> */}
+                <ScrollBaseAnimation
+          // delay={500}
+          baseVelocity={3}
+          scrollDependent={true}
+          clasname='font-bold leading-[90%] text-[15vw] text-[#FFFFFF80]'
+        >
+          ARABIAN SKY TRANSPORT
+        </ScrollBaseAnimation>
               </div>
             </div>
 
@@ -466,14 +362,10 @@ export default function Home() {
                 {[...Array(isMobile ? 2 : 4)].map((_, index) => (
                   <div
                     key={index}
-                    className={`bg-gray-400 bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer float-animation delay-${
+                    className={`bg-gray-400 w-[15vw] h-[18vh] bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer${
                       index * 100
                     }`}
-                    style={{
-                      animationDelay: `${index * 300}ms`,
-                      width: isMobile ? "80px" : "15vw",
-                      height: isMobile ? "50px" : "18vh",
-                    }}
+                  
                   />
                 ))}
               </div>
