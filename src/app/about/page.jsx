@@ -1,6 +1,7 @@
 "use client";
 import Footer from "@/Components/Footer";
 import { useState } from "react";
+import { FaStarOfLife } from "react-icons/fa6";
 
 // app/about/page.jsx
 export default function About() {
@@ -227,15 +228,16 @@ export default function About() {
       <section className="sticky top-0  overflow-hidden bg-white">
         {/* Our Values Section */}
 
-        <div className="bg-gradient-to-bl from-[#F70105] to-[#1131A6] py-12 ">
+        <div className="bg-gradient-to-bl from-[#F70105] to-[#1131A6] py-20 ">
           <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
-            <div className="mb-8 md:mb-12 mt-8 md:mt-16">
-              <h1 className="text-2xl font-bold text-[#1131A6] mb-2 text-center lg:text-left">
+            <div className="bg-white rounded-full p-4 w-fit flex gap-1 justify-center items-center">
+            <FaStarOfLife className="size-[13px] lg:size-[16px] text-red-500" />
+              <h1 className="text-2xl font-bold text-[#1131A6] text-center lg:text-left">
                 OUR VALUES
               </h1>
             </div>
 
-            <div className="space-y-8 md:space-y-16">
+            <div className="space-y-8 md:space-y-16 pt-12">
               {values.map((value, index) => (
                 <div key={value.id} className="relative">
                   <div className="flex flex-col lg:flex-row lg:items-center gap-4 md:gap-8 lg:gap-72">
@@ -259,7 +261,7 @@ export default function About() {
                   </div>
 
                   {index < values.length - 1 && (
-                    <div className="w-full h-px bg-gray-300 mt-8 md:mt-12"></div>
+                    <div className="w-full h-px bg-white mt-8 md:mt-12"></div>
                   )}
                 </div>
               ))}

@@ -2,6 +2,7 @@
 import Footer from "@/Components/Footer";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { LuArrowUpRight } from "react-icons/lu";
 
 export default function Service() {
   const headerRef = useRef();
@@ -205,10 +206,10 @@ export default function Service() {
 
           <button
             type="button"
-            className="group bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white px-8 py-4 rounded-full font-medium text-sm hover:bg-blue-800 transition-colors duration-200 flex items-center gap-2 max-w-[180px] w-auto"
+            className="group bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white  pl-6 pr-1 py-1 rounded-full font-medium text-base hover:bg-blue-800 transition-colors duration-200 flex items-center gap-3 w-fit"
           >
             get in touch
-            <svg
+            {/* <svg
               className="group-hover:translate-x-1 group-hover:rotate-45 transition-transform duration-300"
               xmlns="http://www.w3.org/2000/svg"
               width="28"
@@ -221,7 +222,10 @@ export default function Service() {
                 d="M10.1824 18.7166C10.0165 18.5664 9.91708 18.3565 9.90595 18.133C9.89483 17.9095 9.97294 17.6907 10.1231 17.5248L16.7569 10.1959L11.8224 10.7171C11.6006 10.7393 11.379 10.6728 11.2061 10.5321C11.0331 10.3914 10.9229 10.188 10.8994 9.96634C10.876 9.74465 10.9412 9.52268 11.0809 9.34893C11.2206 9.17519 11.4233 9.06377 11.6449 9.03903L18.7757 8.2858C18.8939 8.27318 19.0134 8.28567 19.1264 8.32245C19.2394 8.35923 19.3434 8.41947 19.4315 8.49923C19.5196 8.57899 19.5899 8.67646 19.6377 8.78527C19.6855 8.89407 19.7098 9.01175 19.709 9.1306L19.6677 16.301C19.6677 16.4122 19.6457 16.5223 19.603 16.625C19.5603 16.7277 19.4977 16.8209 19.4188 16.8993C19.3399 16.9777 19.2463 17.0397 19.1434 17.0818C19.0405 17.1239 18.9302 17.1453 18.819 17.1446C18.7078 17.144 18.5978 17.1213 18.4954 17.078C18.3929 17.0347 18.3001 16.9716 18.2221 16.8922C18.1442 16.8129 18.0827 16.7189 18.0412 16.6158C17.9997 16.5126 17.979 16.4022 17.9803 16.291L18.008 11.3283L11.3742 18.6573C11.224 18.8232 11.0141 18.9226 10.7906 18.9338C10.5671 18.9449 10.3483 18.8668 10.1824 18.7166Z"
                 fill="black"
               />
-            </svg>
+            </svg> */}
+            <span className="bg-white text-black rounded-full p-2 text-base lg:text-2xl">
+              <LuArrowUpRight />
+            </span>
           </button>
         </div>
       </div>
@@ -281,17 +285,13 @@ export default function Service() {
                     </div>
 
                     <div className="pt-2">
-                      <button className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white px-2 sm:px-4 py-2 sm:py-3 rounded-full font-semibold hover:bg-blue-800 transition-colors duration-300 flex items-center gap-3 text-sm sm:text-base">
+                      <button className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white pl-6 pr-1 py-1 rounded-full font-semibold hover:bg-blue-800 transition-colors duration-300 flex items-center gap-3 text-sm lg:text-base">
                         Learn More
-                        <div className="w-5 sm:w-6 h-5 sm:h-6 bg-white rounded-full flex items-center justify-center">
-                          <svg
-                            className="w-3 h-3 sm:w-4 sm:h-4 text-blue-900"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6-6 6-1.41-1.41z" />
-                          </svg>
-                        </div>
+                       
+                          <span className="bg-white text-black rounded-full p-2 text-base lg:text-2xl">
+                            <LuArrowUpRight />
+                          </span>
+                       
                       </button>
                     </div>
                   </div>
