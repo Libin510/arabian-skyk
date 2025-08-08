@@ -3,6 +3,7 @@ import "./globals.css";
 import Clientnavbar from "@/Components/Clientnavbar"; // this is a client component
 import SmoothScroll from "@/Components/SmoothScroll";
 import { ReactLenis } from 'lenis/react';
+import { ViewTransitions } from "next-view-transitions";
 
 
 
@@ -34,7 +35,7 @@ const redhatdisplay = Red_Hat_Display({
 export default function RootLayout({ children }) {
 
   return (
-   
+   <ViewTransitions>
     <html lang="en">
         <ReactLenis root>
       <body className={`font-redhat antialiased`}>
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
       </body>
       </ReactLenis>
     </html>
+    </ViewTransitions>
    
   );
 }

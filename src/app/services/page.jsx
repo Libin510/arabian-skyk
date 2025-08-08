@@ -3,6 +3,7 @@ import Footer from "@/Components/Footer";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { LuArrowUpRight } from "react-icons/lu";
+import PageWrapper from "@/Components/PageWrapper";
 
 export default function Service() {
   const headerRef = useRef();
@@ -183,7 +184,8 @@ export default function Service() {
   ];
 
   return (
-    <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6 flex flex-col gap-[32px] mt-38">
+   <PageWrapper>
+     <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6 flex flex-col gap-[32px] mt-38">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-0">
         <h1
           className="text-[37px] lg:text-[75px] text-[#01016F] font-semibold uppercase"
@@ -374,5 +376,6 @@ export default function Service() {
       </div>
       <Footer />
     </div>
+   </PageWrapper>
   );
 }
