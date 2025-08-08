@@ -3,6 +3,7 @@ import Footer from "@/Components/Footer";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { FaStarOfLife } from "react-icons/fa6";
+import PageWrapper from "@/Components/PageWrapper";
 
 // app/about/page.jsx
 export default function About() {
@@ -197,7 +198,8 @@ export default function About() {
     typeof window !== "undefined" ? getVisibleLeaders() : leaders.slice(0, 4);
 
   return (
-    <div className=" pt-[6rem] lg:pt-[10rem]">
+   <PageWrapper>
+     <div className=" pt-[6rem] lg:pt-[10rem]">
       {/* About Us Header Section */}
       <section className="h-auto md:h-screen w-full relative md:sticky top-0">
         <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
@@ -465,5 +467,6 @@ export default function About() {
         </div>
       </section>
     </div>
+   </PageWrapper>
   );
 }

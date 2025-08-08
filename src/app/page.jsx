@@ -32,6 +32,7 @@ const raleway = Raleway({
   variable: "--font-raleway",
   display: "swap",
 });
+import PageWrapper from "@/Components/PageWrapper";
 
 export default function Home() {
   const [showSmoke, setShowSmoke] = useState(false);
@@ -177,7 +178,8 @@ export default function Home() {
     }
   }, [truckArrived]);
   return (
-    <div className="w-screen relative mt-28 lg:mt-40">
+   <>
+     <div className="w-screen relative mt-28 lg:mt-40">
       {isLoading && (
         <div className="fixed inset-0 bg-white z-[9999]">
           <Preloader />
@@ -499,5 +501,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+   </>
   );
 }

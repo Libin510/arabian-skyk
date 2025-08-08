@@ -105,7 +105,7 @@ const ImageReveal = () => {
           <h2
             className={`newFont uppercase lg:text-2xl text-lg font-semibold sm:py-6 py-4 leading-[100%] relative ${
               activeImage?.id === image?.id
-                ? 'mix-blend-difference z-20 text-black'
+                ? 'mix-blend-difference z-20 !text-black'
                 : ' text-gray-500'
             }`}>
             {image.alt}
@@ -113,13 +113,13 @@ const ImageReveal = () => {
           <button
             className={`sm:block hidden p-4 rounded-full transition-all duration-300 ease-out ${
               activeImage?.id === image?.id
-                ? 'mix-blend-difference z-20 gradient-animate text-white'
+                ? 'mix-blend-difference z-20 !bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white'
                 : 'text-black'
             }`}>
             <MoveUpRight className="w-8 h-8" />
           </button>
           <div
-            className={`h-[2px] gradient-animate absolute bottom-0 left-0 transition-all duration-300 ease-linear ${activeImage?.id === image?.id ? 'w-full' : 'w-0'}`}
+            className={`h-[2px] !bg-gradient-to-r from-[#1131A6] to-[#F70105] absolute bottom-0 left-0 transition-all duration-300 ease-linear ${activeImage?.id === image?.id ? 'w-full' : 'w-0'}`}
           />
         </div>
       ))}

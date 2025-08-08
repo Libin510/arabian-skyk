@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import Footer from "@/Components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import API, { action } from "../Api";
+import PageWrapper from "@/Components/PageWrapper";
 
 export default function Career() {
   // const accordionData = [
@@ -180,7 +181,7 @@ export default function Career() {
     },
   ];
   const [accordionData, setAccordionData] = useState([]);
-  const [selectedId, setSelectedId] =  useState(accordionData[0]?.id);
+  const [selectedId, setSelectedId] = useState(accordionData[0]?.id);
   const [letterSpans, setLetterSpans] = useState([]);
   const [isClicked, setIsClicked] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -340,7 +341,7 @@ export default function Career() {
           createdAt: career.createdAt,
           updatedAt: career.updatedAt,
         }));
-        
+
         setAccordionData(formattedCareers);
         // Set the first item as selected by default
         if (formattedCareers.length > 0) {
@@ -367,7 +368,7 @@ export default function Career() {
           createdAt: career.createdAt,
           updatedAt: career.updatedAt,
         }));
-        
+
         setAccordionData(formattedCareers);
         // Set the first item as selected by default
         if (formattedCareers.length > 0) {
@@ -383,158 +384,160 @@ export default function Career() {
   }, []);
 
   return (
-    <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6 flex flex-col gap-[32px] mt-38">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-0">
-        <h1
-          className="text-[45px] lg:text-[75px] text-[#01016F] font-semibold uppercase "
-          ref={headerRef}
-        >
-          {letterSpans}
-        </h1>
-        <div className="flex flex-col gap-2 w-auto lg:max-w-[600px] ">
-          <p className="text-[20px] lg:text-[42px] font-semibold">
-            Build a Future with Us
-          </p>
-          <p className="text-[18px] lg:text-[20px]">
-            At Arabian Sky Transport, we believe that our success comes from the
-            dedication and expertise of our team. We're always on the lookout
-            for talented individuals to join our growing family. If you're
-            passionate about logistics, transport, and innovation, we want to
-            hear from you!
-          </p>
+    <PageWrapper>
+      <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6 flex flex-col gap-[32px] mt-38">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-0">
+          <h1
+            className="text-[45px] lg:text-[75px] text-[#01016F] font-semibold uppercase "
+            ref={headerRef}
+          >
+            {letterSpans}
+          </h1>
+          <div className="flex flex-col gap-2 w-auto lg:max-w-[600px] ">
+            <p className="text-[20px] lg:text-[42px] font-semibold">
+              Build a Future with Us
+            </p>
+            <p className="text-[18px] lg:text-[20px]">
+              At Arabian Sky Transport, we believe that our success comes from
+              the dedication and expertise of our team. We're always on the
+              lookout for talented individuals to join our growing family. If
+              you're passionate about logistics, transport, and innovation, we
+              want to hear from you!
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div className="bg-[#BEBDBD] h-[465px] w-auto rounded-[16px]"></div>
+        <div className="bg-[#BEBDBD] h-[465px] w-auto rounded-[16px]"></div>
 
-      <div className="mt-[40px] lg:mt-[115px]">
-        <h1 className="text-[30px] lg:text-[50px] text-[#01016F] text-center uppercase font-semibold ">
-          why work with us <span className="text-[#EF1E24]">?</span>
-        </h1>
+        <div className="mt-[40px] lg:mt-[115px]">
+          <h1 className="text-[30px] lg:text-[50px] text-[#01016F] text-center uppercase font-semibold ">
+            why work with us <span className="text-[#EF1E24]">?</span>
+          </h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mt-[40px]">
-          {reasons.map((reason, index) => (
-            <div
-              ref={(el) => (cardRefs.current[index] = el)}
-              onMouseMove={(e) => handleMouseMove(e, index)}
-              onMouseLeave={() => handleMouseLeave(index)}
-              key={index}
-              className="flex flex-col gap-4 h-[320px] w-[320px] justify-center items-center mt-[40px] shadow-md border border-gray-200 rounded-[16px] p-4 text-center mx-auto"
-            >
-              <div className="mb-4">{reason.icon}</div>
-              <h2 className="text-[20px] font-semibold text-[#01016F]">
-                {reason.title}
-              </h2>
-              <p className="text-[16px] text-gray-700 text-center">
-                {reason.description}
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mt-[40px]">
+            {reasons.map((reason, index) => (
+              <div
+                ref={(el) => (cardRefs.current[index] = el)}
+                onMouseMove={(e) => handleMouseMove(e, index)}
+                onMouseLeave={() => handleMouseLeave(index)}
+                key={index}
+                className="flex flex-col gap-4 h-[320px] w-[320px] justify-center items-center mt-[40px] shadow-md border border-gray-200 rounded-[16px] p-4 text-center mx-auto"
+              >
+                <div className="mb-4">{reason.icon}</div>
+                <h2 className="text-[20px] font-semibold text-[#01016F]">
+                  {reason.title}
+                </h2>
+                <p className="text-[16px] text-gray-700 text-center">
+                  {reason.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-[40px] lg:mt-[115px]">
+          <h1 className="text-[30px] lg:text-[50px] text-[#01016F] text-center uppercase font-semibold ">
+            Open positions
+          </h1>
+
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6 w-full md:max-w-[80%] mx-auto">
+            <div>
+              <AnimatePresence mode="wait">
+                {accordionData
+                  .filter((item) => item.id === selectedId)
+                  .map((item) => (
+                    <motion.div
+                      key={item.id}
+                      ref={openRef}
+                      layout
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -10 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <Accordion
+                        data={item}
+                        isExpanded={true}
+                        onToggle={() => {}}
+                        onApplyNow={handleApplyNow}
+                      />
+                    </motion.div>
+                  ))}
+              </AnimatePresence>
             </div>
-          ))}
-        </div>
-      </div>
 
-      <div className="mt-[40px] lg:mt-[115px]">
-        <h1 className="text-[30px] lg:text-[50px] text-[#01016F] text-center uppercase font-semibold ">
-          Open positions
-        </h1>
-
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6 w-full md:max-w-[80%] mx-auto">
-          <div>
-            <AnimatePresence mode="wait">
+            <div className="flex flex-col gap-6">
               {accordionData
-                .filter((item) => item.id === selectedId)
+                .filter((item) => item.id !== selectedId)
                 .map((item) => (
-                  <motion.div
-                    key={item.id}
-                    ref={openRef}
-                    layout
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    transition={{ duration: 0.4 }}
-                  >
+                  <motion.div key={item.id} layout>
                     <Accordion
                       data={item}
-                      isExpanded={true}
-                      onToggle={() => { }}
+                      isExpanded={false}
+                      onToggle={() => {
+                        setSelectedId(item.id);
+                        setIsClicked(!isClicked);
+                      }}
                       onApplyNow={handleApplyNow}
                     />
                   </motion.div>
                 ))}
-            </AnimatePresence>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            {accordionData
-              .filter((item) => item.id !== selectedId)
-              .map((item) => (
-                <motion.div key={item.id} layout>
-                  <Accordion
-                    data={item}
-                    isExpanded={false}
-                    onToggle={() => {
-                      setSelectedId(item.id);
-                      setIsClicked(!isClicked);
-                    }}
-                    onApplyNow={handleApplyNow}
-                  />
-                </motion.div>
-              ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-full md:max-w-[80%] mx-auto px-2 md:px-6 py-16 bg-white">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
-            HOW TO APPLY
-          </h1>
-          <p className="text-gray-600 text-lg">
-            Follow These Simple Steps To Join Our Team.
-          </p>
-        </div>
-
-        <div className="relative">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="flex items-start gap-4 md:gap-8 mb-12 md:mb-16 last:mb-0"
-            >
-              <div className="flex-shrink-0 relative">
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-purple-200 rounded-full flex items-center justify-center relative z-10 scale-up">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-900 rounded-full flex items-center justify-center">
-                    <span className="text-white text-sm md:text-lg font-bold">
-                      {step.number}
-                    </span>
-                  </div>
-                </div>
-                {index < steps.length - 1 && (
-                  <div className="absolute top-full left-1/2 sm:left-10 transform -translate-x-1/2 sm:translate-x-0 w-0.5 h-[calc(100%+2rem)] bg-gray-600 z-0"></div>
-                )}
-              </div>
-
-              {/* Step Content */}
-              <div className="flex-1 p-2 md:p-4 border border-gray-200 bg-white rounded-lg shadow-md">
-                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
             </div>
-          ))}
+          </div>
         </div>
+
+        <div className="max-w-full md:max-w-[80%] mx-auto px-2 md:px-6 py-16 bg-white">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
+              HOW TO APPLY
+            </h1>
+            <p className="text-gray-600 text-lg">
+              Follow These Simple Steps To Join Our Team.
+            </p>
+          </div>
+
+          <div className="relative">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className="flex items-start gap-4 md:gap-8 mb-12 md:mb-16 last:mb-0"
+              >
+                <div className="flex-shrink-0 relative">
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-purple-200 rounded-full flex items-center justify-center relative z-10 scale-up">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-900 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm md:text-lg font-bold">
+                        {step.number}
+                      </span>
+                    </div>
+                  </div>
+                  {index < steps.length - 1 && (
+                    <div className="absolute top-full left-1/2 sm:left-10 transform -translate-x-1/2 sm:translate-x-0 w-0.5 h-[calc(100%+2rem)] bg-gray-600 z-0"></div>
+                  )}
+                </div>
+
+                {/* Step Content */}
+                <div className="flex-1 p-2 md:p-4 border border-gray-200 bg-white rounded-lg shadow-md">
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <Footer />
+
+        {/* Job Application Modal */}
+        <JobApplicationModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          jobTitle={selectedJobTitle}
+        />
       </div>
-
-      <Footer />
-
-      {/* Job Application Modal */}
-      <JobApplicationModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        jobTitle={selectedJobTitle}
-      />
-    </div>
+    </PageWrapper>
   );
 }
