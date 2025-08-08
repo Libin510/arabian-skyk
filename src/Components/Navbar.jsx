@@ -42,25 +42,25 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center space-x-8">
           <Link
             href="/"
-            className="text-gray-700 hover:text-blue-600 font-bold transition-colors"
+            className="text-gray-700 hover:text-[#01016F] font-bold transition-colors"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="text-gray-700 hover:text-blue-600 font-bold transition-colors"
+            className="text-gray-700 hover:text-[#01016F] font-bold transition-colors"
           >
             About Us
           </Link>
           <Link
             href="/services"
-            className="text-gray-700 hover:text-blue-600 font-bold transition-colors"
+            className="text-gray-700 hover:text-[#01016F] font-bold transition-colors"
           >
             Services
           </Link>
           <Link
             href="/careers"
-            className="text-gray-700 hover:text-blue-600 font-bold transition-colors"
+            className="text-gray-700 hover:text-[#01016F] font-bold transition-colors"
           >
             Careers
           </Link>

@@ -8,7 +8,7 @@ import { PiShieldPlus } from "react-icons/pi";
 import Image from "next/image";
 import { FaStarOfLife } from "react-icons/fa6";
 
-import { Instrument_Sans, Raleway } from "next/font/google";
+import { Instrument_Sans,  Raleway } from "next/font/google";
 import Footer from "@/Components/Footer";
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
@@ -214,10 +214,12 @@ export default function Home() {
             {/* Title & Description */}
             <div className="relative z-10 text-left mb-4">
               <h2
-                className={`font-redhat font-semibold uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[4.5vw] 2xl:text-[4vw]`}
+               
+                className={`font-redhat uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[4.5vw] 2xl:text-[4vw]`}
+              
               >
                 <span className="block leading-[0.5]">Arabian Sky</span>
-                <span className="block text-[10.5vw] md:text-[6.5vw] lg:text-[7vw] 2xl:text-[6vw] font-semibold">
+                <span className="block text-[10.5vw] md:text-[6.5vw] lg:text-[7vw] 2xl:text-[6vw] font-medium">
                   Transport
                 </span>
               </h2>
@@ -327,32 +329,32 @@ export default function Home() {
         </div>
         </div>
 
-        {/* Services Section - Mobile Responsive Layout */}
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-          <section className="bg-white py-8 lg:py-20">
-            <div className="w-full">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 fade-in-up">
-                OUR <span className="text-red-500">SERVICES</span>
-              </h2>
-              {/* <TruckWrapper className="w-full" /> */}
-              <div className="text-center fade-in-up delay-200 px-4">
-                <p className="text-gray-600 max-w-3xl mx-auto text-base lg:text-xl">
-                  As Logistics Service Providers, We Offer A Wide Range Of
-                  Services To Support To Meet The Diverse Logistics Needs Of
-                  Businesses Across The UAE And GCC.
-                </p>
+        {/* Services Section*/}
+        <div  className={`bg-[#f2f0ee] relative before:absolute before:inset-0 before:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzYiIGhlaWdodD0iNzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGZpbHRlciBpZD0ibm9pc2UiPjxmZVR1cmJ1bGVuY2UgdHlwZT0icmZyYXR1cnIiIGJhc2VGcmVxdWVuY3k9IjAuNSIgbnVtT2N0YXZlcz0iMSIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSI3NiIgaGVpZ2h0PSI3NiIgZmlsdGVyPSJ1cmwoI25vaXNlKSIvPjwvc3ZnPg==')] before:opacity-10 before:mix-blend-multiply before:content-[''] before:pointer-events-none`}>
+          <div className="max-w-screen-xl mx-auto px-4 md:px-6">
+            <section className=" py-8 lg:py-20">
+              <div className="w-full">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 fade-in-up">
+                  OUR <span className="text-red-500">SERVICES</span>
+                </h2>
+                {/* <TruckWrapper className="w-full" /> */}
+                <div className="text-center fade-in-up delay-200 px-4">
+                  <p className="text-black max-w-3xl mx-auto text-base lg:text-2xl">
+                    As Logistics Service Providers, We Offer A Wide Range Of
+                    Services To Support To Meet The Diverse Logistics Needs Of
+                    Businesses Across The UAE And GCC.
+                  </p>
+                </div>
+                <StickyGallery onChangeBackground={setBgGradient} />
               </div>
-
-            <StickyGallery/>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
-        
 
         {/* Background Animation Section - Mobile Optimized */}
         <div className="w-full">
           <div className="relative overflow-hidden h-[15vh] md:h-[25vh] lg:h-[36vh]">
-            <div className="absolute inset-0 gradient-animate"></div>
+            <div className="absolute inset-0 group bg-gradient-to-r from-[#1131A6] to-[#F70105]"></div>
 
             {/* Responsive Background Text */}
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
@@ -449,9 +451,9 @@ export default function Home() {
        </div> */}
 
         {/* Industries Section - Responsive Grid */}
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16 tracking-tight fade-in-up">
-            WHY CHOOSE <span className="text-red-500">US</span>
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 pt-[5rem]">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16 tracking-tight fade-in-up text-[#01016F]">
+            WHY CHOOSE <span className="text-[#F70105]">US</span>
           </h2>
           <ImageReveal />
         </div>
@@ -460,8 +462,8 @@ export default function Home() {
         <div className="max-w-screen-xl mx-auto px-4 md:px-6">
           <section className="py-8 sm:py-12 lg:py-16">
             <div className="mx-auto max-w-7xl">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 fade-in-up">
-                INDUSTRIES WE <span className="text-red-500">SERVE</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 fade-in-up text-[#01016F]">
+                INDUSTRIES WE <span className="text-[#F70105]">SERVE</span>
               </h2>
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center">

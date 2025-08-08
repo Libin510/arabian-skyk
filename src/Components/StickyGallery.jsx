@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { LuArrowUpRight } from "react-icons/lu";
 
@@ -6,48 +7,105 @@ const imageList = [
     id: "01",
     title: "HEAVY HAULAGE & PROJECT LOGISTICS",
     url: "https://images.unsplash.com/photo-1718183120769-ece47f31045b?w=500&auto=format&fit=crop",
+    bg: "#f2f0ee",
+    heading: "LOGISTICS",
   },
   {
     id: "02",
     title: "CUSTOMS CLEARANCE",
     url: "https://images.unsplash.com/photo-1715432362539-6ab2ab480db2?w=500&auto=format&fit=crop",
+    bg: "#ffe6d9",
+    heading: "CLEARANCE",
   },
   {
     id: "03",
     title: "FLEET MAINTENANCE & ROADSIDE SUPPORT",
     url: "https://images.unsplash.com/photo-1685904042960-66242a0ac352?w=500&auto=format&fit=crop",
+    bg: "#f3ecff",
+    heading: "MAINTENANCE",
   },
 ];
 
-export default function StickyGallery() {
+export default function StickyGallery({ onChangeBackground }) {
+  const sectionRefs = useRef([]);
+  const [activeHeading, setActiveHeading] = useState(imageList[0].heading);
+  const [fade, setFade] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries.reduce((prev, curr) =>
+          prev.intersectionRatio > curr.intersectionRatio ? prev : curr
+        );
+
+        const index = sectionRefs.current.findIndex(
+          (ref) => ref === visibleEntry.target
+        );
+
+        if (index !== -1) {
+          onChangeBackground(imageList[index].bg);
+          setFade(true); // Trigger fade-out
+          setTimeout(() => {
+            setActiveHeading(imageList[index].heading);
+            setFade(false); // Trigger fade-in
+          }, 150); // Delay update slightly for better animation timing
+        }
+      },
+      { threshold: 0.6 }
+    );
+
+    sectionRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      sectionRefs.current.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, [onChangeBackground]);
+
   return (
-    <section className="text-white w-full">
+    <section className="text-white w-full relative">
+      {/* Sticky Heading */}
+      <div className="sticky top-0 w-full flex items-center justify-center pointer-events-none">
+        <p
+          className={`text-[10vw] text-black font-extralight transition-opacity duration-300 ease-in-out ${
+            fade ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          {activeHeading}
+        </p>
+      </div>
+
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2">
-        {/* Left: Scrollable Sticky Images */}
+        {/* Left Column */}
         <div className="grid gap-2">
           {imageList.map((item, index) => (
             <figure
-              key={index}
-              className="sticky top-0 h-screen grid place-content-center"
+              key={item.id}
+              ref={(el) => (sectionRefs.current[index] = el)}
+              className="sticky top-0 h-[70vh] md:h-screen grid place-content-center pt-0 lg:pt-[14rem]"
             >
-             <div className="bg-[#01016F] rounded-md overflow-hidden">
-             <div className="text-left mb-4 mt-4 ml-4">
-                <h3 className="font-semibold text-white text-sm md:text-2xl mb-3 sm:mb-4">
-                  {index + 1}. {item.title}
-                </h3>
+              <div className="bg-gradient-to-r from-[#1131A6] to-[#F70105] rounded-md overflow-hidden h-[55vh] lg:w-[40vw] lg:h-[45vh] 2xl:w-[35vw] 2xl:h-[55vh]">
+                <div className="text-left mb-4 mt-4 ml-4">
+                  <h3 className="font-semibold text-white text-sm md:text-2xl mb-3 sm:mb-4">
+                    {index + 1}. {item.title}
+                  </h3>
+                </div>
+                <img
+                  src={item.url}
+                  alt={item.title}
+                  className="transition-all duration-300 w-full h-full object-cover align-bottom"
+                />
               </div>
-              <img
-                src={item.url}
-                alt={item.title}
-                className="transition-all duration-300 w-full h-full lg:w-[40vw] lg:h-[45vh] 2xl:w-[34vw] 2xl:h-[45vh] object-cover align-bottom"
-              />
-             </div>
             </figure>
           ))}
         </div>
 
-        {/* Right: Sticky CTA */}
-        <div className="hidden sticky top-0 h-screen md:grid place-content-center">
+        {/* Right CTA Column */}
+        <div className="hidden sticky top-0 h-screen md:grid place-content-center pt-0 lg:pt-[14rem]">
           <div>
             <div className="sticky top-8 self-end">
               <Image
@@ -77,8 +135,8 @@ export default function StickyGallery() {
                     </textPath>
                   </text>
                 </svg>
-                <div className="bg-white rounded-full p-1.5 sm:p-2 z-10 group-hover:rotate-45 transition-transform duration-300">
-                  <LuArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-black" />
+                <div className="bg-white text-2xl rounded-full p-5 z-10 group-hover:rotate-45 transition-transform duration-300">
+                  <LuArrowUpRight className="text-black" />
                 </div>
               </div>
             </div>
