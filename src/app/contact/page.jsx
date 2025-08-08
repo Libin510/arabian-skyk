@@ -119,13 +119,13 @@ export default function Contact() {
             <div className="rounded-md border-4 border-[#01016F] overflow-hidden">
               <div className="bg-white p-6 border-b-4 border-blue-900 ">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-2 h-2 bg-[#01016F] rounded-full"></div>
-                  <div className="w-2 h-2 bg-[#01016F] rounded-full"></div>
+                  <div className="w-2 h-2 bg-[#F70105] rounded-full"></div>
+                  <div className="w-2 h-2 bg-[#F70105] rounded-full"></div>
                 </div>
                 <h1 className="text-2xl font-bold text-gray-900 text-center">LET'S TALK</h1>
                 <div className="flex items-center justify-between mt-4">
-                  <div className="w-2 h-2 bg-[#01016F] rounded-full"></div>
-                  <div className="w-2 h-2 bg-[#01016F] rounded-full"></div>
+                  <div className="w-2 h-2 bg-[#F70105] rounded-full"></div>
+                  <div className="w-2 h-2 bg-[#F70105] rounded-full"></div>
                 </div>
               </div>
 

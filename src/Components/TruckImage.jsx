@@ -42,7 +42,7 @@ const TruckImage = ({ setTruckArrived }) => {
   };
 
   return (
-    <div className="box" style={transformStyle}>
+    <div className="box hidden sm:block" style={transformStyle}>
       <Image
         src="/truck.png"
         alt="Truck"

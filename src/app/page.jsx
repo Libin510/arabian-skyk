@@ -8,7 +8,7 @@ import { PiShieldPlus } from "react-icons/pi";
 import Image from "next/image";
 import { FaStarOfLife } from "react-icons/fa6";
 
-import { Instrument_Sans,Raleway } from "next/font/google";
+import { Instrument_Sans, Raleway } from "next/font/google";
 import Footer from "@/Components/Footer";
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
@@ -17,6 +17,7 @@ import Preloader from "@/Components/Preloader";
 import TruckImage from "@/Components/TruckImage";
 import ScrollBaseAnimation from "../../components/uilayouts/scroll-text-marque";
 import StickyGallery from "@/Components/StickyGallery";
+import "../Components/Particles.css";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -30,7 +31,7 @@ const raleway = Raleway({
   weight: ["400", "500", "600", "700"],
   variable: "--font-raleway",
   display: "swap",
-})
+});
 
 export default function Home() {
   const [showSmoke, setShowSmoke] = useState(false);
@@ -90,6 +91,7 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const divRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [contentVisible, setContentVisible] = useState(false);
 
   // useEffect(() => {
   //   const updateDimensions = () => {
@@ -163,19 +165,16 @@ export default function Home() {
 
     return () => clearTimeout(fallbackTimer);
   }, [isLoading]);
-  // useEffect(() => {
-  //   if (showSmoke) {
-  //     const box = document.querySelector(".box");
-  //     if (box) {
-  //       box.classList.add("boxMove");
-  //     }
-  //   }
-  // }, [showSmoke]);
-  // Show loader while loading
-  // if (isLoading) {
-  //   return <Preloader />;
-  // }
-  // {isLoading && <Preloader />}
+  useEffect(() => {
+    if (truckArrived) {
+      const timer = setTimeout(() => {
+        setContentVisible(true);
+      }, 50); // small delay so CSS transition kicks in
+      return () => clearTimeout(timer);
+    } else {
+      setContentVisible(false);
+    }
+  }, [truckArrived]);
   return (
     <div className="w-screen relative mt-28 lg:mt-40">
       {isLoading && (
@@ -190,11 +189,8 @@ export default function Home() {
         }`}
       >
         {/* Truck Container */}
-        <div
-          className="w-full h-[100vh] bg-white mt-5 relative"
-          ref={divRef}
-        >
-          <div className="right_angle_triangle"></div>
+        <div className="w-full h-[100vh] bg-white mt-5 relative" ref={divRef}>
+          <div className="right_angle_triangle "></div>
           {showSmoke && (
             <TruckImage
               // dimensions={dimensions}
@@ -205,10 +201,21 @@ export default function Home() {
 
         {/* Truck Arrived Content */}
         {truckArrived && (
-          <div className="absolute top-5  left-1/2 transform -translate-x-1/2 w-full max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
+          <div
+            className={`absolute top-5 left-1/2 transform -translate-x-1/2 w-full max-w-screen-xl mx-auto z-10 px-4 sm:px-6 
+      transition-all duration-1000 ease-in-out 
+      ${
+        contentVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-10"
+      }
+    `}
+          >
             {/* Title & Description */}
             <div className="relative z-10 text-left mb-4">
-              <h2 className={`font-redhat font-semibold uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[4.5vw] 2xl:text-[4vw]`}>
+              <h2
+                className={`font-redhat font-semibold uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[4.5vw] 2xl:text-[4vw]`}
+              >
                 <span className="block leading-[0.5]">Arabian Sky</span>
                 <span className="block text-[10.5vw] md:text-[6.5vw] lg:text-[7vw] 2xl:text-[6vw] font-semibold">
                   Transport
@@ -267,10 +274,19 @@ export default function Home() {
             </div>
           </div>
         )}
+        <div className="particle-container">
+          <div className="particles">
+            {[...Array(30)].map((_, i) => (
+              <span className="circle" key={i}></span>
+            ))}
+          </div>
+          <div className="home-hero">
+           
+          
 
         {/* About Us Section - Enhanced Responsiveness */}
         <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-          <section className="py-12 lg:py-40 bg-white">
+          <section className="py-12 lg:py-40 bg-transparent">
             <div className="">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 fade-in-up">
                 ABOUT <span className="text-[#EF1E24]">US</span>
@@ -280,7 +296,13 @@ export default function Home() {
                 {/* Image placeholder - Mobile optimized */}
                 <div className="bg-[#999999] w-full h-[25vh] lg:w-[50vw] lg:h-[45vh] rounded-xl flex items-center justify-center hover-lift">
                   <span className="text-white text-xs sm:text-sm md:text-base lg:text-lg">
-                    Image Placeholder
+                    <img
+                      src={
+                        "https://legitmoves.com/wp-content/uploads/2023/08/1657958812_About-Us-main_0.jpg"
+                      }
+                      alt="About Us"
+                      className="w-full h-full object-cover rounded-xl"
+                    />
                   </span>
                 </div>
 
@@ -294,13 +316,15 @@ export default function Home() {
                     leading logistics and transport providers, with a reputation
                     built on precision, safety, and customer-first service.
                   </p>
-                  <button className="bg-[#01016F] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-blue-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
+                  <button className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-blue-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
                     Know more
                   </button>
                 </div>
               </div>
             </div>
           </section>
+        </div>
+        </div>
         </div>
 
         {/* Services Section - Mobile Responsive Layout */}
@@ -342,13 +366,13 @@ export default function Home() {
                   ARABIAN SKY TRANSPORT ARABIAN SKY TRANSPORT
                 </h1> */}
                 <ScrollBaseAnimation
-          // delay={500}
-          baseVelocity={3}
-          scrollDependent={true}
-          clasname='font-bold leading-[90%] text-[15vw] text-[#FFFFFF80]'
-        >
-          ARABIAN SKY TRANSPORT
-        </ScrollBaseAnimation>
+                  // delay={500}
+                  baseVelocity={3}
+                  scrollDependent={true}
+                  clasname="font-bold leading-[90%] text-[15vw] text-[#FFFFFF80]"
+                >
+                  ARABIAN SKY TRANSPORT
+                </ScrollBaseAnimation>
               </div>
             </div>
 
@@ -365,7 +389,6 @@ export default function Home() {
                     className={`bg-gray-400 w-[15vw] h-[18vh] bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer${
                       index * 100
                     }`}
-                  
                   />
                 ))}
               </div>

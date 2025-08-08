@@ -111,16 +111,20 @@ function Footer() {
                                 <div className="text-center">
                                     <h4 className="font-bold text-gray-800 text-xs md:text-sm">Home</h4>
                                 </div>
-                                <div className="text-center">
+                                <div className="text-center cursor-pointer"
+                                onClick={() => router.push('/about')}>
                                     <h4 className="font-bold text-gray-800 text-xs md:text-sm">About Us</h4>
                                 </div>
-                                <div className="text-center">
+                                <div className="text-center cursor-pointer"
+                                onClick={() => router.push('/services')}>
                                     <h4 className="font-bold text-gray-800 text-xs md:text-sm">Services</h4>
                                 </div>
-                                <div className="text-center">
+                                <div className="text-center cursor-pointer"
+                                onClick={() => router.push('/careers')}>
                                     <h4 className="font-bold text-gray-800 text-xs md:text-sm">Careers</h4>
                                 </div>
-                                <div className="text-center sm:col-span-1 col-span-2 md:col-span-1">
+                                <div className="text-center sm:col-span-1 col-span-2 md:col-span-1 cursor-pointer"
+                                onClick={() => router.push('/contact')}>
                                     <h4 className="font-bold text-gray-800 text-xs md:text-sm">Contact Us</h4>
                                 </div>
                             </div>
