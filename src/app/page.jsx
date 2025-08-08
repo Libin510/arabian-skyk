@@ -41,6 +41,7 @@ export default function Home() {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
   const [minimumTimeElapsed, setMinimumTimeElapsed] = useState(false);
   console.log(truckArrived, "truckArrived");
+  const [bgGradient, setBgGradient] = useState("bg-[#f2f0ee]");
 
   const services = [
     {
