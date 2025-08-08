@@ -238,8 +238,8 @@ export default function Service() {
       {/* <div className="bg-[#BEBDBD] h-[465px] w-auto rounded-[16px]"></div> */}
 
       <div>
-        <h1 className="text-[30px] lg:text-[37px] text-[#01016F] text-center uppercase font-semibold mt-[40px] lg:mt-[115px]">
-          our key services
+        <h1 className="text-[30px] lg:text-[37px] text-[#01016F] text-center uppercase font-semibold mt-[40px] lg:mt-[110px]">
+          our key <span className="text-[#F70105]">services</span> 
         </h1>
         <div className="mt-8">
           {ourServices.map((service, index) => (
@@ -315,7 +315,7 @@ export default function Service() {
       </div>
 
       <div>
-        <h1 className="text-[30px] lg:text-[50px]  text-center uppercase font-semibold mt-[20px] lg:mt-[60px]">
+        <h1 className="text-[30px] lg:text-[37px]  text-center uppercase font-semibold mt-[20px] lg:mt-[60px] text-[#F70105]">
           <span className="text-[#01016F]">why choose</span> us
         </h1>
         <div className="bg-white py-8 px-4 max-w-7xl mx-auto mt-8 grid gap-12">

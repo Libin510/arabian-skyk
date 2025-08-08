@@ -1,10 +1,66 @@
 "use client";
 import Footer from "@/Components/Footer";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 import { FaStarOfLife } from "react-icons/fa6";
 
 // app/about/page.jsx
 export default function About() {
+
+  const headerRef = useRef();
+
+  const [letterSpans, setLetterSpans] = useState([]);
+
+  useEffect(() => {
+    const word1 = "About";
+    const word2 = "Us";
+
+    const spanArray = [];
+
+    word1.split("").forEach((char, index) => {
+      spanArray.push(
+        <span
+          key={`our-${index}`}
+          className="inline-block text-[#01016F]"
+          style={{ display: "inline-block" }}
+        >
+          {char}
+        </span>
+      );
+    });
+
+    spanArray.push(
+      <span key="space" style={{ display: "inline-block", width: "0.5rem" }}>
+        {" "}
+      </span>
+    );
+
+    word2.split("").forEach((char, index) => {
+      spanArray.push(
+        <span
+          key={`services-${index}`}
+          className="inline-block text-[#EF1E24]"
+          style={{ display: "inline-block" }}
+        >
+          {char}
+        </span>
+      );
+    });
+
+    setLetterSpans(spanArray);
+  }, []);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      gsap.from(headerRef.current.querySelectorAll("span"), {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+    }
+  }, [letterSpans]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const values = [
@@ -147,9 +203,10 @@ export default function About() {
         <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
           <div className=" mb-8 md:mb-12">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
-              <h1 className="text-[37px] lg:text-[75px] font-semibold text-center lg:text-left">
-                <span className="text-blue-900">ABOUT</span>{" "}
-                <span className="text-red-500">US</span>
+              <h1 className="text-[37px] lg:text-[75px] font-semibold text-center lg:text-left" ref={headerRef}>
+                {/* <span className="text-blue-900">ABOUT</span>{" "}
+                <span className="text-red-500">US</span> */}
+                {letterSpans}
               </h1>
               <div className="lg:ml-6 max-w-none lg:max-w-xl">
                 <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center lg:text-left">
@@ -228,10 +285,10 @@ export default function About() {
       <section className="sticky top-0  overflow-hidden bg-white">
         {/* Our Values Section */}
 
-        <div className="bg-gradient-to-bl from-[#F70105] to-[#1131A6] py-20 ">
+        <div className="group bg-gradient-to-r from-[#1131A6] to-[#F70105] py-20 ">
           <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
             <div className="bg-white rounded-full p-4 w-fit flex gap-1 justify-center items-center">
-            <FaStarOfLife className="size-[13px] lg:size-[16px] text-red-500" />
+            <FaStarOfLife className="size-[13px] lg:size-[16px] text-[#F70105]" />
               <h1 className="text-2xl font-bold text-[#1131A6] text-center lg:text-left">
                 OUR VALUES
               </h1>
@@ -303,10 +360,11 @@ export default function About() {
         </div>
 
         {/* Why Choose Us Section */}
+        <div className="bg-[#f2f0ee] py-12">
         <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
           <div className="mb-8 md:mb-12 mt-8 md:mt-16">
-            <h1 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2 text-center">
-              WHY CHOOSE <span className="text-black">US</span>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-2 text-center">
+              WHY CHOOSE <span className="text-[#F70105]">US</span>
             </h1>
           </div>
 
@@ -318,11 +376,12 @@ export default function About() {
               >
                 <div className="flex-1 lg:max-w-md order-2 lg:order-1">
                   <div className="mb-4 text-left">
-                    <span className="inline-block bg-[#01016F] text-white text-xs font-bold px-3 py-2 rounded-full uppercase tracking-wide">
+                    <span className=" bg-[#01016F] text-white text-xs lg:text-xl font-bold py-2 rounded-full uppercase tracking-wide flex items-center gap-2 w-fit px-5">
+                    <FaStarOfLife className="size-[13px] lg:size-[16px] text-[#F70105]" />
                       {feature.badge}
                     </span>
                   </div>
-                  <p className="text-gray-800 text-sm leading-relaxed font-medium text-left">
+                  <p className="text-gray-800 text-sm lg:text-lg leading-relaxed font-medium text-left">
                     {feature.title}
                   </p>
                 </div>
@@ -332,6 +391,7 @@ export default function About() {
               </div>
             ))}
           </div>
+        </div>
         </div>
 
         {/* Sustainability Section */}
@@ -358,8 +418,8 @@ export default function About() {
         <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
           <div className="w-full max-w-7xl mx-auto px-0 md:px-4 py-8 md:py-12 bg-white">
             <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 tracking-wider">
-                MEET <span className="text-[#01016F]">OUR</span> LEADERSHIP TEAM
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#01016F] tracking-wider">
+                MEET <span className="text-[#F70105]">OUR</span> LEADERSHIP TEAM
               </h2>
             </div>
 
