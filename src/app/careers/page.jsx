@@ -407,7 +407,13 @@ export default function Career() {
           </div>
         </div>
 
-        <div className="bg-[#BEBDBD] h-[465px] w-auto rounded-[16px]"></div>
+        <div className="bg-[#BEBDBD] h-[465px] w-auto rounded-[16px]">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/004/684/919/non_2x/hiring-recruitment-poster-design-text-join-our-team-on-bright-speech-bubbles-vacancy-template-job-opening-search-vector.jpg"
+            alt="No Image"
+            className="w-full h-full object-cover rounded-[16px]"
+          />
+        </div>
 
         <div className="mt-[40px] lg:mt-[115px]">
           <h1 className="text-[30px] lg:text-[50px] text-[#01016F] text-center uppercase font-semibold ">

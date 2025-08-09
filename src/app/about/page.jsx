@@ -7,7 +7,6 @@ import PageWrapper from "@/Components/PageWrapper";
 
 // app/about/page.jsx
 export default function About() {
-
   const headerRef = useRef();
 
   const [letterSpans, setLetterSpans] = useState([]);
@@ -70,49 +69,60 @@ export default function About() {
       title: "RELIABILITY",
       description:
         "Every Load We Carry Is A Promise We Keep. We Understand The Importance Of On-Time, Safe Deliveries, Which Is Why We Prioritize Reliability In Everything We Do.",
-      image: "/api/placeholder/300/200",
+      image:
+        "https://thumbs.dreamstime.com/b/reliability-going-up-little-d-man-pushing-up-blue-arrow-reliability-white-background-29889278.jpg",
     },
     {
       id: 2,
       title: "PERFORMANCE",
       description:
         "Every Load We Carry Is A Promise We Keep. We Understand The Importance Of On-Time, Safe Deliveries, Which Is Why We Prioritize Reliability In Everything We Do.",
-      image: "/api/placeholder/300/200",
+      image:
+        "https://assets.technologyadvice.com/uploads/2021/09/Importance-of-Employee-Performance-Management.jpeg",
     },
     {
       id: 3,
       title: "SAFETY",
       description:
         "Every Load We Carry Is A Promise We Keep. We Understand The Importance Of On-Time, Safe Deliveries, Which Is Why We Prioritize Reliability In Everything We Do.",
-      image: "/api/placeholder/300/200",
+      image:
+        "https://media.istockphoto.com/id/1413025608/vector/yellow-safety-first-sign-style-sign-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=KkdULQYfUIfIdJ7oH9tFfUgQ9QLzIQHHb7WRwpSIF04=",
     },
     {
       id: 4,
       title: "INNOVATION",
       description:
         "Every Load We Carry Is A Promise We Keep. We Understand The Importance Of On-Time, Safe Deliveries, Which Is Why We Prioritize Reliability In Everything We Do.",
-      image: "/api/placeholder/300/200",
+      image:
+        "https://media.istockphoto.com/id/1961324209/photo/a-concept-where-various-creative-thoughts-are-formed-within-a-light-bulb-3d-rendering.jpg?s=612x612&w=0&k=20&c=-Q38F3crdoLowPm5dAAYBy1loLmCvJp3m_bFZvSWTo8=",
     },
   ];
 
   const features = [
     {
       badge: "EXPERIENCED TEAM:",
+      image:
+        "https://www.shutterstock.com/image-photo/business-colleagues-examining-bar-graphs-260nw-2508967309.jpg",
       title:
         "Our Drivers, Logistics Managers, And Technical Support Teams Have Years Of Experience Working On Projects Of All Scales Across The GCC.",
     },
     {
       badge: "STATE-OF-THE-ART TECHNOLOGY:",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDCEzRVXFibPa44ImEOAnSqN_QlSlnnnkx5w&s",
       title:
         "We Use Cutting-Edge Tools And Software To Track, Manage, And Optimize Every Delivery.",
     },
     {
       badge: "COMPREHENSIVE SOLUTIONS:",
+      image:
+        "https://listany-prod.s3.amazonaws.com/images/Tracet-New/9comprehensivesolutions.jpg",
       title:
         "From Heavy Cargo Transport To Fleet Maintenance And Equipment Leasing, We Offer End-To-End Logistics Services Tailored To Your Needs.",
     },
     {
       badge: "ACROSS THE GCC:",
+      image: "https://timeskuwait.com/wp-content/uploads/2025/05/GCC.jpg",
       title:
         "We Provide Services Throughout The UAE, Saudi Arabia, Oman, Qatar, And Beyond—Ensuring Your Cargo Gets To Where It Needs To Be, No Matter The Destination.",
     },
@@ -194,279 +204,324 @@ export default function About() {
     return visible;
   };
 
+  const ourFeet = [
+    {
+      image:
+        "https://media.istockphoto.com/id/104314618/photo/trucks.jpg?s=612x612&w=0&k=20&c=Y13AWbXU0biIt0mOsa2R2ifbkvAOHQhay2spgp-udqo=",
+      title: "Our Fleet",
+    },
+    {
+      image:
+        "https://img.freepik.com/free-photo/still-life-supply-chain-representation_23-2149827322.jpg?semt=ais_hybrid&w=740",
+      title: "Our Fleet",
+    },
+    {
+      image:
+        "https://www.creativefabrica.com/wp-content/uploads/2018/12/Strength-icon-by-back1design1-580x368.png",
+      title: "Our Fleet",
+    },
+    {
+      image:
+        "https://www.noregon.com/wp-content/uploads/2021/10/FleetSafety-HeaderImage.png",
+      title: "Our Fleet",
+    },
+  ];
   const visibleLeaders =
     typeof window !== "undefined" ? getVisibleLeaders() : leaders.slice(0, 4);
 
   return (
-   <PageWrapper>
-     <div className=" pt-[6rem] lg:pt-[10rem]">
-      {/* About Us Header Section */}
-      <section className="h-auto md:h-screen w-full relative md:sticky top-0">
-        <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
-          <div className=" mb-8 md:mb-12">
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
-              <h1 className="text-[37px] lg:text-[75px] font-semibold text-center lg:text-left" ref={headerRef}>
-                {/* <span className="text-blue-900">ABOUT</span>{" "}
+    <PageWrapper>
+      <div className=" pt-[6rem] lg:pt-[10rem]">
+        {/* About Us Header Section */}
+        <section className="h-auto md:h-screen w-full relative md:sticky top-0">
+          <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
+            <div className=" mb-8 md:mb-12">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
+                <h1
+                  className="text-[37px] lg:text-[75px] font-semibold text-center lg:text-left"
+                  ref={headerRef}
+                >
+                  {/* <span className="text-blue-900">ABOUT</span>{" "}
                 <span className="text-red-500">US</span> */}
-                {letterSpans}
+                  {letterSpans}
+                </h1>
+                <div className="lg:ml-6 max-w-none lg:max-w-xl">
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center lg:text-left">
+                    Our Story
+                  </h2>
+                  <div className="space-y-2">
+                    <p className="text-base md:text-lg font-semibold text-gray-800 text-center lg:text-left">
+                      Driving The Region Since 1998
+                    </p>
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center lg:text-left">
+                      We Are One Of The UAE's Leading Logistics And Transport
+                      Providers, With A Reputation Built On Precision, Safety,
+                      And Customer-First Service.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Placeholders */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+             <div className="bg-gray-300 rounded-2xl overflow-hidden h-60 md:h-80">
+                 <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyKgiVlo3cxKINIdygrlGBtOW6ELbSnkbvIA&s"
+                  alt="No Image"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-gray-300 rounded-2xl overflow-hidden h-60 md:h-80">
+                <img
+                  src="https://static.zawya.com/view/acePublic/alias/contentid/image.190908070235HVXP/3/190908070235hvxp-jpg.webp?f=3%3A2&q=0.75&w=3840"
+                  alt="No Image"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Mission and Vision Section */}
+          <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6 mt-8 md:mt-16">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
+              <h1 className="text-lg md:text-xl lg:text-2xl text-[rgb(1,1,111)] font-semibold text-center lg:text-left">
+                OUR MISSION AND VISION
               </h1>
               <div className="lg:ml-6 max-w-none lg:max-w-xl">
-                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center lg:text-left">
-                  Our Story
-                </h2>
-                <div className="space-y-2">
-                  <p className="text-base md:text-lg font-semibold text-gray-800 text-center lg:text-left">
-                    Driving The Region Since 1998
-                  </p>
-                  <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center lg:text-left">
-                    We Are One Of The UAE's Leading Logistics And Transport
-                    Providers, With A Reputation Built On Precision, Safety, And
-                    Customer-First Service.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Content Placeholders */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-            <div className="bg-gray-300 rounded-2xl h-60 md:h-80 flex items-center justify-center">
-              <div className="text-center text-gray-600">
-                <div className="w-12 md:w-16 h-12 md:h-16 bg-gray-400 rounded-full mx-auto mb-4"></div>
-                <p className="text-xs md:text-sm">Content Placeholder</p>
-              </div>
-            </div>
-            <div className="bg-gray-300 rounded-2xl h-60 md:h-80 flex items-center justify-center">
-              <div className="text-center text-gray-600">
-                <div className="w-12 md:w-16 h-12 md:h-16 bg-gray-400 rounded-full mx-auto mb-4"></div>
-                <p className="text-xs md:text-sm">Content Placeholder</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Mission and Vision Section */}
-        <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6 mt-8 md:mt-16">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
-            <h1 className="text-lg md:text-xl lg:text-2xl text-[rgb(1,1,111)] font-semibold text-center lg:text-left">
-              OUR MISSION AND VISION
-            </h1>
-            <div className="lg:ml-6 max-w-none lg:max-w-xl">
-              <div className="space-y-4">
-                <div>
-                  <p className="text-base md:text-lg font-semibold text-[#EF1E24] text-left">
-                    MISSION
-                  </p>
-                  <p className="text-sm md:text-base text-gray-700 leading-relaxed text-left">
-                    To provide world-class logistics solutions that exceed
-                    expectations, offering unmatched safety, reliability, and
-                    on-time delivery, no matter how challenging the task.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-base md:text-lg font-semibold text-[#EF1E24] text-left">
-                    VISION
-                  </p>
-                  <p className="text-sm md:text-base text-gray-700 leading-relaxed text-left">
-                    To be the leading logistics and transport partner in the
-                    GCC, known for our exceptional service, innovative
-                    solutions, and commitment to sustainability.
-                  </p>
-                </div>
-                <div className="text-center lg:text-left">
-                  <button className="text-xs md:text-sm text-white bg-[#01016F] px-4 py-2 rounded-2xl">
-                    Get in touch
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="sticky top-0  overflow-hidden bg-white">
-        {/* Our Values Section */}
-
-        <div className="group bg-gradient-to-r from-[#1131A6] to-[#F70105] py-20 ">
-          <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
-            <div className="bg-white rounded-full p-4 w-fit flex gap-1 justify-center items-center">
-            <FaStarOfLife className="size-[13px] lg:size-[16px] text-[#F70105]" />
-              <h1 className="text-2xl font-bold text-[#1131A6] text-center lg:text-left">
-                OUR VALUES
-              </h1>
-            </div>
-
-            <div className="space-y-8 md:space-y-16 pt-12">
-              {values.map((value, index) => (
-                <div key={value.id} className="relative">
-                  <div className="flex flex-col lg:flex-row lg:items-center gap-4 md:gap-8 lg:gap-72">
-                    <div className="w-full lg:w-48 flex-shrink-0 text-center lg:text-left">
-                      <h2 className="text-base md:text-lg text-white font-semibold tracking-wide">
-                        {value.title}
-                      </h2>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row items-center gap-4 flex-1 lg:justify-end">
-                      <div className="w-full md:w-64 h-32 md:h-40 bg-gray-400 rounded-lg flex-shrink-0 order-1 md:order-none">
-                        <div className="w-full h-full bg-gray-400 rounded-lg"></div>
-                      </div>
-
-                      <div className="flex-1 text-center md:text-left">
-                        <p className="text-white text-sm md:text-base leading-relaxed">
-                          {value.description}
-                        </p>
-                      </div>
-                    </div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-base md:text-lg font-semibold text-[#EF1E24] text-left">
+                      MISSION
+                    </p>
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed text-left">
+                      To provide world-class logistics solutions that exceed
+                      expectations, offering unmatched safety, reliability, and
+                      on-time delivery, no matter how challenging the task.
+                    </p>
                   </div>
+                  <div>
+                    <p className="text-base md:text-lg font-semibold text-[#EF1E24] text-left">
+                      VISION
+                    </p>
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed text-left">
+                      To be the leading logistics and transport partner in the
+                      GCC, known for our exceptional service, innovative
+                      solutions, and commitment to sustainability.
+                    </p>
+                  </div>
+                  <div className="text-center lg:text-left">
+                    <button className="text-xs md:text-sm text-white bg-[#01016F] px-4 py-2 rounded-2xl">
+                      Get in touch
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                  {index < values.length - 1 && (
-                    <div className="w-full h-px bg-white mt-8 md:mt-12"></div>
-                  )}
+        <section className="sticky top-0  overflow-hidden bg-white">
+          {/* Our Values Section */}
+
+          <div className="group bg-gradient-to-r from-[#1131A6] to-[#F70105] py-20 ">
+            <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
+              <div className="bg-white rounded-full p-4 w-fit flex gap-1 justify-center items-center">
+                <FaStarOfLife className="size-[13px] lg:size-[16px] text-[#F70105]" />
+                <h1 className="text-2xl font-bold text-[#1131A6] text-center lg:text-left">
+                  OUR VALUES
+                </h1>
+              </div>
+
+              <div className="space-y-8 md:space-y-16 pt-12">
+                {values.map((value, index) => (
+                  <div key={value.id} className="relative">
+                    <div className="flex flex-col lg:flex-row lg:items-center gap-4 md:gap-8 lg:gap-72">
+                      <div className="w-full lg:w-48 flex-shrink-0 text-center lg:text-left">
+                        <h2 className="text-base md:text-lg text-white font-semibold tracking-wide">
+                          {value.title}
+                        </h2>
+                      </div>
+
+                      <div className="flex flex-col md:flex-row items-center gap-4 flex-1 lg:justify-end">
+                        <div className="w-full md:w-64 h-32 md:h-40 bg-gray-400 rounded-lg flex-shrink-0 order-1 md:order-none">
+                          <img
+                            src={value.image}
+                            alt={value.title}
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        </div>
+
+                        <div className="flex-1 text-center md:text-left">
+                          <p className="text-white text-sm md:text-base leading-relaxed">
+                            {value.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {index < values.length - 1 && (
+                      <div className="w-full h-px bg-white mt-8 md:mt-12"></div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Our Fleet Section */}
+          <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6 mt-16 md:mt-32 pb-20">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
+              <h1 className="text-lg md:text-xl lg:text-2xl text-[rgb(1,1,111)] font-semibold text-center lg:text-left">
+                OUR FLEET
+              </h1>
+              <div className="lg:ml-6 max-w-none lg:max-w-xl">
+                <div className="space-y-2">
+                  <p className="text-base md:text-lg font-semibold text-black text-center lg:text-left">
+                    Precision, Power, and Capability
+                  </p>
+                  <p className="text-sm md:text-base text-black leading-relaxed text-center lg:text-left">
+                    With over 100 vehicles in our fleet, we operate one of the
+                    largest and most versatile transport networks in the region.
+                    Our fleet is equipped to handle everything from light cargo
+                    to oversized, project-specific freight, all managed by
+                    experienced drivers and operators. Each vehicle is regularly
+                    maintained to ensure maximum safety and efficiency.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
+              {ourFeet.map((item) => (
+                <div
+                  key={item}
+                  className=" lg:h-[300px] bg-gray-400 rounded-lg"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
                 </div>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Our Fleet Section */}
-        <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6 mt-16 md:mt-32 pb-20">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
-            <h1 className="text-lg md:text-xl lg:text-2xl text-[rgb(1,1,111)] font-semibold text-center lg:text-left">
-              OUR FLEET
-            </h1>
-            <div className="lg:ml-6 max-w-none lg:max-w-xl">
-              <div className="space-y-2">
-                <p className="text-base md:text-lg font-semibold text-black text-center lg:text-left">
-                  Precision, Power, and Capability
-                </p>
-                <p className="text-sm md:text-base text-black leading-relaxed text-center lg:text-left">
-                  With over 100 vehicles in our fleet, we operate one of the
-                  largest and most versatile transport networks in the region.
-                  Our fleet is equipped to handle everything from light cargo to
-                  oversized, project-specific freight, all managed by
-                  experienced drivers and operators. Each vehicle is regularly
-                  maintained to ensure maximum safety and efficiency.
-                </p>
+          {/* Why Choose Us Section */}
+          <div className="bg-[#f2f0ee] py-12">
+            <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
+              <div className="mb-8 md:mb-12 mt-8 md:mt-16">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-2 text-center">
+                  WHY CHOOSE <span className="text-[#F70105]">US</span>
+                </h1>
+              </div>
+
+              <div className="space-y-6 md:space-y-8">
+                {features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col lg:flex-row items-start lg:items-center gap-4 md:gap-6 justify-between"
+                  >
+                    <div className="flex-1 lg:max-w-md order-2 lg:order-1">
+                      <div className="mb-4 text-left">
+                        <span className=" bg-[#01016F] text-white text-xs lg:text-xl font-bold py-2 rounded-full uppercase tracking-wide flex items-center gap-2 w-fit px-5">
+                          <FaStarOfLife className="size-[13px] lg:size-[16px] text-[#F70105]" />
+                          {feature.badge}
+                        </span>
+                      </div>
+                      <p className="text-gray-800 text-sm lg:text-lg leading-relaxed font-medium text-left">
+                        {feature.title}
+                      </p>
+                    </div>
+                    <div className="w-full lg:w-[40%] h-48 md:h-[260px] bg-gray-400 rounded-lg flex-shrink-0 order-1 lg:order-2">
+                      <div className="w-full h-full bg-gray-400 rounded-lg">
+                        <img
+                          src={feature.image}
+                          alt={feature.title}
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
-            {[1, 2, 3, 4].map((item) => (
-              <div
-                key={item}
-                className=" lg:h-[300px] bg-gray-400 rounded-lg"
-              ></div>
-            ))}
-          </div>
-        </div>
-
-        {/* Why Choose Us Section */}
-        <div className="bg-[#f2f0ee] py-12">
-        <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
-          <div className="mb-8 md:mb-12 mt-8 md:mt-16">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-2 text-center">
-              WHY CHOOSE <span className="text-[#F70105]">US</span>
-            </h1>
-          </div>
-
-          <div className="space-y-6 md:space-y-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="flex flex-col lg:flex-row items-start lg:items-center gap-4 md:gap-6 justify-between"
-              >
-                <div className="flex-1 lg:max-w-md order-2 lg:order-1">
-                  <div className="mb-4 text-left">
-                    <span className=" bg-[#01016F] text-white text-xs lg:text-xl font-bold py-2 rounded-full uppercase tracking-wide flex items-center gap-2 w-fit px-5">
-                    <FaStarOfLife className="size-[13px] lg:size-[16px] text-[#F70105]" />
-                      {feature.badge}
-                    </span>
-                  </div>
-                  <p className="text-gray-800 text-sm lg:text-lg leading-relaxed font-medium text-left">
-                    {feature.title}
+          {/* Sustainability Section */}
+          <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
+            <div className="mt-16 md:mt-32">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
+                <h1 className="text-lg md:text-xl lg:text-2xl text-[rgb(1,1,111)] font-semibold text-center lg:text-left">
+                  SUSTAINABILITY AT OUR CORE
+                </h1>
+                <div className="lg:ml-6 max-w-none lg:max-w-xl">
+                  <p className="text-sm md:text-base text-black leading-relaxed text-center lg:text-left">
+                    We understand the impact our industry can have on the
+                    environment, which is why we are dedicated to minimizing our
+                    carbon footprint through sustainable practices. This
+                    includes eco-friendly vehicle upgrades, route optimization
+                    to reduce fuel consumption, and investing in cleaner
+                    technologies.
                   </p>
                 </div>
-                <div className="w-full lg:w-[40%] h-48 md:h-[260px] bg-gray-400 rounded-lg flex-shrink-0 order-1 lg:order-2">
-                  <div className="w-full h-full bg-gray-400 rounded-lg"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        </div>
-
-        {/* Sustainability Section */}
-        <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
-          <div className="mt-16 md:mt-32">
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 md:mb-8 gap-6">
-              <h1 className="text-lg md:text-xl lg:text-2xl text-[rgb(1,1,111)] font-semibold text-center lg:text-left">
-                SUSTAINABILITY AT OUR CORE
-              </h1>
-              <div className="lg:ml-6 max-w-none lg:max-w-xl">
-                <p className="text-sm md:text-base text-black leading-relaxed text-center lg:text-left">
-                  We understand the impact our industry can have on the
-                  environment, which is why we are dedicated to minimizing our
-                  carbon footprint through sustainable practices. This includes
-                  eco-friendly vehicle upgrades, route optimization to reduce
-                  fuel consumption, and investing in cleaner technologies.
-                </p>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Leadership Team Section */}
-        <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
-          <div className="w-full max-w-7xl mx-auto px-0 md:px-4 py-8 md:py-12 bg-white">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#01016F] tracking-wider">
-                MEET <span className="text-[#F70105]">OUR</span> LEADERSHIP TEAM
-              </h2>
-            </div>
+          {/* Leadership Team Section */}
+          <div className="max-w-screen-xl mx-auto z-10 px-4 sm:px-6">
+            <div className="w-full max-w-7xl mx-auto px-0 md:px-4 py-8 md:py-12 bg-white">
+              <div className="text-center mb-8 md:mb-12">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#01016F] tracking-wider">
+                  MEET <span className="text-[#F70105]">OUR</span> LEADERSHIP
+                  TEAM
+                </h2>
+              </div>
 
-            <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
-              {leaders.map((leader, index) => {
-                const isActive = index === currentIndex;
-                const isBefore = index < currentIndex;
-                const isAfter = index > currentIndex;
+              <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
+                {leaders.map((leader, index) => {
+                  const isActive = index === currentIndex;
+                  const isBefore = index < currentIndex;
+                  const isAfter = index > currentIndex;
 
-                return (
-                  <div
-                    key={`${leader.id}-${index}`}
-                    className={`absolute transition-all duration-700 ease-in-out rounded-xl shadow-lg cursor-pointer group
+                  return (
+                    <div
+                      key={`${leader.id}-${index}`}
+                      className={`absolute transition-all duration-700 ease-in-out rounded-xl shadow-lg cursor-pointer group
           ${isActive ? "z-30 scale-100 blur-0" : "z-10 scale-90 blur-sm"}
           ${isBefore ? "-translate-x-10 -rotate-3" : ""}
           ${isAfter ? "translate-x-10 rotate-3" : ""}
         `}
-                    style={{ width: "320px", height: "460px" }}
-                    onClick={nextSlide}
-                  >
-                    <div className="relative w-full h-full overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
-                      <img
-                        src={leader.image}
-                        alt={leader.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                      <div className="absolute bottom-0 p-4 text-white">
-                        <p className="text-xs font-medium opacity-90">Name</p>
-                        <h3 className="text-xl font-bold">{leader.title}</h3>
-                        <p className="text-sm opacity-95 mt-2 line-clamp-4">
-                          {leader.experience}
-                        </p>
+                      style={{ width: "320px", height: "460px" }}
+                      onClick={nextSlide}
+                    >
+                      <div className="relative w-full h-full overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
+                        <img
+                          src={leader.image}
+                          alt={leader.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                        <div className="absolute bottom-0 p-4 text-white">
+                          <p className="text-xs font-medium opacity-90">Name</p>
+                          <h3 className="text-xl font-bold">{leader.title}</h3>
+                          <p className="text-sm opacity-95 mt-2 line-clamp-4">
+                            {leader.experience}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
 
-          <Footer />
-        </div>
-      </section>
-    </div>
-   </PageWrapper>
+            <Footer />
+          </div>
+        </section>
+      </div>
+    </PageWrapper>
   );
 }
