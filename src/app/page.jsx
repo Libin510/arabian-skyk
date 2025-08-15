@@ -9,16 +9,26 @@ import Image from "next/image";
 import { FaStarOfLife } from "react-icons/fa6";
 
 import { Instrument_Sans, Raleway } from "next/font/google";
-import Footer from "@/Components/Footer";
+// import Footer from "@/Components/Footer";
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
-import ImageReveal from "@/Components/ImageReveal";
+// import ImageReveal from "@/Components/ImageReveal";
 import Preloader from "@/Components/Preloader";
 import TruckImage from "@/Components/TruckImage";
 import ScrollBaseAnimation from "../../components/uilayouts/scroll-text-marque";
-import StickyGallery from "@/Components/StickyGallery";
+// import StickyGallery from "@/Components/StickyGallery";
 import "../Components/Particles.css";
-
+import dynamic from "next/dynamic";
+const StickyGallery = dynamic(() => import("@/Components/StickyGallery"), { ssr: false });
+const ImageReveal = dynamic(() => import("@/Components/ImageReveal"), { ssr: false });
+const Footer = dynamic(() => import("@/Components/Footer"), { ssr: false });
+import Head from "next/head";
+const TruckScen = dynamic(() => import("@/Components/TruckScen"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[150px] sm:h-[180px] lg:h-[200px] bg-gray-100"></div>
+  ),
+});
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -42,6 +52,8 @@ export default function Home() {
   // Enhanced loader states
   const [isLoading, setIsLoading] = useState(true);
   const [assetsLoaded, setAssetsLoaded] = useState(false);
+  const [truckLoaded, setTruckLoaded] = useState(false);
+
   const [minimumTimeElapsed, setMinimumTimeElapsed] = useState(false);
   console.log(truckArrived, "truckArrived");
   const [bgGradient, setBgGradient] = useState("bg-[#f2f0ee]");
@@ -132,24 +144,15 @@ export default function Home() {
   //     window.removeEventListener("resize", updateDimensions);
   //   };
   // }, [dimensions]);
-  console.log(dimensions, "kkkk");
 
   // Hide loader when both conditions are met
-  useEffect(() => {
-    if (assetsLoaded && minimumTimeElapsed) {
-      // Add a small delay for smooth transition
-      const hideLoader = setTimeout(() => {
-        setIsLoading(false);
-        // Start animations after loader is hidden
-        setTimeout(() => {
-          setShowSmoke(true);
-          window.scrollTo(0, 0);
-        }, 100);
-      }, 300);
-
-      return () => clearTimeout(hideLoader);
+ useEffect(() => {
+    if (assetsLoaded) {
+      setIsLoading(false);
+      setShowSmoke(true);
+      window.scrollTo(0, 0);
     }
-  }, [assetsLoaded, minimumTimeElapsed]);
+  }, [assetsLoaded]);
 
   // Scroll restoration
   useEffect(() => {
@@ -181,6 +184,11 @@ export default function Home() {
   }, [truckArrived]);
   return (
     <>
+    <Head>
+        <link rel="preload" as="image" href="/truck-fallback.webp" />
+        <link rel="preload" as="video" href="/Truck Logo Reveal (1).mp4" />
+      </Head>
+
       <div className="w-screen relative mt-28 lg:mt-40">
         {isLoading && (
           <div className="fixed inset-0 bg-white z-[9999]">
@@ -251,9 +259,10 @@ export default function Home() {
                         muted
                         playsInline
                         poster="/truck-poster.jpg"
+                        loading="lazy"
                         className="absolute top-0 left-0 w-full h-full object-cover z-10"
                       >
-                        <source src="/Truck Logo Reveal.mp4" type="video/mp4" />
+                        <source src="/Truck Logo Reveal (1).mp4" type="video/mp4" />
                       </video>
                     </div>
                   </div>
@@ -364,9 +373,10 @@ export default function Home() {
           <div
             className={`bg-[#f2f0ee] relative before:absolute before:inset-0 before:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzYiIGhlaWdodD0iNzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGZpbHRlciBpZD0ibm9pc2UiPjxmZVR1cmJ1bGVuY2UgdHlwZT0icmZyYXR1cnIiIGJhc2VGcmVxdWVuY3k9IjAuNSIgbnVtT2N0YXZlcz0iMSIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSI3NiIgaGVpZ2h0PSI3NiIgZmlsdGVyPSJ1cmwoI25vaXNlKSIvPjwvc3ZnPg==')] before:opacity-10 before:mix-blend-multiply before:content-[''] before:pointer-events-none`}
           >
-            <div className="max-w-screen-xl mx-auto px-4 md:px-6">
+            <div className="">
               <section className=" py-8 lg:py-20">
                 <div className="w-full">
+                  <div className="max-w-screen-xl mx-auto px-4 md:px-6">
                   <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 fade-in-up">
                     OUR <span className="text-red-500">SERVICES</span>
                   </h2>
@@ -378,7 +388,24 @@ export default function Home() {
                       Businesses Across The UAE And GCC.
                     </p>
                   </div>
-                  <StickyGallery onChangeBackground={setBgGradient} />
+                  </div>
+                   <div className="relative w-full h-[50vh] lg:h-[70vh]">
+                    {!truckLoaded && (
+                    <Image
+                      src="/truck-fallback.webp"
+                      alt="Truck"
+                      fill
+                      priority
+                      className="object-contain"
+                    />)}
+                    <div className="absolute inset-0">
+                      <TruckScen onLoadComplete={() => setTruckLoaded(true)} />
+                    </div>
+                  </div>
+
+                  <div className="max-w-screen-xl mx-auto px-4 md:px-6">
+                    <StickyGallery onChangeBackground={setBgGradient} />
+                  </div>
                 </div>
               </section>
             </div>
