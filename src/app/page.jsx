@@ -45,6 +45,7 @@ const raleway = Raleway({
 import PageWrapper from "@/Components/PageWrapper";
 import { AnimateSvg } from "@/Components/AnimateSvg";
 import ScrollReveal from "@/Components/ScrollReveal";
+import RotatingText from "@/Components/RotatingText";
 
 export default function Home() {
   const [showSmoke, setShowSmoke] = useState(false);
@@ -521,12 +522,12 @@ export default function Home() {
           {/* Industries We Serve Section */}
           <div className="max-w-screen-xl mx-auto px-4 md:px-6">
             <section className="py-8 sm:py-12 lg:py-16">
-              <div className="mx-auto max-w-7xl">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 fade-in-up text-[#01016F]">
+              <div className="flex justify-center items-center gap-3">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center fade-in-up text-[#01016F]">
                   INDUSTRIES WE <span className="text-[#F70105]">SERVE</span>
                 </h2>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center">
+                {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center">
                   {industries.map((industry, index) => (
                     <div
                       key={index}
@@ -535,7 +536,7 @@ export default function Home() {
                       } flex gap-3 lg:gap-4 items-center text-white p-2 rounded-md w-full hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer fade-in-up delay-${
                         index * 100
                       }`}
-                      // style={{ minHeight: "60px" }} // Reserve space to prevent CLS
+                    
                     >
                       <div className="bg-white size-8 sm:size-11 rounded flex justify-center text-black items-center text-sm lg:text-2xl hover:rotate-12 transition-transform duration-300">
                         {industry.icon}
@@ -543,12 +544,22 @@ export default function Home() {
                       <span className="text-xs sm:text-sm font-semibold flex-1 text-left">
                         {industry.title}
                       </span>
-                      {/* <span className="text-sm font-medium flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300">
-                      <IoIosArrowForward />
-                    </span> */}
+                    
                     </div>
                   ))}
-                </div>
+                </div> */}
+                     <RotatingText
+                  texts={["OIL & GAS", "CONSTRUCTION", "INFRASTRUCTURE", "GOVERNMENT & DEFENSE"]}
+                  mainClassName="px-2 md:px-4 bg-black text-white overflow-hidden py-2 md:py-4 justify-center rounded text-lg lg:text-4xl w-auto font-bold"
+                  staggerFrom={"last"}
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
+                />
               </div>
             </section>
           </div>

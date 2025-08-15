@@ -70,7 +70,7 @@ export default function StickyGallery({ onChangeBackground }) {
       {/* Sticky Heading */}
       <div className="sticky top-0 w-full flex items-center justify-center pointer-events-none">
         <p
-          className={`text-[10vw] text-black font-extralight transition-opacity duration-300 ease-in-out ${
+          className={`text-[10vw] text-black/85 transition-opacity duration-300 ease-in-out ${
             fade ? "opacity-0" : "opacity-100"
           }`}
         >
