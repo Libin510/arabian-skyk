@@ -140,7 +140,6 @@ export default function Home() {
   //     window.removeEventListener("resize", updateDimensions);
   //   };
   // }, [dimensions]);
-  console.log(dimensions, "kkkk");
 
   // Hide loader when both conditions are met
   useEffect(() => {
