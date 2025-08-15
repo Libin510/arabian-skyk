@@ -35,6 +35,11 @@
     "three": "^0.179.1",
     "yup": "^1.6.1"
   },
+ "overrides": {
+    "next-view-transitions": {
+      "react": "^19.0.0"
+    }
+  },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
