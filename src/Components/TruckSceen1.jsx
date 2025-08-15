@@ -7,7 +7,7 @@ import * as THREE from "three";
 
 // ----------------- Truck Component -----------------
 function Truck({ scrollSpeed, hasScrolled, scrollDirection, viewWidth }) {
-  const { scene } = useGLTF("/truck_gltb_Final_draco.glb");
+  const { scene } = useGLTF("/truck.glb");
   const truckRef = useRef();
   const [isLoaded, setIsLoaded] = useState(false);
   const [wheelPivots, setWheelPivots] = useState([]);
