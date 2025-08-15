@@ -8,9 +8,10 @@ import { RiFacebookBoxLine } from "react-icons/ri";
 function Footer() {
   const router = useRouter();
   return (
-    <div>
-      {/* Contact Section */}
-      <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-r from-[#1131A6] via-[#1131A6] to-[#F70105] text-white rounded-2xl">
+    <div className="bg-[#f2f0ee] pt-20">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-6">
+        {/* Contact Section */}
+        <section className="py-12 md:py-16  bg-gradient-to-r from-[#1131A6] via-[#1131A6] to-[#F70105] text-white rounded">
         <div className="max-w-6xl mx-auto text-center md:text-left">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
             CONTACT US FOR A<br />
@@ -51,7 +52,7 @@ function Footer() {
       </section>
 
       {/* Footer Section */}
-      <footer className="bg-white pt-16 lg:pt-12">
+      <footer className=" pt-16 lg:pt-12">
         <div className=" mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Left Side - Company Info */}
@@ -204,6 +205,7 @@ function Footer() {
           </div>
         </div>
       </footer>
+    </div>
     </div>
   );
 }

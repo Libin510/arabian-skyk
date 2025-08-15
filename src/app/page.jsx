@@ -8,7 +8,7 @@ import { PiShieldPlus } from "react-icons/pi";
 import Image from "next/image";
 import { FaStarOfLife } from "react-icons/fa6";
 
-import { Instrument_Sans,  Raleway } from "next/font/google";
+import { Instrument_Sans, Raleway } from "next/font/google";
 import Footer from "@/Components/Footer";
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
@@ -33,6 +33,8 @@ const raleway = Raleway({
   display: "swap",
 });
 import PageWrapper from "@/Components/PageWrapper";
+import { AnimateSvg } from "@/Components/AnimateSvg";
+import ScrollReveal from "@/Components/ScrollReveal";
 
 export default function Home() {
   const [showSmoke, setShowSmoke] = useState(false);
@@ -178,34 +180,34 @@ export default function Home() {
     }
   }, [truckArrived]);
   return (
-   <>
-     <div className="w-screen relative mt-28 lg:mt-40">
-      {isLoading && (
-        <div className="fixed inset-0 bg-white z-[9999]">
-          <Preloader />
-        </div>
-      )}
+    <>
+      <div className="w-screen relative mt-28 lg:mt-40">
+        {isLoading && (
+          <div className="fixed inset-0 bg-white z-[9999]">
+            <Preloader />
+          </div>
+        )}
 
-      <div
-        className={`transition-opacity duration-500 ${
-          isLoading ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
-      >
-        {/* Truck Container */}
-        <div className="w-full h-[100vh] bg-white mt-5 relative" ref={divRef}>
-          <div className="right_angle_triangle "></div>
-          {showSmoke && (
-            <TruckImage
-              // dimensions={dimensions}
-              setTruckArrived={(value) => setTruckArrived(value)}
-            />
-          )}
-        </div>
+        <div
+          className={`transition-opacity duration-500 ${
+            isLoading ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          {/* Truck Container */}
+          <div className="w-full h-[100vh] bg-white mt-5 relative" ref={divRef}>
+            <div className="right_angle_triangle "></div>
+            {showSmoke && (
+              <TruckImage
+                // dimensions={dimensions}
+                setTruckArrived={(value) => setTruckArrived(value)}
+              />
+            )}
+          </div>
 
-        {/* Truck Arrived Content */}
-        {truckArrived && (
-          <div
-            className={`absolute top-5 left-1/2 transform -translate-x-1/2 w-full max-w-screen-xl mx-auto z-10 px-4 sm:px-6 
+          {/* Truck Arrived Content */}
+          {truckArrived && (
+            <div
+              className={`absolute top-5 left-1/2 transform -translate-x-1/2 w-full max-w-screen-xl mx-auto z-10 px-4 sm:px-6 
       transition-all duration-1000 ease-in-out 
       ${
         contentVisible
@@ -213,156 +215,184 @@ export default function Home() {
           : "opacity-0 translate-y-10"
       }
     `}
-          >
-            {/* Title & Description */}
-            <div className="relative z-10 text-left mb-4">
-              <h2
-               
-                className={`font-redhat uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[4.5vw] 2xl:text-[4vw]`}
-              
-              >
-                <span className="block leading-[0.5]">Arabian Sky</span>
-                <span className="block text-[10.5vw] md:text-[6.5vw] lg:text-[7vw] 2xl:text-[6vw] font-medium">
-                  Transport
-                </span>
-              </h2>
-              <p className="text-sm md:text-base lg:text-base font-semibold text-black tracking-tight capitalize w-[85%] md:w-[65%] lg:w-[55%]">
-                Powering the UAE and GCC with professional, scalable, and
-                time-critical logistics solutions for over 25 years.
-              </p>
-            </div>
-
-            {/* Video Section */}
-            <div className="w-full text-right pt-4">
-              <div className="flex flex-col gap-2 w-full mx-auto">
-                <div className="relative w-full mx-auto">
-                  <p className="w-fit -mt-4 sm:-mt-8 lg:-mt-12 justify-self-end font-bold bg-[#01016F] px-3 py-2 rounded-t-lg flex items-center gap-2 text-white text-sm">
-                    <FaStarOfLife className="size-[13px] lg:size-[16px] text-red-500" />
-                    <span className="font-instrument-sans font-semibold text-sm lg:text-xl 2xl:text-xl">
-                      THE WHEELS OF RELIABILITY
-                    </span>
-                  </p>
-
-                  {/* Unified Responsive Video */}
-                  <div className="relative w-full  mx-auto aspect-video overflow-hidden rounded-b-lg rounded-l-lg z-20 h-full lg:h-[56vh]">
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      poster="/truck-poster.jpg"
-                      className="absolute top-0 left-0 w-full h-full object-cover z-10"
-                    >
-                      <source src="/Truck Logo Reveal.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                </div>
-
-                {/* CTA Section */}
-                <div className="relative w-full md:max-w-[65%] lg:max-w-[60%] 2xl:max-w-[50%]">
-                  <div className="bg-[#01016F] text-white rounded-lg lg:rounded-xl px-4 py-4 md:px-6 md:py-5 lg:px-8 lg:py-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-                    <h3 className="text-white font-semibold text-sm lg:text-sm 2xl:text-lg leading-tight text-center sm:text-left">
-                      We Have All Kinds Of Solution{" "}
-                      <br className="hidden sm:block" />
-                      To Deliver Your Goods
-                    </h3>
-
-                    <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-sm xl:text-sm 2xl:text-base pl-3 pr-1 py-1 rounded-full hover:scale-105 transition-transform">
-                      Get a free quote
-                      <span className="bg-[#01016F] text-white rounded-full p-2 text-base lg:text-2xl">
-                        <LuArrowUpRight />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-        <div className="particle-container">
-          <div className="particles">
-            {[...Array(30)].map((_, i) => (
-              <span className="circle" key={i}></span>
-            ))}
-          </div>
-          <div className="home-hero">
-           
-          
-
-        {/* About Us Section - Enhanced Responsiveness */}
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-          <section className="py-12 lg:py-40 bg-transparent">
-            <div className="">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 fade-in-up">
-                ABOUT <span className="text-[#EF1E24]">US</span>
-              </h2>
-
-              <div className="flex flex-col justify-between md:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-40 items-center w-full h-full">
-                {/* Image placeholder - Mobile optimized */}
-                <div className="bg-[#999999] w-full h-[25vh] lg:w-[50vw] lg:h-[45vh] rounded-xl flex items-center justify-center hover-lift">
-                  <span className="text-white text-xs sm:text-sm md:text-base lg:text-lg">
-                    <img
-                      src={
-                        "https://legitmoves.com/wp-content/uploads/2023/08/1657958812_About-Us-main_0.jpg"
-                      }
-                      alt="About Us"
-                      className="w-full h-full object-cover rounded-xl"
-                    />
+            >
+              {/* Title & Description */}
+              <div className="relative z-10 text-left mb-4">
+                <h2
+                  className={`font-redhat uppercase leading-tight text-[8vw] md:text-[6vw] lg:text-[4.5vw] 2xl:text-[4vw]`}
+                >
+                  <span className="block leading-[0.5]">Arabian Sky</span>
+                  <span className="block text-[10.5vw] md:text-[6.5vw] lg:text-[7vw] 2xl:text-[6vw] font-medium">
+                    Transport
                   </span>
-                </div>
+                </h2>
+                <p className="text-sm md:text-base lg:text-base font-semibold text-black tracking-tight capitalize w-[85%] md:w-[65%] lg:w-[55%]">
+                  Powering the UAE and GCC with professional, scalable, and
+                  time-critical logistics solutions for over 25 years.
+                </p>
+              </div>
 
-                {/* Content - Mobile optimized */}
-                <div className="order-1 lg:order-2 fade-in-up delay-300 text-left w-full lg:w-[50%]">
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#000000] mb-3 sm:mb-4">
-                    <span className="text-[#01016F]">Our</span> Story
-                  </h3>
-                  <p className="text-[#000000] mb-4 sm:mb-6 font-medium leading-relaxed text-sm sm:text-base lg:mx-0">
-                    Driving the Region Since 1998 We are one of the UAE's
-                    leading logistics and transport providers, with a reputation
-                    built on precision, safety, and customer-first service.
-                  </p>
-                  <button className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-blue-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
-                    Know more
-                  </button>
+              {/* Video Section */}
+              <div className="w-full text-right pt-4">
+                <div className="flex flex-col gap-2 w-full mx-auto">
+                  <div className="relative w-full mx-auto">
+                    <p className="w-fit -mt-4 sm:-mt-8 lg:-mt-12 justify-self-end font-bold bg-[#01016F] px-3 py-2 rounded-t flex items-center gap-2 text-white text-sm">
+                      <FaStarOfLife className="size-[13px] lg:size-[16px] text-red-500" />
+                      <span className="font-instrument-sans font-semibold text-sm lg:text-xl 2xl:text-xl">
+                        THE WHEELS OF RELIABILITY
+                      </span>
+                    </p>
+
+                    {/* Unified Responsive Video */}
+                    <div className="relative w-full  mx-auto aspect-video overflow-hidden rounded-b rounded-l z-20 h-full lg:h-[56vh]">
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        poster="/truck-poster.jpg"
+                        className="absolute top-0 left-0 w-full h-full object-cover z-10"
+                      >
+                        <source src="/Truck Logo Reveal.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  </div>
+
+                  {/* CTA Section */}
+                  <div className="relative w-full md:max-w-[65%] lg:max-w-[60%] 2xl:max-w-[50%]">
+                    <div className="bg-[#01016F] text-white rounded px-4 py-4 md:px-6 md:py-5 lg:px-8 lg:py-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+                      <h3 className="text-white font-semibold text-sm lg:text-sm 2xl:text-lg leading-tight text-center sm:text-left">
+                        We Have All Kinds Of Solution{" "}
+                        <br className="hidden sm:block" />
+                        To Deliver Your Goods
+                      </h3>
+
+                      <button className="bg-white text-black flex items-center gap-2 font-semibold text-xs sm:text-sm lg:text-sm xl:text-sm 2xl:text-base pl-3 pr-1 py-1 rounded-full hover:scale-105 transition-transform">
+                        Get a free quote
+                        <span className="bg-[#01016F] text-white rounded-full p-2 text-base lg:text-2xl">
+                          <LuArrowUpRight />
+                        </span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
-        </div>
-        </div>
-
-        {/* Services Section*/}
-        <div  className={`bg-[#f2f0ee] relative before:absolute before:inset-0 before:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzYiIGhlaWdodD0iNzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGZpbHRlciBpZD0ibm9pc2UiPjxmZVR1cmJ1bGVuY2UgdHlwZT0icmZyYXR1cnIiIGJhc2VGcmVxdWVuY3k9IjAuNSIgbnVtT2N0YXZlcz0iMSIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSI3NiIgaGVpZ2h0PSI3NiIgZmlsdGVyPSJ1cmwoI25vaXNlKSIvPjwvc3ZnPg==')] before:opacity-10 before:mix-blend-multiply before:content-[''] before:pointer-events-none`}>
-          <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-            <section className=" py-8 lg:py-20">
-              <div className="w-full">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 fade-in-up">
-                  OUR <span className="text-red-500">SERVICES</span>
-                </h2>
-                {/* <TruckWrapper className="w-full" /> */}
-                <div className="text-center fade-in-up delay-200 px-4">
-                  <p className="text-black max-w-3xl mx-auto text-base lg:text-2xl">
-                    As Logistics Service Providers, We Offer A Wide Range Of
-                    Services To Support To Meet The Diverse Logistics Needs Of
-                    Businesses Across The UAE And GCC.
-                  </p>
+          )}
+          <div className="particle-container">
+            {/* <div className="particles">
+              {[...Array(30)].map((_, i) => (
+                <span className="circle" key={i}></span>
+              ))}
+            </div> */}
+            <div className="home-hero overflow-hidden">
+              {/* About Us Section - Enhanced Responsiveness */}
+              {/* <div className="absolute left-[-8rem] z-0 ">
+                <div className="w-[85vw] rotate-[24deg]">
+                  <AnimateSvg
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 140 80"
+                    className="my-svg-animation"
+                    path="M10 50 C 20 40, 40 10, 50 20 C 60 30, 60 50, 70 60 C 80 70, 90 50, 100 40 C 110 30, 120 40, 130 50"
+                    strokeColor="#ef1e24"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    animationDuration={1.5}
+                    animationDelay={0}
+                    animationBounce={0.3}
+                    reverseAnimation={false}
+                    enableHoverAnimation={false}
+                  />
                 </div>
-                <StickyGallery onChangeBackground={setBgGradient} />
+              </div> */}
+
+              <div className="max-w-screen-xl mx-auto px-4 md:px-6 z-40">
+                <section className="py-12 lg:py-40 bg-transparent">
+                  <div className="">
+                    {/* <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 fade-in-up">
+                      ABOUT <span className="text-[#EF1E24]">US</span>
+                    </h2> */}
+
+                    <div className="flex flex-col justify-between md:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-40 items-center w-full h-full">
+                      {/* <div className="bg-[#999999] w-full h-[25vh] lg:w-[50vw] lg:h-[45vh] rounded flex items-center justify-center hover-lift">
+                        <span className="text-white text-xs sm:text-sm md:text-base lg:text-lg">
+                          <img
+                            src={
+                              "https://legitmoves.com/wp-content/uploads/2023/08/1657958812_About-Us-main_0.jpg"
+                            }
+                            alt="About Us"
+                            className="w-full h-full object-cover rounded"
+                          />
+                        </span>
+                      </div> */}
+
+                      {/* Content - Mobile optimized */}
+                      <div className="order-1 lg:order-2 fade-in-up delay-300 text-left w-full">
+                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#000000] mb-3 sm:mb-4">
+                          <span className="text-[#01016F]">Our</span> Story
+                        </h3>
+                        <ScrollReveal
+                          baseOpacity={0}
+                          enableBlur={true}
+                          baseRotation={5}
+                          blurStrength={10}
+                        >
+                          Driving the Region Since 1998 We are one of the UAE's
+                          leading logistics and transport providers, with a
+                          reputation built on precision, safety, and
+                          customer-first service.
+                        </ScrollReveal>
+                        {/* <p className="text-[#000000] mb-4 sm:mb-6 font-medium leading-relaxed text-sm sm:text-base lg:mx-0">
+                          Driving the Region Since 1998 We are one of the UAE's
+                          leading logistics and transport providers, with a
+                          reputation built on precision, safety, and
+                          customer-first service.
+                        </p> */}
+                        <button className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-blue-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
+                          Know more
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
-            </section>
+            </div>
           </div>
-        </div>
 
-        {/* Background Animation Section - Mobile Optimized */}
-        <div className="w-full">
-          <div className="relative overflow-hidden h-[15vh] md:h-[25vh] lg:h-[36vh]">
-            <div className="absolute inset-0 group bg-gradient-to-r from-[#1131A6] to-[#F70105]"></div>
+          {/* Services Section*/}
+          <div
+            className={`bg-[#f2f0ee] relative before:absolute before:inset-0 before:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzYiIGhlaWdodD0iNzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGZpbHRlciBpZD0ibm9pc2UiPjxmZVR1cmJ1bGVuY2UgdHlwZT0icmZyYXR1cnIiIGJhc2VGcmVxdWVuY3k9IjAuNSIgbnVtT2N0YXZlcz0iMSIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSI3NiIgaGVpZ2h0PSI3NiIgZmlsdGVyPSJ1cmwoI25vaXNlKSIvPjwvc3ZnPg==')] before:opacity-10 before:mix-blend-multiply before:content-[''] before:pointer-events-none`}
+          >
+            <div className="max-w-screen-xl mx-auto px-4 md:px-6">
+              <section className=" py-8 lg:py-20">
+                <div className="w-full">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 fade-in-up">
+                    OUR <span className="text-red-500">SERVICES</span>
+                  </h2>
+                  {/* <TruckWrapper className="w-full" /> */}
+                  <div className="text-center fade-in-up delay-200 px-4">
+                    <p className="text-black max-w-3xl mx-auto text-base lg:text-2xl">
+                      As Logistics Service Providers, We Offer A Wide Range Of
+                      Services To Support To Meet The Diverse Logistics Needs Of
+                      Businesses Across The UAE And GCC.
+                    </p>
+                  </div>
+                  <StickyGallery onChangeBackground={setBgGradient} />
+                </div>
+              </section>
+            </div>
+          </div>
 
-            {/* Responsive Background Text */}
-            <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-              <div className="whitespace-nowrap py-2">
-                {/* <h1
+          {/* Background Animation Section - Mobile Optimized */}
+          <div className="w-full">
+            <div className="relative overflow-hidden h-[15vh] md:h-[25vh] lg:h-[36vh]">
+              <div className="absolute inset-0 group bg-gradient-to-r from-[#1131A6] to-[#F70105]"></div>
+
+              {/* Responsive Background Text */}
+              <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                <div className="whitespace-nowrap py-2">
+                  {/* <h1
                   className={`slide-text text-[40px] xs:text-[60px] sm:text-[80px] md:text-[120px] lg:text-[15vw] font-bold text-[#FFFFFF80] opacity-70 tracking-wider select-none`}
                   style={{
                     "--animation-duration": `${35 / scrollSpeed}s`,
@@ -370,41 +400,41 @@ export default function Home() {
                 >
                   ARABIAN SKY TRANSPORT ARABIAN SKY TRANSPORT
                 </h1> */}
-                <ScrollBaseAnimation
-                  // delay={500}
-                  baseVelocity={3}
-                  scrollDependent={true}
-                  clasname="font-bold leading-[90%] text-[15vw] text-[#FFFFFF80]"
+                  <ScrollBaseAnimation
+                    // delay={500}
+                    baseVelocity={3}
+                    scrollDependent={true}
+                    clasname="font-bold leading-[90%] text-[15vw] text-[#FFFFFF80]"
+                  >
+                    ARABIAN SKY TRANSPORT
+                  </ScrollBaseAnimation>
+                </div>
+              </div>
+
+              {/* Responsive Overlay Cards */}
+              <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+                <div
+                  className={`grid gap-4 sm:gap-8 md:gap-12 lg:gap-20 xl:gap-40 max-w-full ${
+                    isMobile ? "grid-cols-2" : "grid-cols-4"
+                  }`}
                 >
-                  ARABIAN SKY TRANSPORT
-                </ScrollBaseAnimation>
+                  {[...Array(isMobile ? 2 : 4)].map((_, index) => (
+                    <div
+                      key={index}
+                      className={`bg-gray-400 w-[15vw] h-[18vh] bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer${
+                        index * 100
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Responsive Overlay Cards */}
-            <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-              <div
-                className={`grid gap-4 sm:gap-8 md:gap-12 lg:gap-20 xl:gap-40 max-w-full ${
-                  isMobile ? "grid-cols-2" : "grid-cols-4"
-                }`}
-              >
-                {[...Array(isMobile ? 2 : 4)].map((_, index) => (
-                  <div
-                    key={index}
-                    className={`bg-gray-400 w-[15vw] h-[18vh] bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer${
-                      index * 100
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
+            <div className="h-4 sm:h-6 md:h-8 lg:h-12 bg-white"></div>
           </div>
 
-          <div className="h-4 sm:h-6 md:h-8 lg:h-12 bg-white"></div>
-        </div>
-
-        {/* Why Choose Us Section - Enhanced Mobile */}
-        {/* <div className="max-w-screen-2xl mx-auto px-2">
+          {/* Why Choose Us Section - Enhanced Mobile */}
+          {/* <div className="max-w-screen-2xl mx-auto px-2">
        <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="mx-auto max-w-6xl">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16 tracking-tight fade-in-up">
@@ -453,54 +483,54 @@ export default function Home() {
         </section>
        </div> */}
 
-        {/* Industries Section - Responsive Grid */}
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6 pt-[5rem]">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16 tracking-tight fade-in-up text-[#01016F]">
-            WHY CHOOSE <span className="text-[#F70105]">US</span>
-          </h2>
-          <ImageReveal />
-        </div>
+          {/* Industries Section - Responsive Grid */}
+          <div className="max-w-screen-xl mx-auto px-4 md:px-6 pt-[5rem]">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16 tracking-tight fade-in-up text-[#01016F]">
+              WHY CHOOSE <span className="text-[#F70105]">US</span>
+            </h2>
+            <ImageReveal />
+          </div>
 
-        {/* Industries We Serve Section */}
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-          <section className="py-8 sm:py-12 lg:py-16">
-            <div className="mx-auto max-w-7xl">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 fade-in-up text-[#01016F]">
-                INDUSTRIES WE <span className="text-[#F70105]">SERVE</span>
-              </h2>
+          {/* Industries We Serve Section */}
+          <div className="max-w-screen-xl mx-auto px-4 md:px-6">
+            <section className="py-8 sm:py-12 lg:py-16">
+              <div className="mx-auto max-w-7xl">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 fade-in-up text-[#01016F]">
+                  INDUSTRIES WE <span className="text-[#F70105]">SERVE</span>
+                </h2>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center">
-                {industries.map((industry, index) => (
-                  <div
-                    key={index}
-                    className={`${
-                      industry.bgColor
-                    } flex gap-3 lg:gap-4 items-center text-white p-2 rounded-lg w-full hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer fade-in-up delay-${
-                      index * 100
-                    }`}
-                    // style={{ minHeight: "60px" }} // Reserve space to prevent CLS
-                  >
-                    <div className="bg-white size-8 sm:size-11 rounded flex justify-center text-black items-center text-sm lg:text-2xl hover:rotate-12 transition-transform duration-300">
-                      {industry.icon}
-                    </div>
-                    <span className="text-xs sm:text-sm font-semibold flex-1 text-left">
-                      {industry.title}
-                    </span>
-                    {/* <span className="text-sm font-medium flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center">
+                  {industries.map((industry, index) => (
+                    <div
+                      key={index}
+                      className={`${
+                        industry.bgColor
+                      } flex gap-3 lg:gap-4 items-center text-white p-2 rounded-md w-full hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer fade-in-up delay-${
+                        index * 100
+                      }`}
+                      // style={{ minHeight: "60px" }} // Reserve space to prevent CLS
+                    >
+                      <div className="bg-white size-8 sm:size-11 rounded flex justify-center text-black items-center text-sm lg:text-2xl hover:rotate-12 transition-transform duration-300">
+                        {industry.icon}
+                      </div>
+                      <span className="text-xs sm:text-sm font-semibold flex-1 text-left">
+                        {industry.title}
+                      </span>
+                      {/* <span className="text-sm font-medium flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300">
                       <IoIosArrowForward />
                     </span> */}
-                  </div>
-                ))}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </section>
-        </div>
+            </section>
+          </div>
 
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-          <Footer />
+          <div className="">
+            <Footer />
+          </div>
         </div>
       </div>
-    </div>
-   </>
+    </>
   );
 }

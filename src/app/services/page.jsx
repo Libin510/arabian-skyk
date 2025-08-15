@@ -235,7 +235,7 @@ export default function Service() {
       <img
         src="https://media.istockphoto.com/id/1355096028/photo/big-ten-wheels-truck-with-container-f.jpg?s=612x612&w=0&k=20&c=pZmj3qy_HoubQQ8J_w8Z7iAmro11Cdl6Eiybmp0jfxU="
         alt="main_image"
-        className="h-[465px] w-auto rounded-[16px]"
+        className="h-[465px] w-auto rounded"
       />
       {/* <div className="bg-[#BEBDBD] h-[465px] w-auto rounded-[16px]"></div> */}
 
@@ -246,7 +246,7 @@ export default function Service() {
         <div className="mt-8">
           {ourServices.map((service, index) => (
             <div
-              className="sticky top-4 bg-white p-6 lg:p-12 max-w-7xl mx-auto flex flex-col gap-[32px] border border-gray-200 rounded-[16px] mb-8 transform transition-all duration-300 shadow-2xl"
+              className="sticky top-4 bg-white p-6 lg:p-12 max-w-7xl mx-auto flex flex-col gap-[32px] border border-gray-200 rounded-md mb-8 transform transition-all duration-300 shadow-2xl"
               key={index}
             >
               <div className="w-full flex flex-col sm:flex-row items-center sm:items-baseline justify-between gap-4 sm:gap-6">
@@ -304,10 +304,10 @@ export default function Service() {
                     <img
                       src={service.image}
                       alt=""
-                      className="rounded-2xl w-full h-72 sm:h-[454px] max-w-lg"
+                      className="rounded w-full h-72 sm:h-[454px] max-w-lg"
                     />
                   ) : (
-                    <div className="bg-[#BEBDBD] rounded-2xl w-full h-72 sm:h-[454px] max-w-lg"></div>
+                    <div className="bg-[#BEBDBD] rounded w-full h-72 sm:h-[454px] max-w-lg"></div>
                   )}
                 </div>
               </div>
@@ -337,10 +337,10 @@ export default function Service() {
                   <img
                     src={item?.image}
                     alt=""
-                    className="rounded-lg w-[350px] max-w-xs h-[220px] mx-auto lg:mx-0 shadow-xl"
+                    className="rounded w-[350px] max-w-xs h-[220px] mx-auto lg:mx-0 shadow-xl"
                   />
                 ) : (
-                  <div className="bg-[#BEBDBD] rounded-lg w-[350px] max-w-xs h-[220px] mx-auto lg:mx-0"></div>
+                  <div className="bg-[#BEBDBD] rounded w-[350px] max-w-xs h-[220px] mx-auto lg:mx-0"></div>
                 )}
               </div>
 
@@ -374,8 +374,9 @@ export default function Service() {
           ))}
         </div>
       </div>
-      <Footer />
+      
     </div>
+    <Footer />
    </PageWrapper>
   );
 }

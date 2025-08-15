@@ -88,7 +88,7 @@ export default function StickyGallery({ onChangeBackground }) {
               ref={(el) => (sectionRefs.current[index] = el)}
               className="sticky top-0 h-[70vh] md:h-screen grid place-content-center pt-0 lg:pt-[14rem]"
             >
-              <div className="bg-gradient-to-r from-[#1131A6] to-[#F70105] rounded-md overflow-hidden h-[55vh] lg:w-[40vw] lg:h-[45vh] 2xl:w-[35vw] 2xl:h-[55vh]">
+              <div className="bg-gradient-to-r from-[#1131A6] to-[#F70105] rounded overflow-hidden h-[55vh] lg:w-[40vw] lg:h-[45vh] 2xl:w-[35vw] 2xl:h-[55vh]">
                 <div className="text-left mb-4 mt-4 ml-4">
                   <h3 className="font-semibold text-white text-sm md:text-2xl mb-3 sm:mb-4">
                     {index + 1}. {item.title}

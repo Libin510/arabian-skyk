@@ -103,7 +103,7 @@ const ImageReveal = () => {
             />
           )}
           <h2
-            className={`newFont uppercase lg:text-2xl text-lg font-semibold sm:py-6 py-4 leading-[100%] relative ${
+            className={`newFont uppercase text-[clamp(1.6rem,2vw,2rem)] font-semibold sm:py-6 py-4 leading-[100%] relative ${
               activeImage?.id === image?.id
                 ? 'mix-blend-difference z-20 !text-black'
                 : ' text-gray-500'
@@ -127,7 +127,7 @@ const ImageReveal = () => {
         <img
           src={activeImage.src}
           alt={activeImage.alt}
-          className={`fixed dark:bg-gray-950 bg-white object-cover pointer-events-none z-10 w-[300px] h-[400px] rounded-lg`}
+          className={`fixed dark:bg-gray-950 bg-white object-cover pointer-events-none z-10 w-[300px] h-[400px] lg:w-[500px]`}
           style={{
             left: `${cursorPosition.x}px`,
             top: `${cursorPosition.y}px`,

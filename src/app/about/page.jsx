@@ -265,14 +265,14 @@ export default function About() {
 
             {/* Content Placeholders */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-             <div className="bg-gray-300 rounded-2xl overflow-hidden h-60 md:h-80">
+             <div className="bg-gray-300 rounded overflow-hidden h-60 md:h-80">
                  <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyKgiVlo3cxKINIdygrlGBtOW6ELbSnkbvIA&s"
                   alt="No Image"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="bg-gray-300 rounded-2xl overflow-hidden h-60 md:h-80">
+              <div className="bg-gray-300 rounded overflow-hidden h-60 md:h-80">
                 <img
                   src="https://static.zawya.com/view/acePublic/alias/contentid/image.190908070235HVXP/3/190908070235hvxp-jpg.webp?f=3%3A2&q=0.75&w=3840"
                   alt="No Image"
@@ -338,13 +338,13 @@ export default function About() {
                   <div key={value.id} className="relative">
                     <div className="flex flex-col lg:flex-row lg:items-center gap-4 md:gap-8 lg:gap-72">
                       <div className="w-full lg:w-48 flex-shrink-0 text-center lg:text-left">
-                        <h2 className="text-base md:text-lg text-white font-semibold tracking-wide">
+                        <h2 className="text-base md:text-lg lg:text-2xl text-white font-semibold tracking-wide">
                           {value.title}
                         </h2>
                       </div>
 
                       <div className="flex flex-col md:flex-row items-center gap-4 flex-1 lg:justify-end">
-                        <div className="w-full md:w-64 h-32 md:h-40 bg-gray-400 rounded-lg flex-shrink-0 order-1 md:order-none">
+                        <div className="w-full md:w-64 h-32 md:h-40 bg-gray-400 rounded flex-shrink-0 order-1 md:order-none">
                           <img
                             src={value.image}
                             alt={value.title}
@@ -401,7 +401,7 @@ export default function About() {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover rounded"
                   />
                 </div>
               ))}
@@ -439,7 +439,7 @@ export default function About() {
                         <img
                           src={feature.image}
                           alt={feature.title}
-                          className="w-full h-full object-cover rounded-lg"
+                          className="w-full h-full object-cover rounded"
                         />
                       </div>
                     </div>
@@ -497,7 +497,7 @@ export default function About() {
                       style={{ width: "320px", height: "460px" }}
                       onClick={nextSlide}
                     >
-                      <div className="relative w-full h-full overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
+                      <div className="relative w-full h-full overflow-hidden rounded bg-gradient-to-br from-blue-50 to-blue-100">
                         <img
                           src={leader.image}
                           alt={leader.name}
@@ -517,9 +517,8 @@ export default function About() {
                 })}
               </div>
             </div>
-
-            <Footer />
           </div>
+          <Footer />
         </section>
       </div>
     </PageWrapper>

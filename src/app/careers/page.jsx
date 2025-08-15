@@ -535,7 +535,7 @@ export default function Career() {
           </div>
         </div>
 
-        <Footer />
+       
 
         {/* Job Application Modal */}
         <JobApplicationModal
@@ -544,6 +544,7 @@ export default function Career() {
           jobTitle={selectedJobTitle}
         />
       </div>
+      <Footer />
     </PageWrapper>
   );
 }
