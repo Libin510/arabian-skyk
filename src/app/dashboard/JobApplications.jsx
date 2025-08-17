@@ -138,7 +138,7 @@ export default function JobApplications() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-12">
+      <div className="flex items-center justify-center py-12" data-lenis-prevent>
         <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
       </div>
     );
@@ -146,7 +146,7 @@ export default function JobApplications() {
 
   if (applications.length === 0) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-6" data-lenis-prevent>
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-xl font-semibold text-white">Job Applications</h3>
@@ -155,7 +155,7 @@ export default function JobApplications() {
             </p>
           </div>
         </div>
-        <div className="flex items-center justify-center py-12">
+        <div className="flex items-center justify-center py-12" data-lenis-prevent>
           <div className="text-center">
             <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4">
               <FileText className="w-8 h-8 text-gray-400" />
@@ -169,7 +169,7 @@ export default function JobApplications() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" data-lenis-prevent>
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -274,9 +274,9 @@ export default function JobApplications() {
       </div>
 
       {/* Details Modal */}
-      {showDetailsModal && selectedApplication && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 border border-white/20 rounded-2xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        {showDetailsModal && selectedApplication && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4" data-lenis-prevent>
+          <div className="bg-gray-800 border border-white/20 rounded-2xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto" data-lenis-prevent>
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-semibold text-white">Application Details</h3>
               <button

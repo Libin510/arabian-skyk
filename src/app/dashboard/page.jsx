@@ -45,7 +45,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function AdminDashboard() {
   const [activeSection, setActiveSection] = useState("analytics");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   // Career Management State
@@ -113,7 +113,11 @@ export default function AdminDashboard() {
     post: "",
     place: "",
     type: "Full Time",
-    description: "",
+    responsibility: "",
+    requirement: "",
+    qualification: "",
+    experience: "",
+    salary: "",
   });
 
   const [orderForm, setOrderForm] = useState({
@@ -135,6 +139,14 @@ export default function AdminDashboard() {
     }
     // Job applications are handled within the component itself
   }, [activeSection]);
+
+  // Open sidebar by default on desktop screens
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const isDesktop = window.innerWidth >= 768; // md breakpoint
+      setIsSidebarOpen(isDesktop);
+    }
+  }, []);
 
   // API Functions for Careers
   const fetchCareers = async () => {
@@ -381,7 +393,11 @@ export default function AdminDashboard() {
       post: "",
       place: "",
       type: "Full Time",
-      description: "",
+      responsibility: "",
+      requirement: "",
+      qualification: "",
+      experience: "",
+      salary: "",
     });
     setShowCareerModal(true);
   };
@@ -389,17 +405,28 @@ export default function AdminDashboard() {
   const handleEditCareer = (career) => {
     setEditingCareer(career);
     setCareerForm({
-      id: career._id,
       post: career.post || career.title || "",
       place: career.place || career.location || "",
       type: career.type || "Full Time",
-      description: career.description || "",
+      responsibility: career.responsibility || "",
+      requirement: career.requirement || "",
+      qualification: career.qualification || "",
+      experience: career.experience || "",
+      salary: career.salary || "",
     });
     setShowCareerModal(true);
   };
 
   const handleSaveCareer = async () => {
-    if (!careerForm.post || !careerForm.place || !careerForm.description) {
+    if (
+      !careerForm.post ||
+      !careerForm.place ||
+      !careerForm.responsibility ||
+      !careerForm.requirement ||
+      !careerForm.qualification ||
+      !careerForm.experience ||
+      !careerForm.salary
+    ) {
       toast.error("Please fill in all required fields");
       return;
     }
@@ -407,7 +434,7 @@ export default function AdminDashboard() {
     let success = false;
 
     if (editingCareer) {
-      success = await updateCareer(editingCareer.id, careerForm);
+      success = await updateCareer(editingCareer._id, careerForm);
     } else {
       success = await createCareer(careerForm);
     }
@@ -581,12 +608,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex overflow-hidden">
-      {/* Fixed Sidebar */}
+      {/* Sidebar (off-canvas on mobile, collapsible on desktop) */}
       <div
-        className={`${isSidebarOpen ? "w-64" : "w-16"
-          } transition-all duration-300 bg-black/20 backdrop-blur-xl border-r border-white/10 flex flex-col h-full`}
+        className={`${isSidebarOpen ? "block fixed inset-y-0 left-0 z-40 w-64" : "hidden"} md:block md:relative ${isSidebarOpen ? "md:w-64" : "md:w-16"} transition-all duration-300 bg-black/20 backdrop-blur-xl border-r border-white/10 flex flex-col h-full`}
       >
-        <div className="p-4 flex-1">
+        <div className="p-4 flex-1 min-h-0 overflow-y-auto thin-scrollbar" data-lenis-prevent>
           {/* Logo */}
           <div className="flex items-center space-x-3 mb-8">
             <div
@@ -607,8 +633,8 @@ export default function AdminDashboard() {
             <button
               onClick={() => setActiveSection("analytics")}
               className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${activeSection === "analytics"
-                  ? "bg-white/10 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                ? "bg-white/10 text-white"
+                : "text-gray-400 hover:text-white hover:bg-white/5"
                 }`}
             >
               <BarChart3 className="w-5 h-5" />
@@ -618,8 +644,8 @@ export default function AdminDashboard() {
             <button
               onClick={() => setActiveSection("careers")}
               className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${activeSection === "careers"
-                  ? "bg-white/10 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                ? "bg-white/10 text-white"
+                : "text-gray-400 hover:text-white hover:bg-white/5"
                 }`}
             >
               <Briefcase className="w-5 h-5" />
@@ -629,8 +655,8 @@ export default function AdminDashboard() {
             <button
               onClick={() => setActiveSection("orders")}
               className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${activeSection === "orders"
-                  ? "bg-white/10 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                ? "bg-white/10 text-white"
+                : "text-gray-400 hover:text-white hover:bg-white/5"
                 }`}
             >
               <Package className="w-5 h-5" />
@@ -641,8 +667,8 @@ export default function AdminDashboard() {
             <button
               onClick={() => setActiveSection("services")}
               className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${activeSection === "services"
-                  ? "bg-white/10 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                ? "bg-white/10 text-white"
+                : "text-gray-400 hover:text-white hover:bg-white/5"
                 }`}
             >
               <MapPin className="w-5 h-5" />
@@ -652,8 +678,8 @@ export default function AdminDashboard() {
             <button
               onClick={() => setActiveSection("applications")}
               className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${activeSection === "applications"
-                  ? "bg-white/10 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                ? "bg-white/10 text-white"
+                : "text-gray-400 hover:text-white hover:bg-white/5"
                 }`}
             >
               <Users className="w-5 h-5" />
@@ -672,6 +698,14 @@ export default function AdminDashboard() {
           </Link>
         </div>
       </div>
+
+      {/* Backdrop for mobile when sidebar is open */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col h-full">
@@ -697,7 +731,7 @@ export default function AdminDashboard() {
         </header>
 
         {/* Scrollable Content Area */}
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className="flex-1 p-4 sm:p-6 overflow-y-auto" data-lenis-prevent>
           {/* Analytics Section */}
           {activeSection === "analytics" && (
             <div className="space-y-6">
@@ -745,11 +779,11 @@ export default function AdminDashboard() {
                                 className="h-full bg-gradient-to-r rounded-full"
                                 style={{
                                   width: `${(clicks /
-                                      Math.max(
-                                        ...Object.values(
-                                          analytics.serviceClicks
-                                        )
-                                      )) *
+                                    Math.max(
+                                      ...Object.values(
+                                        analytics.serviceClicks
+                                      )
+                                    )) *
                                     100
                                     }%`,
                                   background:
@@ -806,7 +840,7 @@ export default function AdminDashboard() {
                     <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto" data-lenis-prevent>
                     <table className="w-full">
                       <thead className="bg-white/5">
                         <tr>
@@ -820,7 +854,7 @@ export default function AdminDashboard() {
                             Type
                           </th>
                           <th className="text-left p-4 text-gray-300 font-medium">
-                            Description
+                            Salary
                           </th>
                           <th className="text-left p-4 text-gray-300 font-medium">
                             Actions
@@ -852,7 +886,7 @@ export default function AdminDashboard() {
                                 </span>
                               </td>
                               <td className="p-4 text-gray-300 max-w-xs truncate">
-                                {career.description}
+                                {career.salary || "-"}
                               </td>
                               <td className="p-4">
                                 <div className="flex items-center space-x-2">
@@ -908,7 +942,7 @@ export default function AdminDashboard() {
                     <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto" data-lenis-prevent>
                     <table className="w-full">
                       <thead className="bg-white/5">
                         <tr>
@@ -1015,7 +1049,7 @@ export default function AdminDashboard() {
                     <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto" data-lenis-prevent>
                     <table className="w-full">
                       <thead className="bg-white/5">
                         <tr>
@@ -1083,8 +1117,8 @@ export default function AdminDashboard() {
 
       {/* Career Modal */}
       {showCareerModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 border border-white/20 rounded-2xl p-6 w-full max-w-md">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 min-h-0">
+          <div className="bg-gray-800 border border-white/20 rounded-2xl p-6 w-full max-w-md max-h-[90vh] min-h-0 overflow-y-auto thin-scrollbar">
             <h3 className="text-xl font-semibold text-white mb-4">
               {editingCareer ? "Edit Career" : "Add New Career"}
             </h3>
@@ -1141,15 +1175,72 @@ export default function AdminDashboard() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
-                  Description <span className="text-red-400">*</span>
+                  Responsibility <span className="text-red-400">*</span>
                 </label>
                 <textarea
-                  value={careerForm.description}
+                  value={careerForm.responsibility}
                   onChange={(e) =>
-                    setCareerForm({ ...careerForm, description: e.target.value })
+                    setCareerForm({ ...careerForm, responsibility: e.target.value })
                   }
                   className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 h-24 resize-none"
-                  placeholder="Job description and requirements..."
+                  placeholder="List responsibilities (separate with commas or new lines)"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">
+                  Requirement <span className="text-red-400">*</span>
+                </label>
+                <textarea
+                  value={careerForm.requirement}
+                  onChange={(e) =>
+                    setCareerForm({ ...careerForm, requirement: e.target.value })
+                  }
+                  className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 h-24 resize-none"
+                  placeholder="List required skills/experience"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">
+                  Qualification <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={careerForm.qualification}
+                  onChange={(e) =>
+                    setCareerForm({ ...careerForm, qualification: e.target.value })
+                  }
+                  className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400"
+                  placeholder="e.g., Bachelor’s in Logistics or related field"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">
+                  Experience <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={careerForm.experience}
+                  onChange={(e) =>
+                    setCareerForm({ ...careerForm, experience: e.target.value })
+                  }
+                  className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400"
+                  placeholder="e.g., 3+ years in fleet or operations management"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">
+                  Salary <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={careerForm.salary}
+                  onChange={(e) => setCareerForm({ ...careerForm, salary: e.target.value })}
+                  className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400"
+                  placeholder="e.g., AED 6,000 - 8,000 / month"
                 />
               </div>
             </div>

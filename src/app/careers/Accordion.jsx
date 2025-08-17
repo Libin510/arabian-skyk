@@ -51,6 +51,11 @@ const Accordion = ({ data, isExpanded, onToggle, onApplyNow }) => {
             <span>{data.type}</span>
           </div>
         </div>
+        {data.salary && (
+          <div className="mt-2 text-sm text-gray-700">
+            <span className="font-medium text-gray-900">Salary:</span> {data.salary}
+          </div>
+        )}
       </div>
 
       {/* Body content (only if expanded) */}
@@ -78,6 +83,25 @@ const Accordion = ({ data, isExpanded, onToggle, onApplyNow }) => {
               ))}
             </ul>
           </div>
+          {data.qualifications && data.qualifications.length > 0 && (
+            <div className="px-6 py-2">
+              <h3 className="font-semibold mb-2">Qualifications</h3>
+              <ul className="space-y-1">
+                {data.qualifications.map((item, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <span className="text-white mr-3 mt-1 text-[14px]">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {data.experience && (
+            <div className="px-6 py-2 pb-4">
+              <h3 className="font-semibold mb-2">Experience</h3>
+              <p>{data.experience}</p>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -97,3 +97,24 @@ body {
   border: 1px solid;
   border-image: linear-gradient(to right, red, blue) 1;
 }
+
+/* Thin, branded scrollbar */
+.thin-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #01016F transparent; /* Firefox */
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Chrome, Safari */
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #01016F;
+  border-radius: 9999px;
+  border: 2px solid transparent; /* creates padding */
+  background-clip: content-box;
+}

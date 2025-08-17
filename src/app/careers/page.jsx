@@ -4,6 +4,7 @@ import { use, useEffect, useRef, useState } from "react";
 import Accordion from "./Accordion";
 import JobApplicationModal from "./JobApplicationModal";
 import { gsap } from "gsap";
+import { Briefcase } from "lucide-react";
 import Footer from "@/Components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import API, { action } from "../Api";
@@ -319,25 +320,25 @@ export default function Career() {
       const result = await action(API.GET_CAREER);
       console.log("Fetched careers:", result);
 
+      const splitToArray = (val) =>
+        Array.isArray(val)
+          ? val
+          : String(val || "")
+              .split(/\r?\n|,/)
+              .map((s) => s.trim())
+              .filter(Boolean);
+
       if (result?.careers) {
-        // Transform API data to match expected format
         const formattedCareers = result.careers.map((career, index) => ({
-          id: career._id || index + 1, // Use _id as id, fallback to index
-          title: career.post, // Map 'post' to 'title'
-          location: career.place, // Map 'place' to 'location'
+          id: career._id || index + 1,
+          title: career.post,
+          location: career.place,
           type: career.type,
-          description: career.description,
-          // Split description into responsibilities and requirements
-          responsibilities: [
-            career.description,
-            "Track Shipments And Provide Updates To Clients",
-            "Collaborate With Drivers And Operations To Ensure Timely Delivery",
-          ],
-          requirements: [
-            "Experience In Logistics Or Supply Chain Management",
-            "Excellent Organizational And Communication Skills",
-            "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
-          ],
+          salary: career.salary || "",
+          responsibilities: splitToArray(career.responsibility),
+          requirements: splitToArray(career.requirement),
+          qualifications: splitToArray(career.qualification),
+          experience: career.experience || "",
           createdAt: career.createdAt,
           updatedAt: career.updatedAt,
         }));
@@ -348,23 +349,16 @@ export default function Career() {
           setSelectedId(formattedCareers[0].id);
         }
       } else if (Array.isArray(result)) {
-        // If result is already an array, format it the same way
         const formattedCareers = result.map((career, index) => ({
           id: career._id || index + 1,
           title: career.post,
           location: career.place,
           type: career.type,
-          description: career.description,
-          responsibilities: [
-            career.description,
-            "Track Shipments And Provide Updates To Clients",
-            "Collaborate With Drivers And Operations To Ensure Timely Delivery",
-          ],
-          requirements: [
-            "Experience In Logistics Or Supply Chain Management",
-            "Excellent Organizational And Communication Skills",
-            "Ability To Work In A Fast-Paced, Deadline-Driven Environment",
-          ],
+          salary: career.salary || "",
+          responsibilities: splitToArray(career.responsibility),
+          requirements: splitToArray(career.requirement),
+          qualifications: splitToArray(career.qualification),
+          experience: career.experience || "",
           createdAt: career.createdAt,
           updatedAt: career.updatedAt,
         }));
@@ -446,50 +440,70 @@ export default function Career() {
             Open positions
           </h1>
 
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6 w-full md:max-w-[80%] mx-auto">
-            <div>
-              <AnimatePresence mode="wait">
+          {accordionData.length === 0 ? (
+            <div className="mt-10 w-full md:max-w-[80%] mx-auto">
+              <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 shadow-sm">
+                <div className="p-10 text-center">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#01016F]/10">
+                    <Briefcase size={28} className="text-[#01016F]" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-gray-900">No Open Positions</h3>
+                  <p className="mt-2 text-gray-600">We don’t have any openings right now. You can still send us your resume.</p>
+                  <button
+                    onClick={() => handleApplyNow("General Application")}
+                    className="mt-6 inline-flex items-center justify-center rounded-lg bg-[#01016F] px-5 py-2.5 text-white hover:bg-blue-900 transition-colors"
+                  >
+                    Send Resume
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6 w-full md:max-w-[80%] mx-auto">
+              <div>
+                <AnimatePresence mode="wait">
+                  {accordionData
+                    .filter((item) => item.id === selectedId)
+                    .map((item) => (
+                      <motion.div
+                        key={item.id}
+                        ref={openRef}
+                        layout
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -10 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        <Accordion
+                          data={item}
+                          isExpanded={true}
+                          onToggle={() => {}}
+                          onApplyNow={handleApplyNow}
+                        />
+                      </motion.div>
+                    ))}
+                </AnimatePresence>
+              </div>
+
+              <div className="flex flex-col gap-6 lg:max-h-[450px] lg:overflow-y-auto pr-2 thin-scrollbar">
                 {accordionData
-                  .filter((item) => item.id === selectedId)
+                  .filter((item) => item.id !== selectedId)
                   .map((item) => (
-                    <motion.div
-                      key={item.id}
-                      ref={openRef}
-                      layout
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -10 }}
-                      transition={{ duration: 0.4 }}
-                    >
+                    <motion.div key={item.id} layout>
                       <Accordion
                         data={item}
-                        isExpanded={true}
-                        onToggle={() => {}}
+                        isExpanded={false}
+                        onToggle={() => {
+                          setSelectedId(item.id);
+                          setIsClicked(!isClicked);
+                        }}
                         onApplyNow={handleApplyNow}
                       />
                     </motion.div>
                   ))}
-              </AnimatePresence>
+              </div>
             </div>
-
-            <div className="flex flex-col gap-6">
-              {accordionData
-                .filter((item) => item.id !== selectedId)
-                .map((item) => (
-                  <motion.div key={item.id} layout>
-                    <Accordion
-                      data={item}
-                      isExpanded={false}
-                      onToggle={() => {
-                        setSelectedId(item.id);
-                        setIsClicked(!isClicked);
-                      }}
-                      onApplyNow={handleApplyNow}
-                    />
-                  </motion.div>
-                ))}
-            </div>
-          </div>
+          )}
         </div>
 
         <div className="max-w-full md:max-w-[80%] mx-auto px-2 md:px-6 py-16 bg-white">
