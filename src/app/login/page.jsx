@@ -51,6 +51,7 @@ export default function Login() {
         if (result?.token && result?.user) {
           localStorage.setItem("authToken", result.token);
           localStorage.setItem("authUser", JSON.stringify(result.user));
+          localStorage.setItem("isLoggedIn", true);
 
           toast.success(result.message || "Login successful", {
             style: {

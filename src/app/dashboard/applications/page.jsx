@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import {
   User,
@@ -15,24 +16,29 @@ import {
   Star,
   GraduationCap,
   Building,
+  Search,
 } from "lucide-react";
 import { toast } from "react-toastify";
-import API, { action } from "../Api";
+import API, { action } from "../../Api";
 
 export default function JobApplications() {
   const [applications, setApplications] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false); // New state for confirmation modal
+  const [pendingStatusUpdate, setPendingStatusUpdate] = useState({ applicationId: null, newStatus: null }); // New state for pending update
+
+  const [searchKey, setSearchKey] = useState("");
 
   useEffect(() => {
     fetchApplications();
-  }, []);
+  }, [searchKey]);
 
   const fetchApplications = async () => {
     setIsLoading(true);
     try {
-      const result = await action(API.GET_JOB_APPLICATIONS);
+      const result = await action(API.GET_JOB_APPLICATIONS, { searchKey });
       console.log("Fetched applications:", result.applications);
       setApplications(result.applications || []);
     } catch (error) {
@@ -43,10 +49,19 @@ export default function JobApplications() {
     }
   };
 
-  const handleStatusChange = async (applicationId, newStatus) => {
+  const handleStatusChange = (applicationId, newStatus) => {
+    setPendingStatusUpdate({ applicationId, newStatus });
+    setShowConfirmModal(true);
+  };
+
+  const confirmStatusUpdate = async () => {
+    setShowConfirmModal(false); // Close modal immediately
+    const { applicationId, newStatus } = pendingStatusUpdate;
+    if (!applicationId || !newStatus) return;
+
     try {
-      // TODO: Implement actual API call to update status
-      await new Promise(resolve => setTimeout(resolve, 500));
+      const result = await action(API.UPDATE_JOB_APPLICATIONS_STATUS, { id: applicationId, status: newStatus });
+      console.log("Application status updated:", result);
       
       setApplications(prev => 
         prev.map(app => 
@@ -55,7 +70,9 @@ export default function JobApplications() {
       );
       
       toast.success(`Application status updated to ${newStatus}`);
+      setPendingStatusUpdate({ applicationId: null, newStatus: null }); // Clear pending update
     } catch (error) {
+      console.error("Error updating status:", error);
       toast.error("Failed to update status");
     }
   };
@@ -179,6 +196,16 @@ export default function JobApplications() {
           </p>
         </div>
         <div className="flex items-center space-x-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="pl-10 pr-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+              value={searchKey}
+              onChange={(e) => setSearchKey(e.target.value)}
+            />
+          </div>
           <div className="text-sm text-gray-400">
             {applications.length} application{applications.length !== 1 ? 's' : ''}
           </div>
@@ -404,6 +431,34 @@ export default function JobApplications() {
           </div>
         </div>
       )}
+
+      {/* Confirmation Modal for Status Update */}
+      {showConfirmModal && pendingStatusUpdate.applicationId && pendingStatusUpdate.newStatus && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4" data-lenis-prevent>
+          <div className="bg-gray-800 border border-white/20 rounded-2xl p-6 w-full max-w-md">
+            <h3 className="text-xl font-semibold text-white mb-4">Confirm Status Update</h3>
+            <p className="text-gray-300 mb-6">
+              Are you sure you want to change the status of this application to 
+              <span className="font-bold text-white"> {pendingStatusUpdate.newStatus}</span>?
+            </p>
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={() => setShowConfirmModal(false)}
+                className="px-4 py-2 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmStatusUpdate}
+                className="px-4 py-2 bg-gradient-to-r text-white font-medium rounded-lg"
+                style={{ background: "linear-gradient(135deg, #F70105, #1131A6)" }}
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
-} 
+}

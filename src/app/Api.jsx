@@ -16,12 +16,15 @@ const API = {
   DELETE_CAREER: { url: "career/delete", method: "POST" },
   APPLY_JOB: { url: "career/job/apply", method: "POST" },
   GET_JOB_APPLICATIONS: { url: "career/job/list", method: "POST" },
+  UPDATE_JOB_APPLICATIONS_STATUS: { url: "career/job/update-status", method: "POST" },
+
 
   //Order
   GET_ORDER: { url: "order/get", method: "POST" },
   ADD_ORDER: { url: "order/add", method: "POST" },
   UPDATE_ORDER: { url: "order/update", method: "POST" },
   DELETE_ORDER: { url: "order/delete", method: "POST" },
+  TRACK_ORDER:(id) => ({ url: `order/${id}`, method: "GET" }),
 
   //Service
   GET_SERVICE: { url: "service/get", method: "POST" },
