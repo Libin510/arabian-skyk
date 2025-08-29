@@ -2,7 +2,7 @@
 
 import { ReactLenis } from "lenis/react";
 import { usePathname } from "next/navigation";
-import ClientNavbar from "@/components/Clientnavbar";
+import ClientNavbar from "@/Components/ClientNavbar";
 
 export default function SmoothScrollWrapper({ children }) {
   const pathname = usePathname();
