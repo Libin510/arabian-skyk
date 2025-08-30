@@ -388,13 +388,17 @@ export default function OrderManagement() {
                   onChange={(e) =>
                     setOrderForm({ ...orderForm, status: e.target.value })
                   }
-                  className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white"
+                  className="w-full px-3 py-2 rounded-lg transition-colors duration-150"
+                  style={{
+                    color: orderForm.status ? "#18181b" : "#a1a1aa",
+                    backgroundColor: "#fff",
+                  }}
                 >
-                  <option value="Order Confirmed">Order Confirmed</option>
-                  <option value="In Progress">In Progress</option>
-                  <option value="Shipped">Shipped</option>
-                  <option value="Delivered">Delivered</option>
-                  <option value="Cancelled">Cancelled</option>
+                  <option className="text-black" value="Order Confirmed">Order Confirmed</option>
+                  <option className="text-black" value="In Progress">In Progress</option>
+                  <option className="text-black" value="Shipped">Shipped</option>
+                  <option className="text-black" value="Delivered">Delivered</option>
+                  <option className="text-black" value="Cancelled">Cancelled</option>
                 </select>
               </div>
             </div>

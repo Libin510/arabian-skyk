@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Plus, Edit, Trash2 } from "lucide-react";
 import API, { action } from "../../Api";
 import { toast } from "react-toastify";
@@ -25,23 +25,62 @@ export default function CareerManagement() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [careerToDelete, setCareerToDelete] = useState(null);
 
+  // For scroll fix
+  const modalContentRef = useRef(null);
+
   useEffect(() => {
     fetchCareers();
   }, []);
+
+  // Prevent background scroll when modal is open
+  useEffect(() => {
+    if (showCareerModal || showDeleteModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showCareerModal, showDeleteModal]);
+
+  // Fix for mouse wheel scroll not working on modal
+  useEffect(() => {
+    if (!showCareerModal) return;
+    const ref = modalContentRef.current;
+    if (!ref) return;
+
+    // Handler to allow wheel events to scroll the modal content
+    const handleWheel = (e) => {
+      // Only vertical scroll
+      const delta = e.deltaY;
+      if (
+        (delta < 0 && ref.scrollTop === 0) ||
+        (delta > 0 && ref.scrollTop + ref.clientHeight >= ref.scrollHeight)
+      ) {
+        // Prevent scroll propagation to background
+        e.preventDefault();
+      }
+      ref.scrollTop += delta;
+    };
+
+    ref.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      ref.removeEventListener("wheel", handleWheel);
+    };
+  }, [showCareerModal]);
 
   const fetchCareers = async () => {
     setIsLoadingCareers(true);
     try {
       const result = await action(API.GET_CAREER, {});
-      console.log("Fetched careers:", result);
-
       if (result?.careers) {
         setCareers(result.careers);
       } else if (Array.isArray(result)) {
         setCareers(result);
       }
     } catch (error) {
-      console.error("Error fetching careers:", error);
       toast.error("Failed to fetch careers");
     } finally {
       setIsLoadingCareers(false);
@@ -51,9 +90,7 @@ export default function CareerManagement() {
   const createCareer = async (careerData) => {
     setIsCareerLoading(true);
     try {
-      const result = await action(API.ADD_CAREER, careerData);
-      console.log("Career created:", result);
-
+      await action(API.ADD_CAREER, careerData);
       toast.success("Career posted successfully!", {
         style: {
           backgroundColor: "#E8F5E9",
@@ -61,11 +98,9 @@ export default function CareerManagement() {
           border: "1px solid #66BB6A"
         }
       });
-
       await fetchCareers();
       return true;
     } catch (error) {
-      console.error("Error creating career:", error);
       toast.error(error?.response?.data?.message || "Failed to create career");
       return false;
     } finally {
@@ -76,9 +111,7 @@ export default function CareerManagement() {
   const updateCareer = async (id, careerData) => {
     setIsCareerLoading(true);
     try {
-      const result = await action(API.UPDATE_CAREER, careerData, id);
-      console.log("Career updated:", result);
-
+      await action(API.UPDATE_CAREER, careerData, id);
       toast.success("Career updated successfully!", {
         style: {
           backgroundColor: "#E8F5E9",
@@ -86,11 +119,9 @@ export default function CareerManagement() {
           border: "1px solid #66BB6A"
         }
       });
-
       await fetchCareers();
       return true;
     } catch (error) {
-      console.error("Error updating career:", error);
       toast.error(error?.response?.data?.message || "Failed to update career");
       return false;
     } finally {
@@ -101,9 +132,7 @@ export default function CareerManagement() {
   const deleteCareer = async (career) => {
     try {
       const id = career._id;
-      const result = await action(API.DELETE_CAREER, { id });
-      console.log("Career deleted:", result);
-
+      await action(API.DELETE_CAREER, { id });
       toast.success("Career deleted successfully!", {
         style: {
           backgroundColor: "#E8F5E9",
@@ -111,10 +140,8 @@ export default function CareerManagement() {
           border: "1px solid #66BB6A"
         }
       });
-
       await fetchCareers();
     } catch (error) {
-      console.error("Error deleting career:", error);
       toast.error(error?.response?.data?.message || "Failed to delete career");
     }
   };
@@ -132,6 +159,11 @@ export default function CareerManagement() {
       salary: "",
     });
     setShowCareerModal(true);
+    setTimeout(() => {
+      if (modalContentRef.current) {
+        modalContentRef.current.scrollTop = 0;
+      }
+    }, 0);
   };
 
   const handleEditCareer = (career) => {
@@ -147,6 +179,11 @@ export default function CareerManagement() {
       salary: career.salary || "",
     });
     setShowCareerModal(true);
+    setTimeout(() => {
+      if (modalContentRef.current) {
+        modalContentRef.current.scrollTop = 0;
+      }
+    }, 0);
   };
 
   const handleSaveCareer = async () => {
@@ -201,7 +238,6 @@ export default function CareerManagement() {
           Career Management
         </h3>
         <div className="flex items-center space-x-4">
-
           <button
             onClick={handleAddCareer}
             className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
@@ -295,8 +331,26 @@ export default function CareerManagement() {
       </div>
 
       {showCareerModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 min-h-0">
-          <div className="bg-gray-800 border border-white/20 rounded-2xl p-6 w-full max-w-md max-h-[90vh] min-h-0 overflow-y-auto thin-scrollbar">
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex justify-center items-center p-4"
+          style={{
+            overflowY: "auto",
+            alignItems: "center",
+            display: "flex",
+          }}
+        >
+          <div
+            ref={modalContentRef}
+            className="bg-gray-800 border border-white/20 rounded-2xl p-6 w-full max-w-md"
+            style={{
+              maxHeight: "90vh",
+              overflowY: "auto",
+              minHeight: 0,
+              WebkitOverflowScrolling: "touch",
+              boxSizing: "border-box",
+            }}
+            tabIndex={0}
+          >
             <h3 className="text-xl font-semibold text-white mb-4">
               {editingCareer ? "Edit Career" : "Add New Career"}
             </h3>
