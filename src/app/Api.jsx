@@ -42,6 +42,8 @@ const API = {
   //User
   GET_USER: { url: "employee/list", method: "POST" },
   ADD_USER: { url: "employee/add", method: "POST" },
+  UPDATE_USER: { url: "employee/update", method: "POST" },
+  DELETE_USER: { url: "employee/delete", method: "POST" },
   
 //click count
   ADD_CLICK_COUNT: { url: "/click/count", method: "POST" },

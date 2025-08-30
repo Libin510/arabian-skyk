@@ -1,13 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Eye, EyeOff, Mail, Lock, ArrowRight, User, X } from "lucide-react";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import API, { action } from "../Api";
+import { isAuthenticated } from "../../util";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +17,21 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignupLoading, setIsSignupLoading] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const router = useRouter();
+
+  // Check if user is already logged in - MUST be before any conditional returns
+  useEffect(() => {
+    const checkAuth = () => {
+      if (isAuthenticated()) {
+        router.push('/dashboard');
+      } else {
+        setIsCheckingAuth(false);
+      }
+    };
+    
+    checkAuth();
+  }, [router]);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email address").required("Email Id is required"),
@@ -120,6 +135,18 @@ export default function Login() {
       }
     }
   });
+
+  // Show loading while checking authentication - AFTER all hooks are defined
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-white text-lg">Checking authentication...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 p-4">
