@@ -1,8 +1,8 @@
 "use client";
 
 import { ReactLenis } from "lenis/react";
-import Clientnavbar from "@/components/Clientnavbar";
 import { usePathname } from "next/navigation";
+import ClientNavbar from "@/Components/ClientNavbar";
 
 export default function SmoothScrollWrapper({ children }) {
   const pathname = usePathname();
@@ -10,7 +10,7 @@ export default function SmoothScrollWrapper({ children }) {
 
   return (
     <ReactLenis root>
-      {!isDashboardRoute && <Clientnavbar />}
+      {!isDashboardRoute && <ClientNavbar />}
       <main>{children}</main>
     </ReactLenis>
   );

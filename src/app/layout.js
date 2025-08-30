@@ -1,11 +1,10 @@
-import { Geist, Geist_Mono, Raleway, Red_Hat_Display } from "next/font/google";
+import { Raleway, Red_Hat_Display, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { ViewTransitions } from "next-view-transitions";
 import SmoothScrollWrapper from "@/Components/SmoothScrollWrapper";
 
 // Google Fonts
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const robotoMono = Roboto_Mono({ variable: "--font-roboto-mono", subsets: ["latin"] });
 const raleway = Raleway({ variable: "--font-raleway", subsets: ["latin"] });
 const redhatdisplay = Red_Hat_Display({ variable: "--font-redhatdisplay", subsets: ["latin"] });
 
@@ -19,7 +18,7 @@ export default function RootLayout({ children }) {
     <ViewTransitions>
       <html
         lang="en"
-        className={`${geistSans.variable} ${geistMono.variable} ${raleway.variable} ${redhatdisplay.variable}`}
+        className={`${robotoMono.variable} ${raleway.variable} ${redhatdisplay.variable}`}
         suppressHydrationWarning
       >
         <body className="font-redhat antialiased" suppressHydrationWarning>

@@ -3,13 +3,13 @@ import { ChartPie, TrendingUp } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 
 const OrdersPieChart = ({ title }) => {
-  // Sample order data - you can replace this with your dynamic data
+  // Updated order data based on provided status
   const [orderData, setOrderData] = useState([
-    { label: "Completed", value: 450, color: "#10b981" },
-    { label: "Pending", value: 180, color: "#f59e0b" },
-    { label: "Processing", value: 120, color: "#3b82f6" },
-    { label: "Cancelled", value: 50, color: "#ef4444" },
-    { label: "Returned", value: 30, color: "#8b5cf6" },
+    { label: "Order Confirmed", value: 1, color: "#3b82f6" },
+    { label: "In Progress", value: 1, color: "#f59e0b" },
+    { label: "Shipped", value: 0, color: "#6366f1" },
+    { label: "Delivered", value: 0, color: "#10b981" },
+    { label: "Cancelled", value: 0, color: "#ef4444" },
   ]);
 
   const [hoveredSegment, setHoveredSegment] = useState(null);
