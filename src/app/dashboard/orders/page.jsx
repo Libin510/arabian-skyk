@@ -26,9 +26,9 @@ export default function OrderManagement() {
 
   useEffect(() => {
     // Get user ID from localStorage
-    const authUser = JSON.parse(localStorage.getItem('authUser') || '{}');
+    const authUser = JSON.parse(localStorage.getItem("authUser") || "{}");
     if (authUser.id) {
-      setOrderForm(prev => ({ ...prev, userId: authUser.id }));
+      setOrderForm((prev) => ({ ...prev, userId: authUser.id }));
     }
     fetchOrders();
   }, [searchKey]);
@@ -62,8 +62,8 @@ export default function OrderManagement() {
         style: {
           backgroundColor: "#E8F5E9",
           color: "#2E7D32",
-          border: "1px solid #66BB6A"
-        }
+          border: "1px solid #66BB6A",
+        },
       });
 
       await fetchOrders();
@@ -92,8 +92,8 @@ export default function OrderManagement() {
         style: {
           backgroundColor: "#E8F5E9",
           color: "#2E7D32",
-          border: "1px solid #66BB6A"
-        }
+          border: "1px solid #66BB6A",
+        },
       });
 
       await fetchOrders();
@@ -116,8 +116,8 @@ export default function OrderManagement() {
         style: {
           backgroundColor: "#E8F5E9",
           color: "#2E7D32",
-          border: "1px solid #66BB6A"
-        }
+          border: "1px solid #66BB6A",
+        },
       });
 
       await fetchOrders();
@@ -129,7 +129,7 @@ export default function OrderManagement() {
 
   const handleAddOrder = () => {
     // Get user ID from localStorage
-    const authUser = JSON.parse(localStorage.getItem('authUser') || '{}');
+    const authUser = JSON.parse(localStorage.getItem("authUser") || "{}");
     setEditingOrder(null);
     setOrderForm({
       title: "",
@@ -143,7 +143,7 @@ export default function OrderManagement() {
 
   const handleEditOrder = (order) => {
     // Get user ID from localStorage
-    const authUser = JSON.parse(localStorage.getItem('authUser') || '{}');
+    const authUser = JSON.parse(localStorage.getItem("authUser") || "{}");
     console.log("Editing order:", order);
     console.log("Order ID:", order._id);
     setEditingOrder(order);
@@ -216,9 +216,7 @@ export default function OrderManagement() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h3 className="text-xl font-semibold text-white">
-          Order Management
-        </h3>
+        <h3 className="text-xl font-semibold text-white">Order Management</h3>
         <div className="flex items-center space-x-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -254,6 +252,9 @@ export default function OrderManagement() {
               <thead className="bg-white/5">
                 <tr>
                   <th className="text-left p-4 text-gray-300 font-medium">
+                    Order ID
+                  </th>
+                  <th className="text-left p-4 text-gray-300 font-medium">
                     Title
                   </th>
                   <th className="text-left p-4 text-gray-300 font-medium">
@@ -284,14 +285,13 @@ export default function OrderManagement() {
                       className="border-t border-white/5 hover:bg-white/5"
                     >
                       <td className="p-4 text-white font-medium">
+                        {order.order_id}
+                      </td>
+                      <td className="p-4 text-white font-medium">
                         {order.title}
                       </td>
-                      <td className="p-4 text-gray-300">
-                        {order.department}
-                      </td>
-                      <td className="p-4 text-gray-300">
-                        {order.location}
-                      </td>
+                      <td className="p-4 text-gray-300">{order.department}</td>
+                      <td className="p-4 text-gray-300">{order.location}</td>
                       <td className="p-4">
                         <span
                           className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
@@ -394,11 +394,21 @@ export default function OrderManagement() {
                     backgroundColor: "#fff",
                   }}
                 >
-                  <option className="text-black" value="Order Confirmed">Order Confirmed</option>
-                  <option className="text-black" value="In Progress">In Progress</option>
-                  <option className="text-black" value="Shipped">Shipped</option>
-                  <option className="text-black" value="Delivered">Delivered</option>
-                  <option className="text-black" value="Cancelled">Cancelled</option>
+                  <option className="text-black" value="Order Confirmed">
+                    Order Confirmed
+                  </option>
+                  <option className="text-black" value="In Progress">
+                    In Progress
+                  </option>
+                  <option className="text-black" value="Shipped">
+                    Shipped
+                  </option>
+                  <option className="text-black" value="Delivered">
+                    Delivered
+                  </option>
+                  <option className="text-black" value="Cancelled">
+                    Cancelled
+                  </option>
                 </select>
               </div>
             </div>
@@ -440,9 +450,10 @@ export default function OrderManagement() {
                 Confirm Deletion
               </h3>
               <p className="text-gray-300 mb-6">
-                Are you sure you want to delete this order? This action cannot be undone.
+                Are you sure you want to delete this order? This action cannot
+                be undone.
               </p>
-              
+
               <div className="flex space-x-3">
                 <button
                   onClick={cancelDelete}
@@ -478,7 +489,7 @@ export default function OrderManagement() {
           borderRadius: "12px",
           boxShadow: "0 4px 24px 0 rgba(0,0,0,0.2)",
           fontSize: "1rem",
-          border: "1px solid #333"
+          border: "1px solid #333",
         }}
         bodyClassName="text-base"
       />
