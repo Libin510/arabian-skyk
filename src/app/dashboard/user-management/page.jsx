@@ -1,6 +1,15 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, User, Mail, Phone, MapPin, RefreshCw } from "lucide-react";
+import {
+  Plus,
+  Edit,
+  Trash2,
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  RefreshCw,
+} from "lucide-react";
 import API, { action } from "../../Api";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,23 +17,26 @@ import "react-toastify/dist/ReactToastify.css";
 export default function UserManagement() {
   const [activeTab, setActiveTab] = useState("about");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deletingUserId, setDeletingUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [aboutUsData, setAboutUsData] = useState([]);
   const [contactUsData, setContactUsData] = useState([]);
+  const [editingUserId, setEditingUserId] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     designation: "",
     is_employee: false,
     number: "",
-    image: ""
+    image: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -34,7 +46,7 @@ export default function UserManagement() {
       setIsLoading(true);
       const payload = { is_employee: isEmployee };
       const result = await action(API.GET_USER, payload);
-      
+
       if (result?.data) {
         if (isEmployee) {
           setContactUsData(result.data);
@@ -63,26 +75,40 @@ export default function UserManagement() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       setIsSubmitting(true);
-      
+
       // Create FormData object
       const formDataObj = new FormData();
       formDataObj.append("name", formData.name);
-      formDataObj.append("image", formData.image);
+      if (formData.image) {
+        formDataObj.append("image", formData.image);
+      }
       formDataObj.append("designation", formData.designation);
-             formDataObj.append("is_employee", formData.is_employee.toString());
+      formDataObj.append("is_employee", formData.is_employee.toString());
       formDataObj.append("number", formData.number);
-      
-      // Call the ADD_USER API
-      const result = await action(API.ADD_USER, formDataObj);
-      
-      if (result?.success) {
-        toast.success("User added successfully!");
-        setIsModalOpen(false);
-        setFormData({ name: "", designation: "", is_employee: false, number: "", image: "" });
-        
+
+      let result;
+      if (editingUserId) {
+        formDataObj.append("id", editingUserId);
+        result = await action(API.UPDATE_USER, formDataObj);
+      } else {
+        result = await action(API.ADD_USER, formDataObj);
+      }
+
+      if (result) {
+        toast.success(
+          `User ${editingUserId ? "updated" : "added"} successfully!`
+        );
+        setEditingUserId(null);
+        setFormData({
+          name: "",
+          designation: "",
+          is_employee: false,
+          number: "",
+          image: "",
+        });
         // Refresh the current tab data after adding user
         if (activeTab === "about") {
           fetchUsers(false);
@@ -90,27 +116,63 @@ export default function UserManagement() {
           fetchUsers(true);
         }
       } else {
-        toast.error(result?.message || "Failed to add user");
+        toast.error(
+          result?.message ||
+            `Failed to ${editingUserId ? "update" : "add"} user`
+        );
       }
     } catch (error) {
-      console.error("Error adding user:", error);
-      toast.error("Failed to add user");
+      console.error(
+        `Error ${editingUserId ? "updating" : "adding"} user:`,
+        error
+      );
+      toast.error(`Failed to ${editingUserId ? "update" : "add"} user`);
     } finally {
       setIsSubmitting(false);
+      setIsModalOpen(false);
     }
   };
 
-  const handleEdit = (id) => {
-    console.log("Edit user with ID:", id);
-    // Implement edit functionality
+  const handleEdit = (user) => {
+    setEditingUserId(user._id);
+    setFormData({
+      name: user.name || "",
+      designation: user.designation || "",
+      is_employee: user.is_employee || false,
+      number: user.number || "",
+      image: "",
+    });
+    setIsModalOpen(true);
   };
 
   const handleDelete = (id) => {
-    console.log("Delete user with ID:", id);
-    // Implement delete functionality
+    setDeletingUserId(id);
+    setIsDeleteModalOpen(true);
   };
 
+  const confirmDelete = async () => {
+    if (!deletingUserId) return;
 
+    try {
+      const result = await action(API.DELETE_USER, { id: deletingUserId });
+      if (result) {
+        toast.success("User deleted successfully!");
+        if (activeTab === "about") {
+          fetchUsers(false);
+        } else {
+          fetchUsers(true);
+        }
+      } else {
+        toast.error(result?.message || "Failed to delete user.");
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      toast.error("An unexpected error occurred while deleting the user.");
+    } finally {
+      setIsDeleteModalOpen(false);
+      setDeletingUserId(null);
+    }
+  };
 
   const renderTable = (data, isContactTab = false) => (
     <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
@@ -120,47 +182,64 @@ export default function UserManagement() {
             <thead>
               <tr className="border-b border-white/20">
                 <th className="px-6 py-4 text-left">
-                  <span className="text-white/90 font-semibold text-sm uppercase tracking-wider">Name</span>
+                  <span className="text-white/90 font-semibold text-sm uppercase tracking-wider">
+                    Name
+                  </span>
                 </th>
                 <th className="px-6 py-4 text-left">
-                  <span className="text-white/90 font-semibold text-sm uppercase tracking-wider">Designation</span>
+                  <span className="text-white/90 font-semibold text-sm uppercase tracking-wider">
+                    Designation
+                  </span>
                 </th>
                 <th className="px-6 py-4 text-left">
-                  <span className="text-white/90 font-semibold text-sm uppercase tracking-wider">Employee Type</span>
+                  <span className="text-white/90 font-semibold text-sm uppercase tracking-wider">
+                    Employee Type
+                  </span>
                 </th>
                 <th className="px-6 py-4 text-left">
-                  <span className="text-white/90 font-semibold text-sm uppercase tracking-wider">Actions</span>
+                  <span className="text-white/90 font-semibold text-sm uppercase tracking-wider">
+                    Actions
+                  </span>
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/10">
               {data.map((item) => (
-                <tr key={item._id} className="hover:bg-white/5 transition-colors">
+                <tr
+                  key={item._id}
+                  className="hover:bg-white/5 transition-colors"
+                >
                   <td className="px-6 py-4">
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold text-sm">
-                        {item.name?.charAt(0) || '?'}
+                        {item.name?.charAt(0) || "?"}
                       </div>
-                      <span className="text-white/90 font-medium">{item.name || 'N/A'}</span>
+                      <span className="text-white/90 font-medium">
+                        {item.name || "N/A"}
+                      </span>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-white/80">{item.designation || 'N/A'}</span>
+                    <span className="text-white/80">
+                      {item.designation || "N/A"}
+                    </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${
-                      item.is_employee 
-                        ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" 
-                        : "bg-blue-500/20 text-blue-400 border-blue-500/30"
-                    }`}>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${
+                        item.is_employee
+                          ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+                          : "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                      }`}
+                    >
                       <div className="w-2 h-2 rounded-full bg-current mr-2"></div>
-                      {item.is_employee ? 'Employee' : 'Non-Employee'}
+                      {item.is_employee ? "Employee" : "Non-Employee"}
                     </span>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center space-x-2">
                       <button
-                        onClick={() => handleEdit(item._id)}
+                        onClick={() => handleEdit(item)}
                         className="p-2 text-blue-400 hover:text-blue-300 hover:bg-blue-500/20 rounded-lg transition-colors"
                       >
                         <Edit className="w-4 h-4" />
@@ -205,7 +284,17 @@ export default function UserManagement() {
             <span>Refresh</span>
           </button> */}
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {
+              setEditingUserId(null);
+              setFormData({
+                name: "",
+                designation: "",
+                is_employee: false,
+                number: "",
+                image: "",
+              });
+              setIsModalOpen(true);
+            }}
             className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-red-500 to-blue-600 text-white rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             <Plus className="w-5 h-5" />
@@ -249,8 +338,10 @@ export default function UserManagement() {
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
             <span className="ml-3 text-white">Loading...</span>
           </div>
+        ) : activeTab === "about" ? (
+          renderTable(aboutUsData)
         ) : (
-          activeTab === "about" ? renderTable(aboutUsData) : renderTable(contactUsData, true)
+          renderTable(contactUsData, true)
         )}
       </div>
 
@@ -259,7 +350,9 @@ export default function UserManagement() {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-gray-800 border border-gray-700 rounded-2xl p-6 w-full max-w-md mx-4">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white">Add New User</h2>
+              <h2 className="text-xl font-bold text-white">
+                {editingUserId ? "Edit User" : "Add New User"}
+              </h2>
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="text-gray-400 hover:text-white transition-colors"
@@ -267,10 +360,12 @@ export default function UserManagement() {
                 ✕
               </button>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Name
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -281,9 +376,11 @@ export default function UserManagement() {
                   required
                 />
               </div>
-              
+
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">Designation</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Designation
+                </label>
                 <input
                   type="text"
                   name="designation"
@@ -294,48 +391,59 @@ export default function UserManagement() {
                   required
                 />
               </div>
-              
-                             <div>
-                 <label className="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
-                 <input
-                   type="tel"
-                   name="number"
-                   value={formData.number}
-                   onChange={handleInputChange}
-                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                   placeholder="Enter phone number"
-                 />
-               </div>
-               
-               <div>
-                 <label className="block text-sm font-medium text-gray-300 mb-2">Profile Image</label>
-                 <input
-                   type="file"
-                   name="image"
-                   accept="image/*"
-                   onChange={(e) => {
-                     const file = e.target.files[0];
-                     if (file) {
-                       setFormData(prev => ({ ...prev, image: file }));
-                     }
-                   }}
-                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700"
-                 />
-               </div>
-              
+
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">Employee Type</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  name="number"
+                  value={formData.number}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Enter phone number"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Profile Image
+                </label>
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      setFormData((prev) => ({ ...prev, image: file }));
+                    }
+                  }}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Employee Type
+                </label>
                 <select
                   name="is_employee"
                   value={formData.is_employee ? "true" : "false"}
-                  onChange={(e) => setFormData(prev => ({ ...prev, is_employee: e.target.value === "true" }))}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      is_employee: e.target.value === "true",
+                    }))
+                  }
                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="false">Non-Employee</option>
                   <option value="true">Employee</option>
                 </select>
               </div>
-              
+
               <div className="flex space-x-3 pt-4">
                 <button
                   type="button"
@@ -344,26 +452,64 @@ export default function UserManagement() {
                 >
                   Cancel
                 </button>
-                                 <button
-                   type="submit"
-                   disabled={isSubmitting}
-                   className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-blue-600 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                 >
-                   {isSubmitting ? (
-                     <div className="flex items-center justify-center space-x-2">
-                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                       <span>Adding...</span>
-                     </div>
-                   ) : (
-                     "Add User"
-                   )}
-                 </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-blue-600 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      <span>{editingUserId ? "Updating..." : "Adding..."}</span>
+                    </div>
+                  ) : editingUserId ? (
+                    "Update User"
+                  ) : (
+                    "Add User"
+                  )}
+                </button>
               </div>
             </form>
           </div>
         </div>
       )}
-      
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-gray-800 border border-gray-700 rounded-2xl p-8 w-full max-w-sm mx-4 text-center">
+            <div className="flex flex-col items-center">
+                <div className="bg-red-500/10 text-red-500 rounded-full p-4 mb-4">
+                    <Trash2 className="w-8 h-8" />
+                </div>
+                <h2 className="text-xl font-bold text-white">Confirm Deletion</h2>
+                <p className="text-gray-400 mt-2">
+                  Are you sure you want to delete this user? This action is irreversible.
+                </p>
+            </div>
+            <div className="flex space-x-4 pt-8">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsDeleteModalOpen(false);
+                  setDeletingUserId(null);
+                }}
+                className="flex-1 px-4 py-3 bg-gray-700 text-white rounded-xl font-medium hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+              >
+                Cancel
+              </button>
+              <button
+                  type="button"
+                  onClick={confirmDelete}
+                  className="flex-1 px-4 py-3 bg-red-600 text-white rounded-xl font-medium hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+                >
+                  Delete User
+                </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Toast Container */}
       <ToastContainer
         position="top-right"
@@ -382,7 +528,7 @@ export default function UserManagement() {
           borderRadius: "12px",
           boxShadow: "0 4px 24px 0 rgba(0,0,0,0.2)",
           fontSize: "1rem",
-          border: "1px solid #333"
+          border: "1px solid #333",
         }}
         bodyClassName="text-base"
       />
