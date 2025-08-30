@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { FaStarOfLife } from "react-icons/fa6";
 import PageWrapper from "@/Components/PageWrapper";
+import API, { action } from "../Api";
 
 // app/about/page.jsx
 export default function About() {
   const headerRef = useRef();
 
   const [letterSpans, setLetterSpans] = useState([]);
+  const [leaders, setLeaders] = useState([]);
 
   useEffect(() => {
     const word1 = "About";
@@ -128,53 +130,82 @@ export default function About() {
     },
   ];
 
-  const leaders = [
-    {
-      id: 1,
-      name: "John Smith",
-      title: "CEO",
-      experience:
-        "25+ Years In Logistics And Transport Management. Visionary Leader Committed To Operational Excellence",
-      image:
-        "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&crop=face",
-    },
-    {
-      id: 2,
-      name: "Sarah Johnson",
-      title: "CTO",
-      experience:
-        "20+ Years In Technology Innovation. Expert In Digital Transformation And Strategic Planning",
-      image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&crop=face",
-    },
-    {
-      id: 3,
-      name: "Michael Chen",
-      title: "COO",
-      experience:
-        "18+ Years In Operations Management. Specialized In Supply Chain Optimization And Process Improvement",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face",
-    },
-    {
-      id: 4,
-      name: "Emily Rodriguez",
-      title: "CFO",
-      experience:
-        "22+ Years In Financial Management. Expert In Strategic Finance And Risk Management",
-      image:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&crop=face",
-    },
-    {
-      id: 5,
-      name: "David Wilson",
-      title: "VP Marketing",
-      experience:
-        "15+ Years In Brand Strategy And Digital Marketing. Passionate About Customer Experience",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face",
-    },
-  ];
+const getOurTeam = async ()=>{
+  try{
+    const result = await action(API.GET_USER,{
+      is_employee: false 
+    });
+    if(result?.data){
+      setLeaders(result.data.map((item) => ({
+        id: item._id,
+        name: item.name,
+        title: item.designation,
+        image: `https://arabian-sky.s3.ap-south-1.amazonaws.com/${item.image}` || "https://via.placeholder.com/150"
+      })));
+    }else{
+      console.error("Failed to fetch our team");
+    }
+  }catch(error){
+    console.error("Error fetching our team:", error);
+  }
+}
+
+
+useEffect(()=>{
+  getOurTeam();
+},[])
+
+
+console.log("leaders",leaders);
+
+
+  // const leaders = [
+  //   {
+  //     id: 1,
+  //     name: "John Smith",
+  //     title: "CEO",
+  //     experience:
+  //       "25+ Years In Logistics And Transport Management. Visionary Leader Committed To Operational Excellence",
+  //     image:
+  //       "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&crop=face",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Sarah Johnson",
+  //     title: "CTO",
+  //     experience:
+  //       "20+ Years In Technology Innovation. Expert In Digital Transformation And Strategic Planning",
+  //     image:
+  //       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&crop=face",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Michael Chen",
+  //     title: "COO",
+  //     experience:
+  //       "18+ Years In Operations Management. Specialized In Supply Chain Optimization And Process Improvement",
+  //     image:
+  //       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Emily Rodriguez",
+  //     title: "CFO",
+  //     experience:
+  //       "22+ Years In Financial Management. Expert In Strategic Finance And Risk Management",
+  //     image:
+  //       "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&crop=face",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "David Wilson",
+  //     title: "VP Marketing",
+  //     experience:
+  //       "15+ Years In Brand Strategy And Digital Marketing. Passionate About Customer Experience",
+  //     image:
+  //       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face",
+  //   },
+  // ];
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -265,9 +296,9 @@ export default function About() {
 
             {/* Content Placeholders */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-             <div className="bg-gray-300 rounded overflow-hidden h-60 md:h-80">
-                 <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyKgiVlo3cxKINIdygrlGBtOW6ELbSnkbvIA&s"
+              <div className="bg-gray-300 rounded overflow-hidden h-60 md:h-80">
+                <img
+                  src="./riderBoy.jpg"
                   alt="No Image"
                   className="w-full h-full object-cover"
                 />
@@ -505,7 +536,7 @@ export default function About() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                         <div className="absolute bottom-0 p-4 text-white">
-                          <p className="text-xs font-medium opacity-90">Name</p>
+                          <p className="text-xs font-medium opacity-90">{leader.name}</p>
                           <h3 className="text-xl font-bold">{leader.title}</h3>
                           <p className="text-sm opacity-95 mt-2 line-clamp-4">
                             {leader.experience}

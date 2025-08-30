@@ -39,6 +39,7 @@ function Footer() {
                   
                   rounded-full hover:scale-105 transition-transform duration-300 
                   whitespace-nowrap"
+                  onClick={() => router.push('/contact')}
           >
             Get In Touch
             <span

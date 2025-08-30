@@ -21,6 +21,7 @@ export default function DashboardLayout({ children }) {
     { name: "Orders", href: "/dashboard/orders", icon: ShoppingCart },
     // { name: "Services", href: "/dashboard/services", icon: Settings },
     { name: "Applications", href: "/dashboard/applications", icon: Users },
+    { name: "User Management", href: "/dashboard/user-management", icon: Settings },
   ];
 
   const handleLogout = () => {

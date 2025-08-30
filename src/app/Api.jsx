@@ -39,6 +39,13 @@ const API = {
   ADD_CONTACT: { url: "contact", method: "POST" },
 
 
+  //User
+  GET_USER: { url: "employee/list", method: "POST" },
+  ADD_USER: { url: "employee/add", method: "POST" },
+  
+//click count
+  ADD_CLICK_COUNT: { url: "/click/count", method: "POST" },
+
 };
 
 export default API;

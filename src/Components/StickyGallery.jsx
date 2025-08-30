@@ -6,14 +6,14 @@ const imageList = [
   {
     id: "01",
     title: "HEAVY HAULAGE & PROJECT LOGISTICS",
-    url: "https://www.maersk.com/~/media_sc9/maersk/logistics-explained/transportation-and-freight/2025/heavyhaulage-article_1024x576.jpg?w=877&hash=B14CDC093C205780D96A3D849C08656A",
+    url: "longTruck.jpg",
     bg: "#f2f0ee",
     heading: "LOGISTICS",
   },
   {
     id: "02",
     title: "CUSTOMS CLEARANCE",
-    url: "https://shrisaitechsolutions.co.in/projects/hncadmin/upload/251124051836What-are-the-Types-of-Customs-Clearance-Services.jpg",
+    url: "./customClearence.jpg",
     bg: "#ffe6d9",
     heading: "CLEARANCE",
   },
@@ -97,7 +97,7 @@ export default function StickyGallery({ onChangeBackground }) {
                 <img
                   src={item.url}
                   alt={item.title}
-                  className="transition-all duration-300 w-full h-full object-cover align-bottom"
+                  className="w-full h-full object-fit transition-all duration-300"
                 />
               </div>
             </figure>

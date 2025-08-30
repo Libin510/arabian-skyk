@@ -4,11 +4,65 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { LuArrowUpRight } from "react-icons/lu";
 import PageWrapper from "@/Components/PageWrapper";
+import { useRouter } from "next/navigation";
 
 export default function Service() {
   const headerRef = useRef();
-
+  const router = useRouter();
   const [letterSpans, setLetterSpans] = useState([]);
+  const [userIP, setUserIP] = useState("");
+
+  // Function to get user's IP address
+  const getUserIP = async () => {
+    try {
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      return data.ip;
+    } catch (error) {
+      console.error('Error fetching IP:', error);
+      return 'unknown';
+    }
+  };
+
+  // Function to call ADD_CLICK_COUNT API
+  const trackServiceClick = async (serviceName) => {
+    try {
+      const ip = userIP || await getUserIP();
+      const payload = {
+        userIdentifier: ip,
+        serviceName: serviceName
+      };
+
+      const response = await fetch('/api/ADD_CLICK_COUNT', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        console.log('Click tracked successfully');
+      } else {
+        console.error('Failed to track click');
+      }
+    } catch (error) {
+      console.error('Error tracking click:', error);
+    }
+  };
+
+  // Handle Learn More button click
+  const handleLearnMoreClick = (serviceName) => {
+    // Track the click
+    trackServiceClick(serviceName);
+    // Navigate to contact page
+    router.push("/contact");
+  };
+
+  useEffect(() => {
+    // Get user IP when component mounts
+    getUserIP().then(ip => setUserIP(ip));
+  }, []);
 
   useEffect(() => {
     const word1 = "our";
@@ -209,6 +263,9 @@ export default function Service() {
           <button
             type="button"
             className="group bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white  pl-6 pr-1 py-1 rounded-full font-medium text-base hover:bg-blue-800 transition-colors duration-200 flex items-center gap-3 w-fit"
+           onClick={()=>{
+            router.push("/contact");
+           }}
           >
             get in touch
             {/* <svg
@@ -287,7 +344,8 @@ export default function Service() {
                     </div>
 
                     <div className="pt-2">
-                      <button className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white pl-6 pr-1 py-1 rounded-full font-semibold hover:bg-blue-800 transition-colors duration-300 flex items-center gap-3 text-sm lg:text-base">
+                      <button className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white pl-6 pr-1 py-1 rounded-full font-semibold hover:bg-blue-800 transition-colors duration-300 flex items-center gap-3 text-sm lg:text-base"
+                       onClick={() => handleLearnMoreClick(service.title)}>
                         Learn More
                        
                           <span className="bg-white text-black rounded-full p-2 text-base lg:text-2xl">

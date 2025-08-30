@@ -15,12 +15,12 @@ const images = [
   },
   {
     id: 3,
-    src: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i9iVU3m.hOg0/v0/-1x-1.webp',
+    src: 'fleet.png',
     alt: '100+ FLEET VEHICLES',
   },
   {
     id: 4,
-    src: 'https://images.pexels.com/photos/93398/pexels-photo-93398.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    src: './Gcc.jpg',
     alt: 'OPERATES ACROSS THE GCC',
   },
   {
