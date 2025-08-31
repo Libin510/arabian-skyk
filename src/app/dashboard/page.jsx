@@ -14,6 +14,7 @@ import { isAuthenticated } from "../../util";
 export default function AnalyticsDashboard() {
   const [orderCount, setOrderCount] = useState(0);
   const [serviceClicks, setServiceClicks] = useState(0);
+  const [services, setServices] = useState([]); // changed to array
   const [pieChartData, setPieChartData] = useState({});
   const [latestOrders, setLatestOrders] = useState([]);
 
@@ -39,6 +40,8 @@ export default function AnalyticsDashboard() {
         setOrderCount(result.data.total_count);
         setServiceClicks(result.data.service_click);
         setPieChartData(result.data.orders_by_status || {});
+        // Expecting array of { count, serviceName }
+        setServices(result.data.service_clicks_by_service || []);
 
         const formattedOrders = (result.data.latest_orders || []).map(
           (order) => ({
@@ -106,7 +109,7 @@ export default function AnalyticsDashboard() {
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-gray-300 text-md font-medium">
-                Services
+                Total Clicks
               </span>
               <div className="flex items-center space-x-3">
                 <div className="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
@@ -122,6 +125,26 @@ export default function AnalyticsDashboard() {
                 </span>
               </div>
             </div>
+            {/* List each service and its click count */}
+            {Array.isArray(services) && services.length > 0 && (
+              <div className="mt-4">
+                <div className="divide-y divide-gray-700">
+                  {services.map((service, idx) => (
+                    <div
+                      key={service.serviceName + idx}
+                      className="flex items-center justify-between py-2"
+                    >
+                      <span className="text-gray-200 text-sm">
+                        {service.serviceName}
+                      </span>
+                      <span className="text-white text-sm font-semibold">
+                        {service.count}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -423,9 +423,9 @@ export default function JobApplications() {
                     <span>Download Resume</span>
                   </button>
                 )}
-                <button className="flex-1 py-2 px-4 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700">
+                {/* <button className="flex-1 py-2 px-4 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700">
                   Schedule Interview
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

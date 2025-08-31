@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { LuArrowUpRight } from "react-icons/lu";
 import PageWrapper from "@/Components/PageWrapper";
 import { useRouter } from "next/navigation";
+import API, { action } from "../Api";
 
 export default function Service() {
   const headerRef = useRef();
@@ -33,13 +34,15 @@ export default function Service() {
         serviceName: serviceName
       };
 
-      const response = await fetch('/api/ADD_CLICK_COUNT', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await action(API.ADD_CLICK_COUNT, payload);
+
+      // const response = await fetch(API.ADD_CLICK_COUNT.url, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(payload),
+      // });
 
       if (response.ok) {
         console.log('Click tracked successfully');

@@ -46,7 +46,7 @@ const API = {
   DELETE_USER: { url: "employee/delete", method: "POST" },
   
 //click count
-  ADD_CLICK_COUNT: { url: "/click/count", method: "POST" },
+  ADD_CLICK_COUNT: { url: "click/count", method: "POST" },
 
 };
 

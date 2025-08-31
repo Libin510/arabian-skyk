@@ -17,7 +17,7 @@ export default function CareerManagement() {
     place: "",
     type: "Full Time",
     responsibility: "",
-    requirement: "",
+    requirment: "",
     qualification: "",
     experience: "",
     salary: "",
@@ -31,6 +31,9 @@ export default function CareerManagement() {
   useEffect(() => {
     fetchCareers();
   }, []);
+
+  console.log(careerForm,'----------');
+  
 
   // Prevent background scroll when modal is open
   useEffect(() => {
@@ -111,7 +114,7 @@ export default function CareerManagement() {
   const updateCareer = async (id, careerData) => {
     setIsCareerLoading(true);
     try {
-      await action(API.UPDATE_CAREER, careerData, id);
+      await action(API.UPDATE_CAREER, { id, ...careerData });
       toast.success("Career updated successfully!", {
         style: {
           backgroundColor: "#E8F5E9",
@@ -153,7 +156,7 @@ export default function CareerManagement() {
       place: "",
       type: "Full Time",
       responsibility: "",
-      requirement: "",
+      requirment: "",
       qualification: "",
       experience: "",
       salary: "",
@@ -173,7 +176,7 @@ export default function CareerManagement() {
       place: career.place || career.location || "",
       type: career.type || "Full Time",
       responsibility: career.responsibility || "",
-      requirement: career.requirement || "",
+      requirment: career.requirment || "",
       qualification: career.qualification || "",
       experience: career.experience || "",
       salary: career.salary || "",
@@ -191,7 +194,7 @@ export default function CareerManagement() {
       !careerForm.post ||
       !careerForm.place ||
       !careerForm.responsibility ||
-      !careerForm.requirement ||
+      !careerForm.requirment ||
       !careerForm.qualification ||
       !careerForm.experience ||
       !careerForm.salary
@@ -388,14 +391,14 @@ export default function CareerManagement() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
-                  Job Type
+                  Job Type <span className="text-red-400">*</span>
                 </label>
                 <select
                   value={careerForm.type}
                   onChange={(e) =>
                     setCareerForm({ ...careerForm, type: e.target.value })
                   }
-                  className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white"
+                  className="w-full px-3 py-2 bg-white border border-white/20 rounded-lg text-black"
                 >
                   <option value="Full Time">Full Time</option>
                   <option value="Part Time">Part Time</option>
@@ -424,9 +427,9 @@ export default function CareerManagement() {
                   Requirement <span className="text-red-400">*</span>
                 </label>
                 <textarea
-                  value={careerForm.requirement}
+                  value={careerForm.requirment}
                   onChange={(e) =>
-                    setCareerForm({ ...careerForm, requirement: e.target.value })
+                    setCareerForm({ ...careerForm, requirment: e.target.value })
                   }
                   className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 h-24 resize-none"
                   placeholder="List required skills/experience"
