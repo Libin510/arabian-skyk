@@ -18,6 +18,7 @@ export default function OrderManagement() {
     location: "",
     status: "Order Confirmed",
     userId: "",
+    email: "",
   });
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [orderToDelete, setOrderToDelete] = useState(null);
@@ -137,6 +138,7 @@ export default function OrderManagement() {
       location: "UAE",
       status: "Order Confirmed",
       userId: authUser.id || "",
+      email: "",
     });
     setShowOrderModal(true);
   };
@@ -153,6 +155,7 @@ export default function OrderManagement() {
       location: order.location,
       status: order.status,
       userId: authUser.id || order.userId || "",
+      email: order.email || "",
     });
     setShowOrderModal(true);
   };
@@ -264,6 +267,9 @@ export default function OrderManagement() {
                     Location
                   </th>
                   <th className="text-left p-4 text-gray-300 font-medium">
+                    Email
+                  </th>
+                  <th className="text-left p-4 text-gray-300 font-medium">
                     Status
                   </th>
                   <th className="text-left p-4 text-gray-300 font-medium">
@@ -274,7 +280,7 @@ export default function OrderManagement() {
               <tbody>
                 {orders.length === 0 ? (
                   <tr>
-                    <td colSpan="5" className="p-8 text-center text-gray-400">
+                    <td colSpan="7" className="p-8 text-center text-gray-400">
                       No orders found.
                     </td>
                   </tr>
@@ -292,6 +298,7 @@ export default function OrderManagement() {
                       </td>
                       <td className="p-4 text-gray-300">{order.department}</td>
                       <td className="p-4 text-gray-300">{order.location}</td>
+                      <td className="p-4 text-gray-300">{order.email || ""}</td>
                       <td className="p-4">
                         <span
                           className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
@@ -346,6 +353,7 @@ export default function OrderManagement() {
                   }
                   className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400"
                   placeholder="Order Title"
+                  disabled={!!editingOrder}
                 />
               </div>
 
@@ -361,6 +369,7 @@ export default function OrderManagement() {
                   }
                   className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400"
                   placeholder="Department"
+                  disabled={!!editingOrder}
                 />
               </div>
 
@@ -376,6 +385,21 @@ export default function OrderManagement() {
                   }
                   className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400"
                   placeholder="Location"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={orderForm.email}
+                  onChange={(e) =>
+                    setOrderForm({ ...orderForm, email: e.target.value })
+                  }
+                  className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400"
+                  placeholder="Email"
                 />
               </div>
 
