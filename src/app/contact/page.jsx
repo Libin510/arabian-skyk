@@ -1,9 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Twitter } from 'lucide-react';
 import Footer from "@/Components/Footer";
 import { LuArrowUpRight } from "react-icons/lu";
+import API, { action } from "../Api";
 export default function Contact() {
+  const [employee,setEmployee] = useState()
   const [formData, setFormData] = useState({
     fullName: '',
     companyAddress: '',
@@ -24,6 +26,32 @@ export default function Contact() {
     console.log('Form submitted:', formData);
     // Handle form submission here
   };
+
+  const getOurTeam = async ()=>{
+  try{
+    const result = await action(API.GET_USER,{
+      is_employee: true 
+    });
+    if(result?.data){
+      setEmployee(result.data.map((item) => ({
+        id: item._id,
+        name: item.name,
+        phone: item.number,
+        title: item.designation,
+        image: `https://arabian-sky.s3.ap-south-1.amazonaws.com/${item.image}` || "https://via.placeholder.com/150"
+      })));
+    }else{
+      console.error("Failed to fetch our team");
+    }
+  }catch(error){
+    console.error("Error fetching our team:", error);
+  }
+}
+
+
+useEffect(()=>{
+  getOurTeam();
+},[])
 
   return (
     <div className="max-w-screen-xl mx-auto p-4 mt-32">
@@ -202,6 +230,44 @@ export default function Contact() {
             </div>
           </div>
         </div>
+
+        {/* Employee Details Section */}
+        {employee && employee.length > 0 && (
+          <div className="mt-16 mb-12">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                MEET OUR <span className="text-red-500">TEAM</span>
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Get to know the dedicated professionals who make Arabian Sky exceptional
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {employee.map((member, index) => (
+                                 <div key={member.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                  <div className="flex">
+                                         <div className="w-24 h-24  overflow-hidden flex-shrink-0 p-2">
+                       <img 
+                         src={member.image} 
+                         alt={member.name}
+                         className="w-full h-full object-cover rounded"
+                         onError={(e) => {
+                           e.target.src = "https://via.placeholder.com/150x150?text=Team+Member";
+                         }}
+                       />
+                     </div>
+                    <div className="p-4 flex-1">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">{member.name}</h3>
+                      <p className="text-gray-600 text-sm">{member.title}</p>  
+                      <p className="text-gray-600 text-sm">Ph : {member.phone}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Map Section */}
         <div className="mt-16 mb-12">
