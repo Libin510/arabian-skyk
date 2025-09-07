@@ -21,6 +21,7 @@ import "../Components/Particles.css";
 import dynamic from "next/dynamic";
 const StickyGallery = dynamic(() => import("@/Components/StickyGallery"), { ssr: false });
 const ImageReveal = dynamic(() => import("@/Components/ImageReveal"), { ssr: false });
+const Partners = dynamic(() => import("@/Components/Partners"), { ssr: false });
 const Footer = dynamic(() => import("@/Components/Footer"), { ssr: false });
 import Head from "next/head";
 const TruckScen = dynamic(() => import("@/Components/TruckScen"), {
@@ -561,6 +562,8 @@ export default function Home() {
                   rotationInterval={2000}
                 />
               </div>
+               {/* Partners Section */}
+            <Partners />
             </section>
           </div>
 

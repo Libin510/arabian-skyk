@@ -13,7 +13,7 @@ const imageList = [
   {
     id: "02",
     title: "CUSTOMS CLEARANCE",
-    url: "./customClearence.jpg",
+    url: "./custom.jpg",
     bg: "#ffe6d9",
     heading: "CLEARANCE",
   },
