@@ -32,13 +32,13 @@ export default function Partners() {
         </div>
 
         {/* Marquee */}
-        <div className="relative w-full overflow-hidden h-[30vh] bg-gradient-to-r from-[#1131A6] via-[#5B00B0] to-[#F70105] flex items-center">
+        <div className="relative w-full overflow-hidden h-[10vh] flex items-center">
           <ScrollBaseAnimation 
            baseVelocity={3}
                     scrollDependent={true}
                      clasname="text-3xl font-extrabold text-white">
             {partners.map((name, i) => (
-              <span key={i} className="px-12">
+              <span key={i} className="px-12 text-black">
                 {name}
               </span>
             ))}
