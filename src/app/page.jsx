@@ -521,9 +521,9 @@ export default function Home() {
           </div>
 
           {/* Industries We Serve Section */}
-          <div className="max-w-screen-xl mx-auto px-4 md:px-6">
+          <div className="">
             <section className="py-8 sm:py-12 lg:py-16">
-              <div className="flex justify-center items-center gap-3">
+              <div className="flex justify-center items-center gap-3 max-w-screen-xl mx-auto px-4 md:px-6">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center fade-in-up text-[#01016F]">
                   INDUSTRIES WE <span className="text-[#F70105]">SERVE</span>
                 </h2>
