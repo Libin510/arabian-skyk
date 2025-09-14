@@ -319,15 +319,13 @@ export default function Contact() {
         <div className="mt-16 mb-12">
           <div className="w-full h-[544px] bg-gray-300 rounded-lg overflow-hidden relative">
             <iframe
-              title="Company Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353159046!3d-37.81627974202198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f1f8c3fb%3A0x5045675218ce6e0!2sVictoria!5e0!3m2!1sen!2sau!4v1620211234567!5m2!1sen!2sau"
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3424.780870243376!2d55.560257375389696!3d25.43634977755786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDI2JzEwLjkiTiA1NcKwMzMnNDYuMiJF!5e1!3m2!1sen!2sin!4v1757833409689!5m2!1sen!2sin"
               width="100%"
               height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
+              // style="border:0;"
+              // allowfullscreen=""
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 w-full h-full"
+              // referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>
