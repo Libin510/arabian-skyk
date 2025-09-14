@@ -1,57 +1,69 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Twitter } from 'lucide-react';
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Facebook,
+  Linkedin,
+  Instagram,
+  Twitter,
+} from "lucide-react";
 import Footer from "@/Components/Footer";
 import { LuArrowUpRight } from "react-icons/lu";
 import API, { action } from "../Api";
 export default function Contact() {
-  const [employee,setEmployee] = useState()
+  const [employee, setEmployee] = useState();
   const [formData, setFormData] = useState({
-    fullName: '',
-    companyAddress: '',
-    email: '',
-    phoneNumber: '',
-    message: ''
+    fullName: "",
+    companyAddress: "",
+    email: "",
+    phoneNumber: "",
+    message: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = () => {
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     // Handle form submission here
   };
 
-  const getOurTeam = async ()=>{
-  try{
-    const result = await action(API.GET_USER,{
-      is_employee: true 
-    });
-    if(result?.data){
-      setEmployee(result.data.map((item) => ({
-        id: item._id,
-        name: item.name,
-        phone: item.number,
-        title: item.designation,
-        image: `https://arabian-sky.s3.ap-south-1.amazonaws.com/${item.image}` || "https://via.placeholder.com/150"
-      })));
-    }else{
-      console.error("Failed to fetch our team");
+  const getOurTeam = async () => {
+    try {
+      const result = await action(API.GET_USER, {
+        is_employee: true,
+      });
+      if (result?.data) {
+        setEmployee(
+          result.data.map((item) => ({
+            id: item._id,
+            name: item.name,
+            phone: item.number,
+            title: item.designation,
+            image:
+              `https://arabian-sky.s3.ap-south-1.amazonaws.com/${item.image}` ||
+              "https://via.placeholder.com/150",
+          }))
+        );
+      } else {
+        console.error("Failed to fetch our team");
+      }
+    } catch (error) {
+      console.error("Error fetching our team:", error);
     }
-  }catch(error){
-    console.error("Error fetching our team:", error);
-  }
-}
+  };
 
-
-useEffect(()=>{
-  getOurTeam();
-},[])
+  useEffect(() => {
+    getOurTeam();
+  }, []);
 
   return (
     <div className="max-w-screen-xl mx-auto p-4 mt-32">
@@ -70,7 +82,7 @@ useEffect(()=>{
       </div>
 
       {/* Main Content */}
-     <div className=" mx-auto ">
+      <div className=" mx-auto ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Form - Increased height to match side panel */}
           <div className="lg:col-span-2">
@@ -136,7 +148,7 @@ useEffect(()=>{
                 >
                   Submit
                   <div className=" bg-white text-black rounded-full p-2 text-base lg:text-2xl">
-                  <LuArrowUpRight />
+                    <LuArrowUpRight />
                   </div>
                 </button>
               </div>
@@ -151,7 +163,9 @@ useEffect(()=>{
                   <div className="w-2 h-2 bg-[#F70105] rounded-full"></div>
                   <div className="w-2 h-2 bg-[#F70105] rounded-full"></div>
                 </div>
-                <h1 className="text-2xl lg:text-4xl font-bold text-gray-900 text-center">LET'S TALK</h1>
+                <h1 className="text-2xl lg:text-4xl font-bold text-gray-900 text-center">
+                  LET'S TALK
+                </h1>
                 <div className="flex items-center justify-between mt-2">
                   <div className="w-2 h-2 bg-[#01016F] rounded-full"></div>
                   <div className="w-2 h-2 bg-[#01016F] rounded-full"></div>
@@ -165,10 +179,8 @@ useEffect(()=>{
                   <Mail className="w-5 h-5 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-sm mb-1">EMAIL</h3>
-                    <p className="text-sm opacity-90">Contact@website.com</p>
-                    <p className="text-sm opacity-90">hello@website.com</p>
-                    <p className="text-sm opacity-90">Partnerships & Collaborations:</p>
-                    <p className="text-sm opacity-90">partnerships@website.com</p>
+                    <p className="text-sm opacity-90">info@arabianskyme.com</p>
+                    <p className="text-sm opacity-90">arabiansk@gmail.com</p>
                   </div>
                 </div>
 
@@ -176,12 +188,13 @@ useEffect(()=>{
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">OFFICE LOCATION</h3>
-                    <p className="text-sm opacity-90">123 Business Street, Suite 100</p>
-                    <p className="text-sm opacity-90">Business District</p>
-                    <p className="text-sm opacity-90">Northern Ontario Downtown East Montreal</p>
-                    <p className="text-sm opacity-90">QC H1A 0A6</p>
-                    <p className="text-sm opacity-90">SUITE 75 OUTLET PLAZA</p>
+                    <h3 className="font-semibold text-sm mb-1">
+                      OFFICE LOCATION
+                    </h3>
+                    <p className="text-sm opacity-90"> Arabian Sky Transport</p>
+                    <p className="text-sm opacity-90">
+                      Ajman, Jurf industrial area 2
+                    </p>
                   </div>
                 </div>
 
@@ -189,41 +202,65 @@ useEffect(()=>{
                 <div className="flex items-start space-x-3">
                   <Phone className="w-5 h-5 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">PHONE NUMBERS</h3>
-                    <p className="text-sm opacity-90">+1 (555) 123-4567</p>
-                    <p className="text-sm opacity-90">Toll Free: 1-800-123-4567</p>
-                    <p className="text-sm opacity-90">+1 (555) 765-4321</p>
-                    <p className="text-sm opacity-90">Emergency: +1 (555) 999-0000</p>
+                    <h3 className="font-semibold text-sm mb-1">
+                      PHONE NUMBERS
+                    </h3>
+                    <p className="text-sm opacity-90">+971506078661</p>
+                    <p className="text-sm opacity-90">+97156878661</p>
                   </div>
                 </div>
 
                 {/* Office Hours */}
-                <div className="flex items-start space-x-3">
+                {/* <div className="flex items-start space-x-3">
                   <Clock className="w-5 h-5 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">OUR OFFICE HOURS</h3>
-                    <p className="text-sm opacity-90">Monday to Friday: 9:00 AM - 6:00 PM</p>
-                    <p className="text-sm opacity-90">Saturday: 10:00 AM - 4:00 PM</p>
+                    <h3 className="font-semibold text-sm mb-1">
+                      OUR OFFICE HOURS
+                    </h3>
+                    <p className="text-sm opacity-90">
+                      Monday to Friday: 9:00 AM - 6:00 PM
+                    </p>
+                    <p className="text-sm opacity-90">
+                      Saturday: 10:00 AM - 4:00 PM
+                    </p>
                     <p className="text-sm opacity-90">Sunday: Closed</p>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Stay Connected */}
                 <div className="pt-4">
                   <h3 className="font-semibold text-sm mb-3">STAY CONNECTED</h3>
                   <div className="flex space-x-4">
                     <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                      <Instagram className="w-4 h-4 text-[#01016F]" />
+                      <a
+                        href="https://www.instagram.com/arabian_sky_transport?igsh=em14NjE4M2VzcHUx"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Instagram className="w-4 h-4 text-[#01016F]" />
+                      </a>
                     </div>
                     <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                      <Linkedin className="w-4 h-4 text-[#01016F]" />
+                      <a
+                        href="https://www.linkedin.com/company/arabian-sky-transport-l-l-c/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Linkedin className="w-4 h-4 text-[#01016F]" />
+                      </a>
                     </div>
                     <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                      <Facebook className="w-4 h-4 text-[#01016F]" />
+                      <a
+                        href="https://www.facebook.com/share/16juwK2JUw/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Facebook className="w-4 h-4 text-[#01016F]" />
+                      </a>
                     </div>
-                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                    {/* <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
                       <Twitter className="w-4 h-4 text-[#01016F]" />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -239,28 +276,37 @@ useEffect(()=>{
                 MEET OUR <span className="text-red-500">TEAM</span>
               </h2>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                Get to know the dedicated professionals who make Arabian Sky exceptional
+                Get to know the dedicated professionals who make Arabian Sky
+                exceptional
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {employee.map((member, index) => (
-                                 <div key={member.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                <div
+                  key={member.id}
+                  className="bg-white rounded-lg border border-gray-200 overflow-hidden"
+                >
                   <div className="flex">
-                                         <div className="w-24 h-24  overflow-hidden flex-shrink-0 p-2">
-                       <img 
-                         src={member.image} 
-                         alt={member.name}
-                         className="w-full h-full object-cover rounded"
-                         onError={(e) => {
-                           e.target.src = "https://via.placeholder.com/150x150?text=Team+Member";
-                         }}
-                       />
-                     </div>
+                    <div className="w-24 h-24  overflow-hidden flex-shrink-0 p-2">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover rounded"
+                        onError={(e) => {
+                          e.target.src =
+                            "https://via.placeholder.com/150x150?text=Team+Member";
+                        }}
+                      />
+                    </div>
                     <div className="p-4 flex-1">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">{member.name}</h3>
-                      <p className="text-gray-600 text-sm">{member.title}</p>  
-                      <p className="text-gray-600 text-sm">Ph : {member.phone}</p>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                        {member.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm">{member.title}</p>
+                      <p className="text-gray-600 text-sm">
+                        Ph : {member.phone}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -286,9 +332,8 @@ useEffect(()=>{
           </div>
         </div>
       </div>
-      
-      <Footer/>
-    </div>
 
+      <Footer />
+    </div>
   );
 }
