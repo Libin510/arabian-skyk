@@ -143,11 +143,11 @@ export default function Service() {
     },
     {
       id: 2,
-      title: "Equipment Rental & Leasing",
+      title: "Truck Rental & Leasing",
       image:
-        "https://i.pinimg.com/1200x/bd/1b/6c/bd1b6cfe9f22b310649056a31659c38e.jpg",
+        "truck_rental.jpg",
       description:
-        "Our fleet of modern, well-maintained trucks and machinery is available for short- and long-term lease. We offer **flexible rental solutions** that help businesses across sectors with heavy lifting, construction, and more.",
+        "Our fleet of modern, well-maintained trucks and machinery is available for short- and long-term lease. We offer flexible rental solutions that help businesses across sectors with heavy lifting, construction, and more.",
       features: [
         {
           title: "Wide Range of Vehicles & Machinery",
@@ -167,9 +167,9 @@ export default function Service() {
       id: 3,
       title: "Customs Clearance",
       image:
-        "https://i.pinimg.com/736x/dd/3e/3d/dd3e3d378d5f22d7336ac9fec2e9907c.jpg",
+        "custom_clearence.jpg",
       description:
-        "Navigating the complexities of cross-border transportation can be challenging. Our experienced team handles **customs clearance** quickly and efficiently to ensure your shipments cross borders without delay.",
+        "Navigating the complexities of cross-border transportation can be challenging. Our experienced team handles customs clearance quickly and efficiently to ensure your shipments cross borders without delay.",
       features: [
         {
           title: "Seamless Import & Export Processes",
@@ -213,14 +213,14 @@ export default function Service() {
     {
       title: "Over 25 Years of Experience",
       image:
-        "https://media.istockphoto.com/id/1423325870/photo/tow-truck-transportation.jpg?s=612x612&w=0&k=20&c=EeLFErlEi3n7k9Yfn_Gcuja6cJwf41ISci3q8f6HVuw=",
+        "./25years.jpg",
       description:
         "With decades in the logistics and transport industry, we have the expertise to handle all your transport and logistics needs.",
     },
     {
       title: "Cutting-Edge Technology",
       image:
-        "https://media.istockphoto.com/id/1340887706/photo/outside-of-logistics-retail-warehouse-with-inventory-manager-using-tablet-computer-talking-to.jpg?s=612x612&w=0&k=20&c=BSKvIWQwcKonh_A5D65y1YZKG77k7Qgvn1VvZViVIQE=",
+        "./cutting_Edge.jpg",
       description:
         "We utilize the latest tracking and management software to keep you updated on your cargo’s status.",
     },

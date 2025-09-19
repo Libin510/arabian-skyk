@@ -298,7 +298,7 @@ console.log("leaders",leaders);
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
               <div className="bg-gray-300 rounded overflow-hidden h-60 md:h-80">
                 <img
-                  src="./riderBoy.jpg"
+                  src="./aboutus.jpg"
                   alt="No Image"
                   className="w-full h-full object-cover"
                 />
