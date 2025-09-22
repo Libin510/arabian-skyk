@@ -19,8 +19,12 @@ import ScrollBaseAnimation from "../../components/uilayouts/scroll-text-marque";
 // import StickyGallery from "@/Components/StickyGallery";
 import "../Components/Particles.css";
 import dynamic from "next/dynamic";
-const StickyGallery = dynamic(() => import("@/Components/StickyGallery"), { ssr: false });
-const ImageReveal = dynamic(() => import("@/Components/ImageReveal"), { ssr: false });
+const StickyGallery = dynamic(() => import("@/Components/StickyGallery"), {
+  ssr: false,
+});
+const ImageReveal = dynamic(() => import("@/Components/ImageReveal"), {
+  ssr: false,
+});
 const Partners = dynamic(() => import("@/Components/Partners"), { ssr: false });
 const Footer = dynamic(() => import("@/Components/Footer"), { ssr: false });
 import Head from "next/head";
@@ -47,6 +51,7 @@ import PageWrapper from "@/Components/PageWrapper";
 import { AnimateSvg } from "@/Components/AnimateSvg";
 import ScrollReveal from "@/Components/ScrollReveal";
 import RotatingText from "@/Components/RotatingText";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [showSmoke, setShowSmoke] = useState(false);
@@ -55,6 +60,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [assetsLoaded, setAssetsLoaded] = useState(false);
   const [truckLoaded, setTruckLoaded] = useState(false);
+  const router = useRouter();
 
   const [minimumTimeElapsed, setMinimumTimeElapsed] = useState(false);
   console.log(truckArrived, "truckArrived");
@@ -148,7 +154,7 @@ export default function Home() {
   // }, [dimensions]);
 
   // Hide loader when both conditions are met
- useEffect(() => {
+  useEffect(() => {
     if (assetsLoaded) {
       setIsLoading(false);
       setShowSmoke(true);
@@ -186,7 +192,7 @@ export default function Home() {
   }, [truckArrived]);
   return (
     <>
-    <Head>
+      <Head>
         <link rel="preload" as="image" href="/truck-fallback.webp" />
         <link rel="preload" as="video" href="/Truck Logo Reveal (1).mp4" />
       </Head>
@@ -264,7 +270,10 @@ export default function Home() {
                         loading="lazy"
                         className="absolute top-0 left-0 w-full h-full object-cover z-10"
                       >
-                        <source src="/Truck Logo Reveal (1).mp4" type="video/mp4" />
+                        <source
+                          src="/Truck Logo Reveal (1).mp4"
+                          type="video/mp4"
+                        />
                       </video>
                     </div>
                   </div>
@@ -360,7 +369,10 @@ export default function Home() {
                           reputation built on precision, safety, and
                           customer-first service.
                         </p> */}
-                        <button className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-blue-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
+                        <button
+                          onClick={() => router.push("/about")}
+                          className="bg-gradient-to-r from-[#1131A6] to-[#F70105] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-blue-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+                        >
                           Know more
                         </button>
                       </div>
@@ -378,30 +390,31 @@ export default function Home() {
             <div className="">
               <section className=" py-8 lg:py-20">
                 <div className="w-full">
-                  <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 fade-in-up">
-                    OUR <span className="text-red-500">SERVICES</span>
-                  </h2>
-                  {/* <TruckWrapper className="w-full" /> */}
-                  <div className="text-center fade-in-up delay-200 px-4">
-                    <p className="text-black max-w-3xl mx-auto text-base lg:text-2xl">
-                      As Logistics Service Providers, We Offer A Wide Range Of
-                      Services To Support To Meet The Diverse Logistics Needs Of
-                      Businesses Across The UAE And GCC.
-                    </p>
-                  </div>
-                  </div>
-                   <div className="relative w-full h-[50vh] lg:h-[70vh]">
+                  <div className="relative w-full h-[50vh] lg:h-[70vh]">
                     {!truckLoaded && (
-                    <Image
-                      src="/truck-fallback.webp"
-                      alt="Truck"
-                      fill
-                      priority
-                      className="object-contain"
-                    />)}
+                      <Image
+                        src="/truck-fallback.webp"
+                        alt="Truck"
+                        fill
+                        priority
+                        className="object-contain"
+                      />
+                    )}
                     <div className="absolute inset-0">
                       <TruckScen onLoadComplete={() => setTruckLoaded(true)} />
+                    </div>
+                  </div>
+                  <div className="max-w-screen-xl mx-auto px-4 md:px-6">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#01016F] font-bold text-center mb-6 sm:mb-8 fade-in-up">
+                      OUR <span className="text-red-500">SERVICES</span>
+                    </h2>
+                    {/* <TruckWrapper className="w-full" /> */}
+                    <div className="text-center fade-in-up delay-200 px-4">
+                      <p className="text-black max-w-3xl mx-auto text-base lg:text-2xl">
+                        As Logistics Service Providers, We Offer A Wide Range Of
+                        Services To Support To Meet The Diverse Logistics Needs
+                        Of Businesses Across The UAE And GCC.
+                      </p>
                     </div>
                   </div>
 
@@ -447,14 +460,20 @@ export default function Home() {
                     isMobile ? "grid-cols-2" : "grid-cols-4"
                   }`}
                 >
-                  {[...Array(isMobile ? 2 : 4)].map((_, index) => (
-                    <div
-                      key={index}
-                      className={`bg-gray-400 w-[15vw] h-[18vh] bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer${
-                        index * 100
-                      }`}
-                    />
-                  ))}
+                  {["/arab_1.jpg", "/arab_2.jpg", "/arab_3.jpg", "/arab_4.jpg"]
+                    .slice(0, isMobile ? 2 : 4)
+                    .map((src, index) => (
+                      <div
+                        key={index}
+                        className="w-[15vw] h-[18vh] rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer"
+                      >
+                        <img
+                          src={src}
+                          alt={`Arab ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
@@ -549,8 +568,13 @@ export default function Home() {
                     </div>
                   ))}
                 </div> */}
-                     <RotatingText
-                  texts={["OIL & GAS", "CONSTRUCTION", "INFRASTRUCTURE", "GOVERNMENT & DEFENSE"]}
+                <RotatingText
+                  texts={[
+                    "OIL & GAS",
+                    "CONSTRUCTION",
+                    "INFRASTRUCTURE",
+                    "GOVERNMENT & DEFENSE",
+                  ]}
                   mainClassName="px-2 md:px-4 bg-black text-white overflow-hidden py-2 md:py-4 justify-center rounded text-lg lg:text-4xl w-auto font-bold"
                   staggerFrom={"last"}
                   initial={{ y: "100%" }}
@@ -562,8 +586,8 @@ export default function Home() {
                   rotationInterval={2000}
                 />
               </div>
-               {/* Partners Section */}
-            <Partners />
+              {/* Partners Section */}
+              <Partners />
             </section>
           </div>
 

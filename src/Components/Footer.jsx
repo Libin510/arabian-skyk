@@ -74,25 +74,24 @@ function Footer() {
                   <div>
                     <p className="font-bold text-gray-800 mb-1">Mail</p>
                     <p className="text-gray-600 break-all md:break-normal">
-                      arabianskytr@gmail.com
+                      info@arabianskyme.com <br />
+                      arabiansk@gmail.com
                     </p>
                   </div>
+
                   <div>
                     <p className="font-bold text-gray-800 mb-1">Phone</p>
-                    <p className="text-gray-600">+971 50 538 4463</p>
+                    <p className="text-gray-600">
+                      +971 50 607 8661 <br />
+                      +971 56 878 661
+                    </p>
                   </div>
+
                   <div>
                     <p className="font-bold text-gray-800 mb-1">Address</p>
                     <p className="text-gray-600 leading-relaxed">
-                      Lorem Ipsum Dolor Sit
-                      <br />
-                      Amet Consectetur
-                      <br />
-                      Adipiscing Elit, Sed Do
-                      <br />
-                      Eiusmod Tempor Incididunt
-                      <br />
-                      Nunc Praesent Posuere
+                      Arabian Sky Transport <br />
+                      Ajman, Jurf Industrial Area 2
                     </p>
                   </div>
                 </div>
@@ -102,29 +101,43 @@ function Footer() {
               <div className="lg:col-span-8">
                 {/* Social Media Icons */}
                 <div className="flex justify-center lg:justify-end flex-wrap gap-4 md:gap-6 mb-6 md:mb-8">
-                  <div className="flex items-center space-x-2">
+                  <a
+                    href="https://www.instagram.com/arabian_sky_transport?igsh=em14NjE4M2VzcHUx"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 hover:text-[#E4405F] transition-colors"
+                  >
                     <FaInstagram size={20} className="text-gray-600" />
-
                     <span className="text-xs md:text-sm text-gray-600 font-medium">
                       INSTAGRAM
                     </span>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center space-x-2">
+                  <a
+                    href="https://www.linkedin.com/company/arabian-sky-transport-l-l-c/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 hover:text-[#E4405F] transition-colors"
+                  >
                     <AiOutlineLinkedin size={20} className="text-gray-600" />
 
                     <span className="text-xs md:text-sm text-gray-600 font-medium">
                       LINKEDIN
                     </span>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center space-x-2">
+                   <a
+                    href="https://www.facebook.com/share/16juwK2JUw/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 hover:text-[#E4405F] transition-colors"
+                  >
                     <RiFacebookBoxLine size={20} className="text-gray-600" />
 
                     <span className="text-xs md:text-sm text-gray-600 font-medium">
                       FACEBOOK
                     </span>
-                  </div>
+                  </a>
                 </div>
                 {/* Navigation Menu */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-8 mb-8 md:mb-12 mt-8 md:mt-24">
@@ -189,7 +202,6 @@ function Footer() {
                 </div>
               </div>
             </div>
-           
 
             {/* Bottom Section */}
             <div className="mt-8">

@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { LuArrowUpRight } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 
 const imageList = [
   {
@@ -30,6 +31,7 @@ export default function StickyGallery({ onChangeBackground }) {
   const sectionRefs = useRef([]);
   const [activeHeading, setActiveHeading] = useState(imageList[0].heading);
   const [fade, setFade] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -135,7 +137,7 @@ export default function StickyGallery({ onChangeBackground }) {
                     </textPath>
                   </text>
                 </svg>
-                <div className="bg-white text-2xl rounded-full p-5 z-10 group-hover:rotate-45 transition-transform duration-300">
+                <div onClick={() => router.push("/services")} className="bg-white text-2xl rounded-full p-5 z-10 group-hover:rotate-45 transition-transform duration-300">
                   <LuArrowUpRight className="text-black" />
                 </div>
               </div>
