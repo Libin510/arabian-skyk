@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from "react";
-import Image from "next/image";
 import { LuArrowUpRight } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 
@@ -10,6 +9,8 @@ const imageList = [
     url: "longTruck.jpg",
     bg: "#f2f0ee",
     heading: "LOGISTICS",
+    description:
+      "We specialize in safe, on-time transport of oversized and heavy cargo, offering tailored solutions, expert drivers, and compliance with all regulations for secure delivery.",
   },
   {
     id: "02",
@@ -17,6 +18,8 @@ const imageList = [
     url: "./custom.jpg",
     bg: "#ffe6d9",
     heading: "CLEARANCE",
+    description:
+      "We provide fast and reliable cross-border transportation with expert customs clearance, seamless import and export processes, and full compliance with GCC regulations.",
   },
   {
     id: "03",
@@ -24,12 +27,17 @@ const imageList = [
     url: "https://cdn.prod.website-files.com/5bcf95411e70df20404f914c/5f999c84aed62b15a5304209_Fleet%20Managers%20Should%20Handle%20Roadside%20-Blog-th.jpg",
     bg: "#f3ecff",
     heading: "MAINTENANCE",
+    description:
+      "We offer flexible short- and long-term truck and machinery rentals, including cranes, flatbeds, and low-loaders, to support construction, heavy lifting, and on-demand project needs.",
   },
 ];
 
 export default function StickyGallery({ onChangeBackground }) {
   const sectionRefs = useRef([]);
   const [activeHeading, setActiveHeading] = useState(imageList[0].heading);
+  const [activeDescription, setActiveDescription] = useState(
+    imageList[0].description
+  );
   const [fade, setFade] = useState(false);
   const router = useRouter();
 
@@ -46,11 +54,12 @@ export default function StickyGallery({ onChangeBackground }) {
 
         if (index !== -1) {
           onChangeBackground(imageList[index].bg);
-          setFade(true); // Trigger fade-out
+          setFade(true); // fade out
           setTimeout(() => {
             setActiveHeading(imageList[index].heading);
-            setFade(false); // Trigger fade-in
-          }, 150); // Delay update slightly for better animation timing
+            setActiveDescription(imageList[index].description);
+            setFade(false); // fade in
+          }, 150);
         }
       },
       { threshold: 0.6 }
@@ -106,19 +115,21 @@ export default function StickyGallery({ onChangeBackground }) {
           ))}
         </div>
 
-        {/* Right CTA Column */}
+        {/* Right Description Column */}
         <div className="hidden sticky top-0 h-screen md:grid place-content-center pt-0 lg:pt-[14rem]">
           <div>
-            <div className="sticky top-8 self-end">
-              <Image
-                src="/Truckmg.png"
-                alt="Truck"
-                width={600}
-                height={120}
-                className="justify-self-end mt-10 w-[40vw] h-[16vh] lg:w-[35vw] lg:h-[27vh] 2xl:w-[25vw] 2xl:h-[22vh]"
-              />
+            {/* Replace Truck Image with Text */}
+            <div className="sticky top-8 self-end max-w-lg px-6">
+              <p
+                className={`text-lg md:text-xl lg:text-2xl font-medium text-black transition-opacity duration-300 ease-in-out ${
+                  fade ? "opacity-0" : "opacity-100"
+                }`}
+              >
+                {activeDescription}
+              </p>
             </div>
 
+            {/* CTA Circle */}
             <div className="sticky top-32 flex items-center justify-center p-4 sm:p-6 lg:p-8">
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-40 lg:h-40 p-5 bg-[#01016F] rounded-full flex items-center justify-center group hover:scale-110 transition-all duration-300 cursor-pointer pulse-glow">
                 <svg
@@ -137,7 +148,10 @@ export default function StickyGallery({ onChangeBackground }) {
                     </textPath>
                   </text>
                 </svg>
-                <div onClick={() => router.push("/services")} className="bg-white text-2xl rounded-full p-5 z-10 group-hover:rotate-45 transition-transform duration-300">
+                <div
+                  onClick={() => router.push("/services")}
+                  className="bg-white text-2xl rounded-full p-5 z-10 group-hover:rotate-45 transition-transform duration-300"
+                >
                   <LuArrowUpRight className="text-black" />
                 </div>
               </div>
