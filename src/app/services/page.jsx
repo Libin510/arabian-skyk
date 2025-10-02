@@ -227,7 +227,7 @@ export default function Service() {
     {
       title: "Scalability",
       image:
-        "https://media.istockphoto.com/id/1395748211/photo/van-full-of-moving-boxes-and-furniture-near-house.jpg?s=612x612&w=0&k=20&c=pa1S7xB4fw6R5i3wdibeO1DdwfQ5a9gGJLQDTu5I3LM=",
+        "./scalability.jpg",
       description:
         "No matter the size of your shipment or project, we have the resources and flexibility to meet your demands.",
     },
