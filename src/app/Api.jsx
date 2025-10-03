@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = {
-  HOST: "http://localhost:3033/",
+  HOST: "https://www.arabianskyme.com/api/",
 
   //login
   LOGIN: { url: "login", method: "POST" },
