@@ -83,7 +83,7 @@ function Footer() {
                     <p className="font-bold text-gray-800 mb-1">Phone</p>
                     <p className="text-gray-600">
                       +971 50 607 8661 <br />
-                      +971 56 878 661
+                      +971 50 687 8661
                     </p>
                   </div>
 
