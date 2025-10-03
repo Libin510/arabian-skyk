@@ -424,9 +424,9 @@ console.log("leaders",leaders);
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
-              {ourFeet.map((item) => (
+              {ourFeet.map((item, index) => (
                 <div
-                  key={item}
+                  key={index}
                   className=" lg:h-[300px] bg-gray-400 rounded-lg"
                 >
                   <img
