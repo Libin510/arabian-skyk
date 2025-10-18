@@ -205,8 +205,8 @@ export default function Contact() {
                     <h3 className="font-semibold text-sm mb-1">
                       PHONE NUMBERS
                     </h3>
-                    <p className="text-sm opacity-90">+971506078661</p>
-                    <p className="text-sm opacity-90">+97156878661</p>
+                    <p className="text-sm opacity-90">+971 50 607 8661</p>
+                    <p className="text-sm opacity-90">+971 50 687 8661</p>
                   </div>
                 </div>
 
